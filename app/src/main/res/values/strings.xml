@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CapstoneApp</string>
+
+    <string name="text_feature01">Feature 01: Home</string>
+    <string name="text_feature02">Feature 02: Workout Plan</string>
+    <string name="text_feature03">Feature 03: Nutrition Plan</string>
+    <string name="text_feature04">Feature 04: Progress</string>
+</resources>
