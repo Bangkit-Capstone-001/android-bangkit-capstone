@@ -1,11 +1,12 @@
 package com.example.capstoneapp.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.capstoneapp.R
+import com.example.capstoneapp.databinding.FragmentFeature01Binding
 
 class Feature01Fragment : Fragment() {
 
@@ -14,7 +15,15 @@ class Feature01Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feature01, container, false)
+        val binding = FragmentFeature01Binding.inflate(inflater, container, false)
+        val mainBinding = (requireActivity() as MainActivity).binding
+        val bottomNavigationView = mainBinding.bottomNavigation
+
+        binding.buttonWorkout.setOnClickListener {
+            bottomNavigationView.selectedItemId = R.id.bottom_2
+        }
+
+        return binding.root
     }
 
     companion object {}
