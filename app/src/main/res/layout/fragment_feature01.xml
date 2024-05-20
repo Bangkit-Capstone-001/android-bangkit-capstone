@@ -7,7 +7,7 @@
     tools:context=".ui.Feature01Fragment">
 
     <ImageView
-        android:id="@+id/imageHome"
+        android:id="@+id/iv_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
@@ -17,29 +17,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonWorkout"
+        android:id="@+id/button_workout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/raceBlue"
-        android:text="Start working out"
+        android:text="@string/button_workout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageQuotes" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_quotes" />
 
     <ImageView
-        android:id="@+id/imageQuotes"
+        android:id="@+id/iv_quotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:src="@drawable/img_quotes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageHome"
-        app:layout_constraintTop_toTopOf="@+id/imageHome" />
-
-
+        app:layout_constraintStart_toStartOf="@+id/iv_home"
+        app:layout_constraintTop_toTopOf="@+id/iv_home" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -49,14 +48,14 @@
         app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageHome">
+        app:layout_constraintTop_toBottomOf="@+id/iv_home">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleProfileImage"
+                android:id="@+id/iv_profile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="16dp"
@@ -68,39 +67,174 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="@color/white"
+                app:elevation="0dp"
+                app:fabCustomSize="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:maxImageSize="18dp"
+                app:pressedTranslationZ="0dp"
+                app:srcCompat="@drawable/ic_baseline_edit_24"
+                app:tint="@color/lightGray" />
+
             <TextView
-                android:id="@+id/textName"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Gerardo"
+                android:text="@string/name"
                 android:textSize="25sp"
-                app:layout_constraintStart_toEndOf="@+id/circleProfileImage"
-                app:layout_constraintTop_toTopOf="@+id/circleProfileImage" />
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
             <TextView
-                android:id="@+id/textDescription"
+                android:id="@+id/tv_userinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="78 kg | 180 cm | BMI: 24.1"
+                android:text="@string/userinfo"
                 android:textColor="@color/darkGray"
-                app:layout_constraintStart_toEndOf="@+id/circleProfileImage"
-                app:layout_constraintTop_toBottomOf="@+id/textName" />
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
             <TextView
-                android:id="@+id/textCalories"
+                android:id="@+id/tv_needs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Needs: 3500 cal   Consumed: 2450 cal"
+                android:text="@string/needs"
                 android:textColor="@color/darkGray"
-                app:layout_constraintBottom_toBottomOf="@+id/circleProfileImage"
-                app:layout_constraintStart_toEndOf="@+id/circleProfileImage" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile" />
 
+            <TextView
+                android:id="@+id/tv_needs_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/needs_value"
+                android:textColor="@color/darkGray"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintStart_toEndOf="@+id/tv_needs" />
+
+            <TextView
+                android:id="@+id/tv_consumed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/consumed"
+                android:textColor="@color/darkGray"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintStart_toEndOf="@+id/tv_needs_value" />
+
+            <TextView
+                android:id="@+id/tv_consumed_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/consumed_value"
+                android:textColor="@color/darkGray"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintStart_toEndOf="@+id/tv_consumed" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:minHeight="150dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_profile">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/buttongroup_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                app:singleSelection="true"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
+
+                <Button
+                    android:id="@+id/button_breakfast"
+                    style="@style/ToggleButtonWithIconOnly"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/breakfast"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="153dp" />
+
+                <Button
+                    android:id="@+id/button_lunch"
+                    style="@style/ToggleButtonWithIconOnly"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/lunch"
+                    tools:layout_editor_absoluteX="173dp"
+                    tools:layout_editor_absoluteY="251dp" />
+
+                <Button
+                    android:id="@+id/button_dinner"
+                    style="@style/ToggleButtonWithIconOnly"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/dinner"
+                    tools:layout_editor_absoluteX="166dp"
+                    tools:layout_editor_absoluteY="340dp" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <TextView
+                android:id="@+id/tv_dummy1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:text="@string/breakfast" />
+
+            <Button
+                android:id="@+id/button_trackfood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/mediumBlue"
+                android:text="@string/button_trackfood"
+                android:layout_gravity="end"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
