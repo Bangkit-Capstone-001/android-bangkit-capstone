@@ -50,12 +50,15 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     // Jetpack
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     // UI
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    // Chart
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 }
