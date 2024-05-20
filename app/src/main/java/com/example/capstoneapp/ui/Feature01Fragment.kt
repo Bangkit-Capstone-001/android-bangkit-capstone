@@ -23,6 +23,20 @@ class Feature01Fragment : Fragment() {
             bottomNavigationView.selectedItemId = R.id.bottom_2
         }
 
+        binding.buttonTrackfood.setOnClickListener {
+            bottomNavigationView.selectedItemId = R.id.bottom_3
+        }
+
+        binding.buttongroupFood.addOnButtonCheckedListener { toggleButtonGroup, checkedId, isChecked ->
+            if (isChecked) {
+                when (checkedId) {
+                    R.id.button_breakfast -> binding.tvDummy1.text = getString(R.string.breakfast)
+                    R.id.button_lunch -> binding.tvDummy1.text = getString(R.string.lunch)
+                    R.id.button_dinner -> binding.tvDummy1.text = getString(R.string.dinner)
+                }
+            }
+        }
+
         return binding.root
     }
 
