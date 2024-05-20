@@ -5,4 +5,13 @@
     <string name="text_feature02">Feature 02: Workout Plan</string>
     <string name="text_feature03">Feature 03: Nutrition Plan</string>
     <string name="text_feature04">Feature 04: Progress</string>
+
+    <string name="name">Name</string>
+    <string name="userinfo">78 kg | 180 cm | BMI: 24.1</string>
+    <string name="needs">Needs:</string>
+    <string name="needs_value">3500 cal</string>
+    <string name="consumed">Consumed:</string>
+    <string name="consumed_value">2750 cal</string>
+    <string name="button_workout">Start working out</string>
+
 </resources>
