@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                 if (it.status == 200) {
                     val userModel = UserModel(resp.message ?: "", resp.idToken ?: "", true)
                     viewModel.saveSession(userModel)
-                    showSuccessDialog("Berhasil login")
+                    showSuccessDialog()
                 }
             }
         }
@@ -85,10 +85,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun showSuccessDialog(message: String) {
+    private fun showSuccessDialog() {
         AlertDialog.Builder(this).apply {
             setTitle(R.string.success)
-            setMessage(message)
+            setMessage(R.string.login_success)
             setPositiveButton(R.string.ok) { _, _ ->
                 val intent = Intent(context, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
