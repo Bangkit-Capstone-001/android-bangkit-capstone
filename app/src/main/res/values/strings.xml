@@ -11,6 +11,21 @@
     <string name="lunch">Lunch</string>
     <string name="dinner">Dinner</string>
 
+    <!--  Auth Page  -->
+    <string name="welcome_title">Welcome</string>
+    <string name="welcome_desc">Let\'s maintain your health!</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="email_error">Make sure you fill in the correct email</string>
+    <string name="password_error">Password can\'t be less than 8 characters</string>
+
+    <string name="success">Success!</string>
+    <string name="error">Error!</string>
+    <string name="ok">OK</string>
+
     <!--  Feature 01  -->
     <string name="name">Name</string>
     <string name="userinfo">78 kg | 180 cm | BMI: 24.1</string>
