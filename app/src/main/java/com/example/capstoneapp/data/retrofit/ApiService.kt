@@ -1,5 +1,6 @@
 package com.example.capstoneapp.data.retrofit
 
+import com.example.capstoneapp.data.response.LoginResponse
 import com.example.capstoneapp.data.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Field
@@ -14,4 +15,12 @@ interface ApiService {
         @Field("password") password: String,
         @Field("name") name: String
     ): Call<RegisterResponse>
+
+    @FormUrlEncoded
+    @POST("api/auth/login")
+    fun login(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Call<LoginResponse>
+
 }
