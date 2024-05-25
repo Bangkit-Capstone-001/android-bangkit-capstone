@@ -11,7 +11,6 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 class SignupViewModel(private val repository: UserRepository) : ViewModel() {
     // LiveData Variables
@@ -22,11 +21,14 @@ class SignupViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun handleSignup(email: String, pass: String) {
+    fun handleSignup(email: String, pass: String, name: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().register(email, pass)
+        val client = ApiConfig.getApiService().register(email, pass, name)
         client.enqueue(object : Callback<RegisterResponse> {
-            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+            override fun onResponse(
+                call: Call<RegisterResponse>,
+                response: Response<RegisterResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     response.body()?.let { responseBody ->

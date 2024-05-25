@@ -11,6 +11,7 @@ interface ApiService {
     @POST("api/auth/register")
     fun register(
         @Field("email") email: String,
-        @Field("password") password: String
+        @Field("password") password: String,
+        @Field("name") name: String
     ): Call<RegisterResponse>
 }

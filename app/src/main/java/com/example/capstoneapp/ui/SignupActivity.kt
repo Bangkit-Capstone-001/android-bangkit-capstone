@@ -1,18 +1,14 @@
 package com.example.capstoneapp.ui
 
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.capstoneapp.R
-
 import android.os.Build
+import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivitySignupBinding
 import com.example.capstoneapp.viewmodel.SignupViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
@@ -22,6 +18,7 @@ class SignupActivity : AppCompatActivity() {
     private val signupViewModel: SignupViewModel by viewModels {
         ViewModelFactory.getInstance(this)
     }
+    private lateinit var email: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +51,8 @@ class SignupActivity : AppCompatActivity() {
             val pass = binding.edRegisterPassword.text.toString()
 
             if (validateInput(name, email, pass)) {
-                signupViewModel.handleSignup(email, pass)
+                signupViewModel.handleSignup(email, pass, name)
+                this.email = email
             }
         }
     }
@@ -65,14 +63,17 @@ class SignupActivity : AppCompatActivity() {
                 showErrorDialog("Name cannot be empty")
                 false
             }
+
             email.isEmpty() -> {
                 showErrorDialog("Email cannot be empty")
                 false
             }
+
             pass.isEmpty() -> {
                 showErrorDialog("Password cannot be empty")
                 false
             }
+
             else -> true
         }
     }
@@ -82,7 +83,7 @@ class SignupActivity : AppCompatActivity() {
             if (signupViewModel.isError.value == true) {
                 showErrorDialog(message)
             } else {
-                showSuccessDialog(message)
+                showSuccessDialog(email)
             }
         }
 
@@ -93,7 +94,7 @@ class SignupActivity : AppCompatActivity() {
 
     private fun showErrorDialog(message: String) {
         AlertDialog.Builder(this).apply {
-            setTitle(R.string.error)
+            setTitle(R.string.regis_failed)
             setMessage(message)
             setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             create()
@@ -101,10 +102,10 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    private fun showSuccessDialog(message: String) {
+    private fun showSuccessDialog(email: String) {
         AlertDialog.Builder(this).apply {
             setTitle(R.string.success)
-            setMessage(R.string.success)
+            setMessage(getString(R.string.regis_success, email))
             setPositiveButton(R.string.ok) { _, _ -> finish() }
             create()
             show()
