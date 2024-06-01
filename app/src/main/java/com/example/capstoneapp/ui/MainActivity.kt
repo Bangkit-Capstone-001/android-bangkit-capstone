@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityMainBinding
+import com.example.capstoneapp.ui.Feature04.Feature04Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
