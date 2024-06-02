@@ -1,15 +1,25 @@
 package com.example.capstoneapp.ui
 
+//import androidx.activity.viewModels
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.FragmentFeature01Binding
+import com.example.capstoneapp.viewmodel.MainViewModel
+import com.example.capstoneapp.viewmodel.ViewModelFactory
 
 class Feature01Fragment : Fragment() {
+    private val mainViewModel: MainViewModel by activityViewModels {
+        ViewModelFactory.getInstance(requireActivity())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,7 +30,7 @@ class Feature01Fragment : Fragment() {
         val mainBinding = (requireActivity() as MainActivity).binding
         val bottomNavigationView = mainBinding.bottomNavigation
 
-        binding.buttonSettings.setOnClickListener{
+        binding.buttonSettings.setOnClickListener {
             startActivity(Intent(activity, ProfileActivity::class.java))
         }
 
@@ -41,8 +51,41 @@ class Feature01Fragment : Fragment() {
                 }
             }
         }
-
+        observeViewModel(binding)
         return binding.root
+    }
+
+    private fun observeViewModel(binding: FragmentFeature01Binding) {
+        mainViewModel.userProfile.observe(viewLifecycleOwner) { resp ->
+            resp?.let {
+                if (it.status == 200) {
+                    binding.tvName.text = it.data?.name
+                    val weightT = "null"
+                    val bmiT = "null"
+                    val heightT = it.data?.currentHeight.toString()
+                    binding.tvUserinfo.text = "$weightT kg | $heightT cm | BMI: $bmiT"
+                    binding.tvGoalValue.text = it.data?.goal ?: "null"
+                    binding.tvActValue.text = it.data?.activityLevel ?: "null"
+                    // Check data completion
+                    if (it.data?.goal == null) {
+                        showWarning()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showWarning() {
+        AlertDialog.Builder(requireActivity()).apply {
+            setTitle("One more step!")
+            setMessage("To start using this app, please complete your data and set up your goals. ")
+            setPositiveButton(R.string.ok) { _, _ ->
+                val intent = Intent(requireActivity(), ProfileActivity::class.java)
+                startActivity(intent)
+            }
+            create()
+            show()
+        }
     }
 
     companion object {}
