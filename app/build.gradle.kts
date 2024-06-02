@@ -18,12 +18,20 @@ android {
     }
 
     buildTypes {
-        release {
+//        release {
+//            isMinifyEnabled = false
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
+//        }
+        named("release") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
+            buildConfigField("String", "BASE_URL", "\"https://fitfirst-backend-haexo7tjpa-et.a.run.app/\"")
+        }
+        named("debug") {
+            buildConfigField("String", "BASE_URL", "\"https://fitfirst-backend-haexo7tjpa-et.a.run.app/\"")
         }
     }
     compileOptions {
@@ -60,5 +68,11 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     // Chart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    // Retrofit
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
 }

@@ -1,21 +1,37 @@
 package com.example.capstoneapp.ui
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityMainBinding
+import com.example.capstoneapp.viewmodel.MainViewModel
+import com.example.capstoneapp.viewmodel.ViewModelFactory
 import com.example.capstoneapp.ui.Feature04.Feature04Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    private val mainViewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
     private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mainViewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
+            } else {
+                // setupAction(user.token)
+            }
+        }
 
         bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.setOnItemSelectedListener { menuItem ->

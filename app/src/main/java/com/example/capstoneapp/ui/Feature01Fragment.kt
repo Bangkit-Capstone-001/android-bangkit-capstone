@@ -1,5 +1,6 @@
 package com.example.capstoneapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,10 @@ class Feature01Fragment : Fragment() {
         val binding = FragmentFeature01Binding.inflate(inflater, container, false)
         val mainBinding = (requireActivity() as MainActivity).binding
         val bottomNavigationView = mainBinding.bottomNavigation
+
+        binding.buttonSettings.setOnClickListener{
+            startActivity(Intent(activity, ProfileActivity::class.java))
+        }
 
         binding.buttonWorkout.setOnClickListener {
             bottomNavigationView.selectedItemId = R.id.bottom_2
