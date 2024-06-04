@@ -22,8 +22,8 @@ class PasswordField @JvmOverloads constructor(
     private var isPasswordVisible = false
 
     init {
-        lockIconDrawable = ContextCompat.getDrawable(context, R.drawable.ic_baseline_lock_24)!!
-        visibilityIconDrawable = ContextCompat.getDrawable(context, R.drawable.ic_baseline_visibility_24)!!
+        lockIconDrawable = ContextCompat.getDrawable(context, R.drawable.ic_lock)!!
+        visibilityIconDrawable = ContextCompat.getDrawable(context, R.drawable.ic_visibility)!!
 
         inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         transformationMethod = PasswordTransformationMethod.getInstance()
@@ -82,11 +82,11 @@ class PasswordField @JvmOverloads constructor(
         if (isPasswordVisible) {
             transformationMethod = PasswordTransformationMethod.getInstance()
             visibilityIconDrawable =
-                ContextCompat.getDrawable(context, R.drawable.ic_baseline_visibility_24)!!
+                ContextCompat.getDrawable(context, R.drawable.ic_visibility)!!
         } else {
             transformationMethod = HideReturnsTransformationMethod.getInstance()
             visibilityIconDrawable =
-                ContextCompat.getDrawable(context, R.drawable.ic_baseline_visibility_off_24)!!
+                ContextCompat.getDrawable(context, R.drawable.ic_visibility_off)!!
         }
         isPasswordVisible = !isPasswordVisible
         setCompoundDrawablesWithIntrinsicBounds(

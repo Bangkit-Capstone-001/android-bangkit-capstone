@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-        app:startIconDrawable="@drawable/ic_baseline_person_24">
+        app:startIconDrawable="@drawable/ic_person">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_name"
@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageTextView"
-        app:startIconDrawable="@drawable/account_child_outline">
+        app:startIconDrawable="@drawable/ic_age">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_age"
@@ -106,7 +106,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genderTextView"
-        app:startIconDrawable="@drawable/gender_male_female">
+        app:startIconDrawable="@drawable/ic_gender">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_gender"
@@ -137,7 +137,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heightTextView"
-        app:startIconDrawable="@drawable/human_male_height">
+        app:startIconDrawable="@drawable/ic_height">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_height"
@@ -196,7 +196,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goalTextView"
-        app:startIconDrawable="@drawable/flag_checkered">
+        app:startIconDrawable="@drawable/ic_goal">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_goal"
