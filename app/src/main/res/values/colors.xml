@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="darkGray">#363636</color>
+    <color name="lightGray">#6B6B6B</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="darkBlue">#152042</color>
     <color name="mediumBlue">#223767</color>
     <color name="raceBlue">#2970FF</color>
-    <color name="darkGray">#363636</color>
+    <color name="paleBlue">#BBC5E0</color>
+
+    <color name="darkRed">#CF0000</color>
 </resources>

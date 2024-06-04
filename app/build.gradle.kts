@@ -18,12 +18,20 @@ android {
     }
 
     buildTypes {
-        release {
+//        release {
+//            isMinifyEnabled = false
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
+//        }
+        named("release") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
+            buildConfigField("String", "BASE_URL", "\"https://fitfirst-backend-haexo7tjpa-et.a.run.app/\"")
+        }
+        named("debug") {
+            buildConfigField("String", "BASE_URL", "\"https://fitfirst-backend-haexo7tjpa-et.a.run.app/\"")
         }
     }
     compileOptions {
@@ -50,12 +58,26 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     // Jetpack
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     // UI
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    // Chart
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    // Retrofit
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    // ViewModels, etc
+    implementation("androidx.fragment:fragment-ktx:1.3.0")
+    implementation("androidx.activity:activity-ktx:1.3.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+
+
 }
