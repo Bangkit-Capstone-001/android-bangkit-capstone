@@ -17,7 +17,7 @@ class EmailField @JvmOverloads constructor(
     private var emailIconDrawable: Drawable
 
     init {
-        emailIconDrawable = ContextCompat.getDrawable(context, R.drawable.ic_baseline_email_24) as Drawable
+        emailIconDrawable = ContextCompat.getDrawable(context, R.drawable.ic_email) as Drawable
 
         inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         compoundDrawablePadding = 16

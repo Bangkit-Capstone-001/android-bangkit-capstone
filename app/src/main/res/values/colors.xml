@@ -9,4 +9,6 @@
     <color name="mediumBlue">#223767</color>
     <color name="raceBlue">#2970FF</color>
     <color name="paleBlue">#BBC5E0</color>
+
+    <color name="darkRed">#CF0000</color>
 </resources>
