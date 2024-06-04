@@ -46,8 +46,9 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
                         Log.e(TAG, "Null response")
                     }
                 } else {
+                    _userMsg.value = response.message()
                     _userError.value = true
-                    Log.e(TAG, "Bad request")
+                    Log.e(TAG, "Bad request: $userMsg")
                 }
             }
 

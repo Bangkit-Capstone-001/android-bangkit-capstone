@@ -60,12 +60,12 @@ class Feature01Fragment : Fragment() {
             resp?.let {
                 if (it.status == 200) {
                     binding.tvName.text = it.data?.name
-                    val weightT = "null"
-                    val bmiT = "null"
-                    val heightT = it.data?.currentHeight.toString()
+                    val weightT = it.data?.currentWeight ?: 0
+                    val bmiT = it.data?.currentHeight ?: 0
+                    val heightT = it.data?.currentHeight ?: 0
                     binding.tvUserinfo.text = "$weightT kg | $heightT cm | BMI: $bmiT"
-                    binding.tvGoalValue.text = it.data?.goal ?: "null"
-                    binding.tvActValue.text = it.data?.activityLevel ?: "null"
+                    binding.tvGoalValue.text = it.data?.goal ?: "None"
+                    binding.tvActValue.text = it.data?.activityLevel ?: "None"
                     // Check data completion
                     if (it.data?.goal == null) {
                         showWarning()

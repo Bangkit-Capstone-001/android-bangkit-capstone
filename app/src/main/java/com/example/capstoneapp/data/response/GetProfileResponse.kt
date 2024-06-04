@@ -19,6 +19,9 @@ data class Data(
 	@field:SerializedName("goal")
 	val goal: String? = null,
 
+	@field:SerializedName("currentWeight")
+	val currentWeight: Any? = null,
+
 	@field:SerializedName("gender")
 	val gender: String? = null,
 
@@ -32,5 +35,8 @@ data class Data(
 	val age: Int? = null,
 
 	@field:SerializedName("activityLevel")
-	val activityLevel: String? = null
+	val activityLevel: String? = null,
+
+	@field:SerializedName("bmi")
+	val bmi: Any? = null
 )
