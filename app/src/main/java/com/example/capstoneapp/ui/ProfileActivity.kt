@@ -2,11 +2,15 @@ package com.example.capstoneapp.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityProfileBinding
+import com.example.capstoneapp.helper.activityToAttr
+import com.example.capstoneapp.helper.goalToAttr
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ProfileViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
@@ -31,6 +35,8 @@ class ProfileActivity : AppCompatActivity() {
             _token = "Bearer ${user.token}"
             setupAction(_token)
         }
+
+        setupView()
         showLoading(false)
         observeViewModel()
     }
@@ -47,6 +53,21 @@ class ProfileActivity : AppCompatActivity() {
         profileViewModel.isLoading.observe(this) {
             showLoading(it)
         }
+    }
+
+    private fun setupView() {
+        val genderOptions = arrayOf("Male", "Female")
+        var adapter = ArrayAdapter(this, R.layout.item_option, genderOptions)
+        binding.edGender.setAdapter(adapter)
+
+        val goalOptions = arrayOf("Weight Gain", "Weight Loss", "Maintain Body")
+        adapter = ArrayAdapter(this, R.layout.item_option, goalOptions)
+        binding.edGoal.setAdapter(adapter)
+
+        val activityOptions = arrayOf("Index 4 (Active): Moves a lot", "Index 3 (Moderate): Moves moderately",
+            "Index 2 (Light): Moves a litte", "Index 1 (Sedentary): Moves rarely")
+        adapter = ArrayAdapter(this, R.layout.item_option, activityOptions)
+        binding.edAct.setAdapter(adapter)
     }
 
     private fun setupAction(t: String) {
@@ -68,9 +89,11 @@ class ProfileActivity : AppCompatActivity() {
 
                 val fAge = age.toInt()
                 val fHeight = height.toFloat()
+                val fGoal = goalToAttr(goal)
+                val fAct = activityToAttr(activityLevel)
 
                 profileViewModel.editProfile(
-                    t, name, fAge, gender, fHeight, weight, goal, activityLevel
+                    t, name, fAge, gender, fHeight, weight, fGoal, fAct
                 )
             }
         }

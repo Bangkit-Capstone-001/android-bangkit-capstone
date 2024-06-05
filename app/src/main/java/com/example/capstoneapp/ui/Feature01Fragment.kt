@@ -13,6 +13,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.FragmentFeature01Binding
+import com.example.capstoneapp.helper.attrToActivity
+import com.example.capstoneapp.helper.attrToGoal
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 
@@ -64,8 +66,8 @@ class Feature01Fragment : Fragment() {
                     val bmiT = it.data?.currentHeight ?: 0
                     val heightT = it.data?.currentHeight ?: 0
                     binding.tvUserinfo.text = "$weightT kg | $heightT cm | BMI: $bmiT"
-                    binding.tvGoalValue.text = it.data?.goal ?: "None"
-                    binding.tvActValue.text = it.data?.activityLevel ?: "None"
+                    binding.tvGoalValue.text = attrToGoal(it.data?.goal ?: "None")
+                    binding.tvActValue.text = attrToActivity(it.data?.activityLevel ?: "None")
                     // Check data completion
                     if (it.data?.goal == null) {
                         showWarning()

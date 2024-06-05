@@ -98,7 +98,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/genderEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -108,12 +108,12 @@
         app:layout_constraintTop_toBottomOf="@+id/genderTextView"
         app:startIconDrawable="@drawable/ic_gender">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
             android:id="@+id/ed_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -188,7 +188,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/goalEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -198,12 +198,12 @@
         app:layout_constraintTop_toBottomOf="@+id/goalTextView"
         app:startIconDrawable="@drawable/ic_goal">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
             android:id="@+id/ed_goal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -219,7 +219,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/actEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -229,12 +229,12 @@
         app:layout_constraintTop_toBottomOf="@+id/actTextView"
         app:startIconDrawable="@drawable/run">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
             android:id="@+id/ed_act"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
