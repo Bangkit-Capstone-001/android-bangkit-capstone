@@ -1,4 +1,4 @@
-package com.example.capstoneapp.ui
+package com.example.capstoneapp.ui.Feature02
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
