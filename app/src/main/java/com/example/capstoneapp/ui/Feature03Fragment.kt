@@ -1,5 +1,6 @@
 package com.example.capstoneapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,9 +29,11 @@ class Feature03Fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentFeature03Binding.inflate(inflater, container, false)
-        // generateChart(binding)
-
         observeViewModel(binding)
+        binding.buttonCamera.setOnClickListener {
+            startActivity(Intent(activity, PredictActivity::class.java))
+        }
+
         return binding.root
     }
 
