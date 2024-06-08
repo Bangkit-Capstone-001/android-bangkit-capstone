@@ -74,7 +74,7 @@
                     android:paddingStart="16dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="100dp"
-                    android:text="Explore food recomendations!"
+                    android:text="Here are some food informations!"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

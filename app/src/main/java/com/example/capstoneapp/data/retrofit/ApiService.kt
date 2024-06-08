@@ -1,5 +1,7 @@
 package com.example.capstoneapp.data.retrofit
 
+import com.example.capstoneapp.data.response.AddDietPlanResponse
+import com.example.capstoneapp.data.response.AddWeightResponse
 import com.example.capstoneapp.data.response.EditProfileResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
 import com.example.capstoneapp.data.response.LoginResponse
@@ -45,4 +47,20 @@ interface ApiService {
         @Field("goal") goal: String,
         @Field("activityLevel") activityLevel: String
     ): Call<EditProfileResponse>
+
+    @FormUrlEncoded
+    @POST("api/diet-plan")
+    fun addDietPlan(
+        @Header("Authorization") token: String,
+        @Field("weightTarget") weightTarget: Float,
+        @Field("duration") duration: Int
+    ): Call<AddDietPlanResponse>
+
+    @FormUrlEncoded
+    @POST("api/tracker")
+    fun addWeight(
+        @Header("Authorization") token: String,
+        @Field("date") date: String,
+        @Field("weight") weight: Float,
+    ): Call<AddWeightResponse>
 }

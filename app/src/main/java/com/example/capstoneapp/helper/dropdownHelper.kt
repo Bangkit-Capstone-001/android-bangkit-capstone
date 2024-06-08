@@ -30,10 +30,10 @@ fun activityToAttr(a: String): String {
 
 fun attrToActivity(a: String): String {
     return when (a) {
-        "active" -> "➃ Active"
-        "moderate" -> "➂ Moderate"
-        "light" -> "➁ Light"
-        "sedentary" -> "➀ Sedentary"
+        "active" -> "Active"
+        "moderate" -> "Moderate"
+        "light" -> "Light"
+        "sedentary" -> "Sedentary"
         else -> "unknown"
     }
 }

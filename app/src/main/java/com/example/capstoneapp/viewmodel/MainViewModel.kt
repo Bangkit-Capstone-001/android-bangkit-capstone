@@ -28,6 +28,8 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun getProfile(token: String) {
         _isLoading.value = true
+        _userError.value = false
+        Log.e("Token", "$token")    // get token
         val client = ApiConfig.getApiService().getProfile(token)
         client.enqueue(object : Callback<GetProfileResponse> {
             override fun onResponse(
@@ -48,7 +50,7 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
                 } else {
                     _userMsg.value = response.message()
                     _userError.value = true
-                    Log.e(TAG, "Bad request: $userMsg")
+                    Log.e(TAG, "Bad request: ${response.code()} - ${response.errorBody()?.string()}")
                 }
             }
 

@@ -1,10 +1,11 @@
 package com.example.capstoneapp.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstoneapp.R
@@ -14,6 +15,8 @@ import com.example.capstoneapp.helper.goalToAttr
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ProfileViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ProfileActivity : AppCompatActivity() {
     lateinit var binding: ActivityProfileBinding
@@ -24,6 +27,7 @@ class ProfileActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(this)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -43,7 +47,9 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         profileViewModel.message.observe(this) { message ->
-            if (profileViewModel.isError.value != true) {
+            if (profileViewModel.isError.value != true &&
+                profileViewModel.addPlanError.value != true &&
+                profileViewModel.addWeightError.value != true) {
                 showSuccessDialog()
             } else {
                 showErrorDialog(getString(R.string.unknown_error))
@@ -64,12 +70,15 @@ class ProfileActivity : AppCompatActivity() {
         adapter = ArrayAdapter(this, R.layout.item_option, goalOptions)
         binding.edGoal.setAdapter(adapter)
 
-        val activityOptions = arrayOf("Index 4 (Active): Moves a lot", "Index 3 (Moderate): Moves moderately",
-            "Index 2 (Light): Moves a litte", "Index 1 (Sedentary): Moves rarely")
+        val activityOptions = arrayOf(
+            "Index 4 (Active): Moves a lot", "Index 3 (Moderate): Moves moderately",
+            "Index 2 (Light): Moves a litte", "Index 1 (Sedentary): Moves rarely"
+        )
         adapter = ArrayAdapter(this, R.layout.item_option, activityOptions)
         binding.edAct.setAdapter(adapter)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupAction(t: String) {
         binding.buttonLogout.setOnClickListener {
             mainViewModel.logout()
@@ -81,26 +90,43 @@ class ProfileActivity : AppCompatActivity() {
             val age = binding.edAge.text.toString()
             val gender = binding.edGender.text.toString()
             val height = binding.edHeight.text.toString()
-            val weight = 0F
+            val weight = binding.edWeight.text.toString()
             val goal = binding.edGoal.text.toString()
             val activityLevel = binding.edAct.text.toString()
+            val weightTarget = binding.edWeightTarget.text.toString()
+            val duration = binding.edDuration.text.toString()
 
-            if (validateInput(name, age, gender, height, weight, goal, activityLevel)) {
+            if (validateInput(
+                    name, age, gender, height, weight, goal, activityLevel,
+                    weightTarget, duration
+            )) {
 
                 val fAge = age.toInt()
+                val fWeight = weight.toFloat()
                 val fHeight = height.toFloat()
                 val fGoal = goalToAttr(goal)
                 val fAct = activityToAttr(activityLevel)
+                val fWeightTarget = weightTarget.toFloat()
+                val fDuration = duration.toInt()
+
+                val currentDate = LocalDate.now()
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                val fDate = currentDate.format(formatter)
 
                 profileViewModel.editProfile(
-                    t, name, fAge, gender, fHeight, weight, fGoal, fAct
+                    t, name, fAge, gender, fHeight, fWeight, fGoal, fAct
                 )
+                profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
+                profileViewModel.addWeight(t, fDate, fWeight)
             }
         }
     }
 
     private fun validateInput(
-        name: String, age: String, gender: String, currentHeight: String, currentWeight: Float, goal: String, activityLevel: String
+        name: String, age: String, gender: String, currentHeight: String, currentWeight: String,
+        goal: String, activityLevel: String,
+        weightTarget: String, duration: String
+
     ): Boolean {
         return when {
             name.isEmpty() -> {
@@ -110,6 +136,11 @@ class ProfileActivity : AppCompatActivity() {
 
             age.isEmpty() -> {
                 showErrorDialog("Age cannot be empty")
+                false
+            }
+
+            age.toInt() <= 0 -> {
+                showErrorDialog("Age must be grater than 0")
                 false
             }
 
@@ -123,6 +154,21 @@ class ProfileActivity : AppCompatActivity() {
                 false
             }
 
+            currentHeight.toInt() <= 0 -> {
+                showErrorDialog("Height must be greater than 0")
+                false
+            }
+
+            currentWeight.isEmpty() -> {
+                showErrorDialog("Weight cannot be empty")
+                false
+            }
+
+            currentWeight.toInt() <= 0 -> {
+                showErrorDialog("Weight must be greater than 0")
+                false
+            }
+
             goal.isEmpty() -> {
                 showErrorDialog("Goal cannot be empty")
                 false
@@ -130,6 +176,26 @@ class ProfileActivity : AppCompatActivity() {
 
             activityLevel.isEmpty() -> {
                 showErrorDialog("Activity level cannot be empty")
+                false
+            }
+
+            weightTarget.isEmpty() -> {
+                showErrorDialog("Weight target cannot be empty")
+                false
+            }
+
+            weightTarget.toInt() <= 0 -> {
+                showErrorDialog("Weight target must be greater than 0")
+                false
+            }
+
+            duration.isEmpty() -> {
+                showErrorDialog("Duration target cannot be empty")
+                false
+            }
+
+            duration.toInt() < 14 -> {
+                showErrorDialog("Duration target must be minimal 14 days")
                 false
             }
 
