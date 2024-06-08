@@ -3,6 +3,7 @@ package com.example.capstoneapp.data.retrofit
 import com.example.capstoneapp.data.response.AddDietPlanResponse
 import com.example.capstoneapp.data.response.AddWeightResponse
 import com.example.capstoneapp.data.response.EditProfileResponse
+import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
 import com.example.capstoneapp.data.response.LoginResponse
 import com.example.capstoneapp.data.response.RegisterResponse
@@ -55,6 +56,11 @@ interface ApiService {
         @Field("weightTarget") weightTarget: Float,
         @Field("duration") duration: Int
     ): Call<AddDietPlanResponse>
+
+    @GET("/api/diet-plan")
+    fun getDietPlan(
+        @Header("Authorization") token: String
+    ): Call<GetDietPlanResponse>
 
     @FormUrlEncoded
     @POST("api/tracker")
