@@ -20,7 +20,7 @@ data class Data(
 	val goal: String? = null,
 
 	@field:SerializedName("currentWeight")
-	val currentWeight: Any? = null,
+	val currentWeight: Float? = null,
 
 	@field:SerializedName("gender")
 	val gender: String? = null,

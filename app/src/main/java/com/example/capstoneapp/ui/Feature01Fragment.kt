@@ -3,16 +3,16 @@ package com.example.capstoneapp.ui
 //import androidx.activity.viewModels
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.FragmentFeature01Binding
+import com.example.capstoneapp.helper.attrToActivity
+import com.example.capstoneapp.helper.attrToGoal
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 
@@ -61,16 +61,21 @@ class Feature01Fragment : Fragment() {
                 if (it.status == 200) {
                     binding.tvName.text = it.data?.name
                     val weightT = it.data?.currentWeight ?: 0
-                    val bmiT = it.data?.currentHeight ?: 0
+                    val bmiT = it.data?.bmi ?: 0
                     val heightT = it.data?.currentHeight ?: 0
                     binding.tvUserinfo.text = "$weightT kg | $heightT cm | BMI: $bmiT"
-                    binding.tvGoalValue.text = it.data?.goal ?: "None"
-                    binding.tvActValue.text = it.data?.activityLevel ?: "None"
+                    binding.tvGoalValue.text = attrToGoal(it.data?.goal ?: "None")
+                    binding.tvActValue.text = attrToActivity(it.data?.activityLevel ?: "None")
                     // Check data completion
                     if (it.data?.goal == null) {
                         showWarning()
                     }
                 }
+            }
+        }
+        mainViewModel.userError.observe(viewLifecycleOwner) { userError ->
+            if (userError) {
+                showError()
             }
         }
     }
@@ -83,6 +88,21 @@ class Feature01Fragment : Fragment() {
                 val intent = Intent(requireActivity(), ProfileActivity::class.java)
                 startActivity(intent)
             }
+            create()
+            show()
+        }
+    }
+
+    private fun showError() {
+        AlertDialog.Builder(requireActivity()).apply {
+            setTitle("Unable to find your session.")
+            setMessage("Please login again.")
+            setPositiveButton("Login") { _, _ ->
+                mainViewModel.logout()
+                // val intent = Intent(requireActivity(), LoginActivity::class.java)
+                // startActivity(intent)
+            }
+            setCancelable(false)
             create()
             show()
         }

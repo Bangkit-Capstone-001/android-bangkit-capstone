@@ -31,7 +31,9 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else {
-                mainViewModel.getProfile("Bearer ${user.token}")
+                val token = user.token
+                mainViewModel.getProfile("Bearer $token")
+                mainViewModel.getDietPlan("Bearer $token")
             }
         }
 
