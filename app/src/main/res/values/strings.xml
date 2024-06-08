@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CapstoneApp</string>
+    <string name="app_name">FitFirst</string>
 
     <string name="text_feature01">Feature 01: Home</string>
     <string name="text_feature02">Feature 02: Workout Plan</string>
