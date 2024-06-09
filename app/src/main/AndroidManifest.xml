@@ -21,6 +21,9 @@
         android:theme="@style/Theme.CapstoneApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.AddFoodActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.PredictActivity"
             android:exported="false" />
         <activity

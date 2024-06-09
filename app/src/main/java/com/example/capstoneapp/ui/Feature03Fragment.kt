@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.FragmentFeature03Binding
 import com.example.capstoneapp.helper.FoodAdapter
-import com.example.capstoneapp.helper.attrToActivity
-import com.example.capstoneapp.helper.attrToGoal
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import com.github.mikephil.charting.data.PieData
@@ -34,6 +32,10 @@ class Feature03Fragment : Fragment() {
         binding.buttonCamera.setOnClickListener {
             startActivity(Intent(activity, PredictActivity::class.java))
         }
+        binding.buttonAdd.setOnClickListener {
+            startActivity(Intent(activity, AddFoodActivity::class.java))
+        }
+
         binding.rvFood.layoutManager = LinearLayoutManager(requireActivity())
         binding.rvFood.adapter = FoodAdapter()
 
@@ -62,7 +64,7 @@ class Feature03Fragment : Fragment() {
     private fun generateChart(binding: FragmentFeature03Binding, total: Float, cons: Float) {
         val calVariables: ArrayList<PieEntry> = ArrayList()
         calVariables.add(PieEntry(cons, "Consumed"))
-        calVariables.add(PieEntry(total-cons, "Needs"))
+        calVariables.add(PieEntry(total - cons, "Needs"))
 
         val colors = ArrayList<Int>()
         context?.let { ContextCompat.getColor(it, R.color.mediumBlue) }?.let { colors.add(it) }
