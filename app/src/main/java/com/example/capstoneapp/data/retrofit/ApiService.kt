@@ -52,7 +52,7 @@ interface ApiService {
     ): Call<EditProfileResponse>
 
     @FormUrlEncoded
-    @PUT("api/diet-plan")
+    @POST("api/diet-plan")
     fun addDietPlan(
         @Header("Authorization") token: String,
         @Field("weightTarget") weightTarget: Float,
@@ -77,4 +77,18 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("randomize") num: Int
     ): Call<GetFoodResponse>
+
+    @GET("/api/food-analysis/foods/all")
+    fun getAllFoods(
+        @Header("Authorization") token: String
+    ): Call<GetFoodResponse>
+
+    @FormUrlEncoded
+    @POST("/api/food-analysis")
+    fun addFood(
+        @Header("Authorization") token: String,
+        @Field("foodId") foodId: String,
+        @Field("quantity") quantity: Float,
+        @Field("mealtime") mealtime: String,
+    ): Call<AddDietPlanResponse>
 }

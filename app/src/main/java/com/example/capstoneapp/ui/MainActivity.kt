@@ -2,12 +2,15 @@ package com.example.capstoneapp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityMainBinding
+import com.example.capstoneapp.helper.listFood
+import com.example.capstoneapp.helper.retrieveAllFood
 import com.example.capstoneapp.ui.Feature04.Feature04Fragment
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                 mainViewModel.getProfile(token)
                 mainViewModel.getDietPlan(token)
                 mainViewModel.getRandomFood(token)
+                if (listFood.size < 1229) { mainViewModel.getAllFood(token) }
             }
         }
 
@@ -76,6 +80,11 @@ class MainActivity : AppCompatActivity() {
     private fun observeViewModel() {
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
+        }
+        mainViewModel.allFood.observe(this) { res ->
+            if (res.status == 200) {
+                retrieveAllFood(res)
+            }
         }
     }
 

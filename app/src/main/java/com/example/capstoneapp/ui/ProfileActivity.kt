@@ -78,16 +78,6 @@ class ProfileActivity : AppCompatActivity() {
         adapter = ArrayAdapter(this, R.layout.item_option, activityOptions)
         binding.edAct.setAdapter(adapter)
 
-//        binding.edAct.setOnItemClickListener { _, _, _, _ -> }
-//        binding.edAct.setOnFocusChangeListener { view, hasFocus ->
-//            if (!hasFocus) {
-//                val input = binding.edAct.text.toString()
-//                if (input !in activityOptions) {
-//                    binding.edAct.error = "Please select a valid city"
-//                    binding.edAct.setText("")
-//                }
-//            }
-//        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

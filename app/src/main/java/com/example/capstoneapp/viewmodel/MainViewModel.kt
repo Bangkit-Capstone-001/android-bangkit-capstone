@@ -8,7 +8,6 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.data.pref.UserModel
-import com.example.capstoneapp.data.response.DataFood
 import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
@@ -21,8 +20,9 @@ import retrofit2.Response
 class MainViewModel(private val repository: UserRepository) : ViewModel() {
     /**
      * userError is used to track API response (get profile)
-     * planError is used to track API response (get plan)
-     * foodError is used to track API response (get random food)
+     * userPlan & planError is used to track API response (get plan)
+     * randomFood is used to track API response (get random food)
+     * allFood is used to track API response (get all food)
      */
     // LiveData Variables
     private val _userProfile = MutableLiveData<GetProfileResponse>()
@@ -31,6 +31,8 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
     val userPlan: LiveData<GetDietPlanResponse> get() = _userPlan
     private val _randomFood = MutableLiveData<GetFoodResponse>()
     val randomFood: LiveData<GetFoodResponse> get() = _randomFood
+    private val _allFood = MutableLiveData<GetFoodResponse>()
+    val allFood: LiveData<GetFoodResponse> get() = _allFood
 
     private val _userMsg = MutableLiveData<String>()
     val userMsg: LiveData<String> get() = _userMsg
@@ -145,6 +147,39 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
             override fun onFailure(call: Call<GetFoodResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "Random Food | onFailure")
+            }
+        })
+    }
+
+    fun getAllFood(token: String) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getAllFoods(token)
+        client.enqueue(object : Callback<GetFoodResponse> {
+            override fun onResponse(
+                call: Call<GetFoodResponse>,
+                response: Response<GetFoodResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        _allFood.value = (response.body())
+                    } ?: run {
+                        Log.e(TAG, "All Food | Null response")
+                    }
+                } else {
+                    _planError.value = true
+                    Log.e(
+                        TAG,
+                        "All Food | Bad request: ${response.code()} - ${
+                            response.errorBody()?.string()
+                        }"
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<GetFoodResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "All Food | onFailure: ${t.message}")
             }
         })
     }
