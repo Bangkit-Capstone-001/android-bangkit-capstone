@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:paddingHorizontal="8dp"
             android:paddingVertical="8dp"
-            android:text="Please select an image, your image will be shown above. Then, please click Predict Button below to get you result." />
+            android:text="@string/predict_info" />
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton

@@ -49,7 +49,8 @@ class ProfileActivity : AppCompatActivity() {
         profileViewModel.message.observe(this) { message ->
             if (profileViewModel.isError.value != true &&
                 profileViewModel.addPlanError.value != true &&
-                profileViewModel.addWeightError.value != true) {
+                profileViewModel.addWeightError.value != true
+            ) {
                 showSuccessDialog()
             } else {
                 showErrorDialog(getString(R.string.unknown_error))
@@ -72,10 +73,11 @@ class ProfileActivity : AppCompatActivity() {
 
         val activityOptions = arrayOf(
             "Index 4 (Active): Moves a lot", "Index 3 (Moderate): Moves moderately",
-            "Index 2 (Light): Moves a litte", "Index 1 (Sedentary): Moves rarely"
+            "Index 2 (Light): Moves a little", "Index 1 (Sedentary): Moves rarely"
         )
         adapter = ArrayAdapter(this, R.layout.item_option, activityOptions)
         binding.edAct.setAdapter(adapter)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -99,7 +101,8 @@ class ProfileActivity : AppCompatActivity() {
             if (validateInput(
                     name, age, gender, height, weight, goal, activityLevel,
                     weightTarget, duration
-            )) {
+                )
+            ) {
 
                 val fAge = age.toInt()
                 val fWeight = weight.toFloat()
