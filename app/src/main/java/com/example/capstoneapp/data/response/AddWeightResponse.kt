@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class AddWeightResponse(
 
-	@field:SerializedName("date")
-	val date: String? = null,
+	@field:SerializedName("status")
+	val status: Int? = null,
 
-	@field:SerializedName("weight")
-	val weight: Double? = null
+	@field:SerializedName("message")
+	val message: String? = null
 )

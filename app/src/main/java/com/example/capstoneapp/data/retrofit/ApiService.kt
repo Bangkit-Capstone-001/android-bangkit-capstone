@@ -18,6 +18,10 @@ import retrofit2.http.PUT
 import retrofit2.http.Query
 
 interface ApiService {
+
+    /**
+     * ---------------------------------- Profile & Auth
+     */
     @FormUrlEncoded
     @POST("api/auth/register")
     fun register(
@@ -51,8 +55,12 @@ interface ApiService {
         @Field("activityLevel") activityLevel: String
     ): Call<EditProfileResponse>
 
+    /**
+     * ---------------------------------- Diet Plan (calories)
+     */
+
     @FormUrlEncoded
-    @POST("api/diet-plan")
+    @PUT("api/diet-plan")
     fun addDietPlan(
         @Header("Authorization") token: String,
         @Field("weightTarget") weightTarget: Float,
@@ -64,6 +72,10 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<GetDietPlanResponse>
 
+    /**
+     * ---------------------------------- Tracker (track weight)
+     */
+
     @FormUrlEncoded
     @POST("api/tracker")
     fun addWeight(
@@ -71,6 +83,10 @@ interface ApiService {
         @Field("date") date: String,
         @Field("weight") weight: Float,
     ): Call<AddWeightResponse>
+
+    /**
+     * ---------------------------------- Food (retrieve food, add history, etc)
+     */
 
     @GET("/api/food-analysis/foods")
     fun getRandomizedFoods(

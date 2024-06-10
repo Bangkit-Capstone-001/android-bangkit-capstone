@@ -221,6 +221,7 @@ class ProfileActivity : AppCompatActivity() {
             setTitle(R.string.success)
             setMessage(getString(R.string.edit_success))
             setPositiveButton(R.string.ok) { _, _ -> finish() }
+            setCancelable(false)
             create()
             show()
         }

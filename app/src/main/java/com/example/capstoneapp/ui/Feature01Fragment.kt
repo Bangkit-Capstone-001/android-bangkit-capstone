@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.capstoneapp.R
+import com.example.capstoneapp.databinding.ActivityMainBinding
 import com.example.capstoneapp.databinding.FragmentFeature01Binding
 import com.example.capstoneapp.helper.attrToActivity
 import com.example.capstoneapp.helper.attrToGoal
@@ -28,6 +29,13 @@ class Feature01Fragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentFeature01Binding.inflate(inflater, container, false)
         val mainBinding = (requireActivity() as MainActivity).binding
+
+        setupAction(binding, mainBinding)
+        observeViewModel(binding)
+        return binding.root
+    }
+
+    private fun setupAction(binding: FragmentFeature01Binding, mainBinding: ActivityMainBinding) {
         val bottomNavigationView = mainBinding.bottomNavigation
 
         binding.buttonSettings.setOnClickListener {
@@ -51,8 +59,6 @@ class Feature01Fragment : Fragment() {
                 }
             }
         }
-        observeViewModel(binding)
-        return binding.root
     }
 
     private fun observeViewModel(binding: FragmentFeature01Binding) {
@@ -68,22 +74,22 @@ class Feature01Fragment : Fragment() {
                     binding.tvActValue.text = attrToActivity(it.data?.activityLevel ?: "None")
                     // Check data completion
                     if (it.data?.goal == null) {
-                        showWarning()
+                        showFillDataWarning()
                     }
                 }
             }
         }
         mainViewModel.userError.observe(viewLifecycleOwner) { userError ->
             if (userError) {
-                showError()
+                showErrorLogin()
             }
         }
     }
 
-    private fun showWarning() {
+    private fun showFillDataWarning() {
         AlertDialog.Builder(requireActivity()).apply {
-            setTitle("One more step!")
-            setMessage("To start using this app, please complete your data and set up your goals. ")
+            setTitle(R.string.one_more)
+            setMessage(R.string.one_more_desc)
             setPositiveButton(R.string.ok) { _, _ ->
                 val intent = Intent(requireActivity(), ProfileActivity::class.java)
                 startActivity(intent)
@@ -93,14 +99,12 @@ class Feature01Fragment : Fragment() {
         }
     }
 
-    private fun showError() {
+    private fun showErrorLogin() {
         AlertDialog.Builder(requireActivity()).apply {
-            setTitle("Unable to find your session.")
-            setMessage("Please login again.")
-            setPositiveButton("Login") { _, _ ->
+            setTitle(R.string.token_unknown)
+            setMessage(R.string.login_again)
+            setPositiveButton(R.string.ok) { _, _ ->
                 mainViewModel.logout()
-                // val intent = Intent(requireActivity(), LoginActivity::class.java)
-                // startActivity(intent)
             }
             setCancelable(false)
             create()

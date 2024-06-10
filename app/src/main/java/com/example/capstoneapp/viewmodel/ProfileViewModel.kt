@@ -31,6 +31,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     val addPlanError: LiveData<Boolean> get() = _addPlanError
     private val _addWeightError = MutableLiveData<Boolean>()
     val addWeightError: LiveData<Boolean> get() = _addWeightError
+
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
     private val _isLoading = MutableLiveData<Boolean>()
