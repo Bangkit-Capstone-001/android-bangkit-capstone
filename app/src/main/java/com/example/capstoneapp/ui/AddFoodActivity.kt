@@ -31,6 +31,7 @@ class AddFoodActivity : AppCompatActivity() {
             setupAction(_token)
         }
 
+        showLoading(false)
         setupView()
         observeViewModel()
     }

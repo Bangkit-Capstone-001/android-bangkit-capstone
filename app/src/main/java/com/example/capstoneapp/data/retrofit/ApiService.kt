@@ -52,7 +52,7 @@ interface ApiService {
     ): Call<EditProfileResponse>
 
     @FormUrlEncoded
-    @POST("api/diet-plan")
+    @PUT("api/diet-plan")
     fun addDietPlan(
         @Header("Authorization") token: String,
         @Field("weightTarget") weightTarget: Float,

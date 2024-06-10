@@ -107,6 +107,7 @@ class SignupActivity : AppCompatActivity() {
             setTitle(R.string.success)
             setMessage(getString(R.string.regis_success, email))
             setPositiveButton(R.string.ok) { _, _ -> finish() }
+            setCancelable(false)
             create()
             show()
         }
