@@ -29,6 +29,13 @@ class Feature03Fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentFeature03Binding.inflate(inflater, container, false)
+
+        setupAction(binding)
+        observeViewModel(binding)
+        return binding.root
+    }
+
+    private fun setupAction(binding: FragmentFeature03Binding) {
         binding.buttonCamera.setOnClickListener {
             startActivity(Intent(activity, PredictActivity::class.java))
         }
@@ -38,10 +45,6 @@ class Feature03Fragment : Fragment() {
 
         binding.rvFood.layoutManager = LinearLayoutManager(requireActivity())
         binding.rvFood.adapter = FoodAdapter()
-
-        observeViewModel(binding)
-
-        return binding.root
     }
 
     private fun observeViewModel(binding: FragmentFeature03Binding) {

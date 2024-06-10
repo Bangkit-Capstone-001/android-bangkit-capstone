@@ -36,7 +36,6 @@ class PredictActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityPredictBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -46,7 +45,9 @@ class PredictActivity : AppCompatActivity() {
             }
         }
 
-        binding.progressBar.visibility = View.GONE
+        setupView()
+        observeViewModel()
+        showLoading(false)
     }
 
     private fun allPermissionsGranted() =

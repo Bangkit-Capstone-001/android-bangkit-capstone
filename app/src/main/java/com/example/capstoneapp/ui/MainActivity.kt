@@ -2,7 +2,6 @@ package com.example.capstoneapp.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -18,17 +17,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-
+    private lateinit var bottomNavigationView: BottomNavigationView
     private val mainViewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
-    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        checkLogin()
+        setupAction(binding)
+        replaceFragment(Feature01Fragment())  // set default fragment
+        observeViewModel()
+    }
+
+    private fun checkLogin() {
         mainViewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
@@ -38,10 +43,14 @@ class MainActivity : AppCompatActivity() {
                 mainViewModel.getProfile(token)
                 mainViewModel.getDietPlan(token)
                 mainViewModel.getRandomFood(token)
-                if (listFood.size < 1229) { mainViewModel.getAllFood(token) }
+                if (listFood.size < 1229) {
+                    mainViewModel.getAllFood(token)
+                }
             }
         }
+    }
 
+    private fun setupAction(binding: ActivityMainBinding) {
         bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -68,9 +77,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        // default fragment
-        replaceFragment(Feature01Fragment())
-        observeViewModel()
     }
 
     private fun replaceFragment(fragment: Fragment) {
