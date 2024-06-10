@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityMainBinding
+import com.example.capstoneapp.helper.listFood
+import com.example.capstoneapp.helper.retrieveAllFood
 import com.example.capstoneapp.ui.Feature04.Feature04Fragment
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
@@ -15,26 +17,40 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-
+    private lateinit var bottomNavigationView: BottomNavigationView
     private val mainViewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
-    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        checkLogin()
+        setupAction(binding)
+        replaceFragment(Feature01Fragment())  // set default fragment
+        observeViewModel()
+    }
+
+    private fun checkLogin() {
         mainViewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else {
-                mainViewModel.getProfile("Bearer ${user.token}")
+                val token = "Bearer ${user.token}"
+                mainViewModel.getProfile(token)
+                mainViewModel.getDietPlan(token)
+                mainViewModel.getRandomFood(token)
+                if (listFood.size < 1229) {
+                    mainViewModel.getAllFood(token)
+                }
             }
         }
+    }
 
+    private fun setupAction(binding: ActivityMainBinding) {
         bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -61,9 +77,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        // default fragment
-        replaceFragment(Feature01Fragment())
-        observeViewModel()
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -73,6 +86,11 @@ class MainActivity : AppCompatActivity() {
     private fun observeViewModel() {
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
+        }
+        mainViewModel.allFood.observe(this) { res ->
+            if (res.status == 200) {
+                retrieveAllFood(res)
+            }
         }
     }
 

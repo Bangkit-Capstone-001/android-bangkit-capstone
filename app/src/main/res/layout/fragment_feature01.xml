@@ -56,8 +56,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_profile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
@@ -89,17 +89,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/_e"
                 android:textSize="25sp"
                 app:layout_constraintStart_toEndOf="@+id/iv_profile"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
             <TextView
                 android:id="@+id/tv_userinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
                 android:text="@string/_e"
                 android:textColor="@color/darkGray"
                 app:layout_constraintStart_toEndOf="@+id/iv_profile"
@@ -110,6 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginBottom="3dp"
                 android:text="@string/goal"
                 android:textColor="@color/darkGray"
                 android:textStyle="bold"
@@ -131,11 +133,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="4dp"
                 android:text="@string/act_level"
                 android:textColor="@color/darkGray"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
                 app:layout_constraintStart_toEndOf="@+id/iv_profile" />
 
             <TextView
@@ -223,7 +225,7 @@
                 android:layout_marginTop="20dp"
                 android:textSize="40sp"
                 android:gravity="center"
-                android:text="@string/breakfast" />
+                android:text="@string/_e" />
 
             <Button
                 android:id="@+id/button_trackfood"
