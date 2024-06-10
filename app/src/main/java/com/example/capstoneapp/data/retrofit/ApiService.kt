@@ -3,6 +3,7 @@ package com.example.capstoneapp.data.retrofit
 import com.example.capstoneapp.data.response.AddDietPlanResponse
 import com.example.capstoneapp.data.response.AddWeightResponse
 import com.example.capstoneapp.data.response.EditProfileResponse
+import com.example.capstoneapp.data.response.FoodHistResponse
 import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
@@ -107,4 +108,10 @@ interface ApiService {
         @Field("quantity") quantity: Float,
         @Field("mealtime") mealtime: String,
     ): Call<AddDietPlanResponse>
+
+    @GET("/api/food-analysis/today")
+    fun getTodaysFood(
+        @Header("Authorization") token: String,
+        @Query("mealtime") mealtime: String
+    ): Call<FoodHistResponse>
 }

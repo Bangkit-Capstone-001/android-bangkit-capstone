@@ -8,6 +8,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.data.pref.UserModel
+import com.example.capstoneapp.data.response.FoodHistResponse
 import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
@@ -23,6 +24,7 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
      * userPlan & planError is used to track API response (get plan)
      * randomFood is used to track API response (get random food)
      * allFood is used to track API response (get all food)
+     * histFood is used to track API response (get today's food)
      */
     // LiveData Variables
     private val _userProfile = MutableLiveData<GetProfileResponse>()
@@ -33,6 +35,8 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
     val randomFood: LiveData<GetFoodResponse> get() = _randomFood
     private val _allFood = MutableLiveData<GetFoodResponse>()
     val allFood: LiveData<GetFoodResponse> get() = _allFood
+    private val _histFood = MutableLiveData<FoodHistResponse>()
+    val histFood: LiveData<FoodHistResponse> get() = _histFood
 
     private val _userMsg = MutableLiveData<String>()
     val userMsg: LiveData<String> get() = _userMsg
@@ -134,7 +138,6 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
                         Log.e(TAG, "Random Food | Null response")
                     }
                 } else {
-                    _planError.value = true
                     Log.e(
                         TAG,
                         "Random Food | Bad request: ${response.code()} - ${
@@ -167,7 +170,6 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
                         Log.e(TAG, "All Food | Null response")
                     }
                 } else {
-                    _planError.value = true
                     Log.e(
                         TAG,
                         "All Food | Bad request: ${response.code()} - ${
@@ -180,6 +182,39 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
             override fun onFailure(call: Call<GetFoodResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "All Food | onFailure: ${t.message}")
+            }
+        })
+    }
+
+    fun getTodaysFood(token: String, mealtime: String) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getTodaysFood(token, mealtime)
+        client.enqueue(object : Callback<FoodHistResponse> {
+            override fun onResponse(
+                call: Call<FoodHistResponse>,
+                response: Response<FoodHistResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        _histFood.value = (response.body())
+                    } ?: run {
+                        Log.e(TAG, "Today's Food | Null response")
+                    }
+                } else {
+                    _planError.value = true
+                    Log.e(
+                        TAG,
+                        "Today's Food | Bad request: ${response.code()} - ${
+                            response.errorBody()?.string()
+                        }"
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<FoodHistResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "Today's Food | onFailure")
             }
         })
     }

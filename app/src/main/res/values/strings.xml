@@ -10,7 +10,7 @@
     <string name="token_unknown">Unable to find your session</string>
     <string name="login_again">Please login again</string>
     <string name="one_more">One more step!</string>
-    <string name="one_more_desc">OTo start using this app, please complete your data and set up your goals.</string>
+    <string name="one_more_desc">To start using this app, please complete your data and set up your goals.</string>
 
     <!--  Food type  -->
     <string name="breakfast">Breakfast</string>
