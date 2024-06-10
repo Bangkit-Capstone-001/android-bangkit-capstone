@@ -119,8 +119,14 @@ class ProfileActivity : AppCompatActivity() {
                 profileViewModel.editProfile(
                     t, name, fAge, gender, fHeight, fWeight, fGoal, fAct
                 )
-                profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
                 profileViewModel.addWeight(t, fDate, fWeight)
+
+                profileViewModel.isError.observe(this) { err ->
+                    if(!err) {
+                        profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
+                    }
+                }
+                // profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
             }
         }
     }
