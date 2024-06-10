@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneapp.data.response.DataFood
 import com.example.capstoneapp.databinding.ItemFoodBinding
 
+/**
+ * This is initially used as random food adapter
+ * Cannot be clicked
+ */
 class FoodAdapter : ListAdapter<DataFood, FoodAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
