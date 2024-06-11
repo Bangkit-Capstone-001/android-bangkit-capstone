@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityProfileBinding
 import com.example.capstoneapp.helper.activityToAttr
+import com.example.capstoneapp.helper.attrToActivityDropdown
+import com.example.capstoneapp.helper.attrToGoal
 import com.example.capstoneapp.helper.goalToAttr
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ProfileViewModel
@@ -46,6 +48,18 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
+        mainViewModel.userProfile.observe(this) { resp ->
+            if (resp.status == 200) {
+                binding.edName.setText(resp.data?.name)
+                binding.edAge.setText(resp.data?.age?.toString() ?: "")
+                binding.edGender.setText(resp.data?.gender ?: "")
+                binding.edHeight.setText(resp.data?.currentHeight?.toString() ?: "")
+                binding.edWeight.setText(resp.data?.currentWeight?.toString() ?: "")
+                binding.edGoal.setText(resp.data?.goal?.let { attrToGoal(it) } ?: "")
+                binding.edAct.setText(resp.data?.activityLevel?.let { attrToActivityDropdown(it) } ?: "")
+            }
+        }
+
         profileViewModel.message.observe(this) { message ->
             if (profileViewModel.isError.value != true &&
                 profileViewModel.addPlanError.value != true &&
@@ -77,11 +91,13 @@ class ProfileActivity : AppCompatActivity() {
         )
         adapter = ArrayAdapter(this, R.layout.item_option, activityOptions)
         binding.edAct.setAdapter(adapter)
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupAction(t: String) {
+        // Prefilled field
+        mainViewModel.getProfile(t)
+
         binding.buttonLogout.setOnClickListener {
             mainViewModel.logout()
             finish()
