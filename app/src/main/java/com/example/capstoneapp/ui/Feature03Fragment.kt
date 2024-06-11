@@ -51,7 +51,7 @@ class Feature03Fragment : Fragment() {
         mainViewModel.userPlan.observe(viewLifecycleOwner) { resp ->
             resp?.let {
                 if (it.status == 200) {
-                    generateChart(binding, it.data?.calorie!!, it.data?.calorieEaten!!)
+                    generateChart(binding, it.data?.calorie!!, it.data?.calorieEaten!!, it.data?.remainingCalories!!)
                 }
             }
         }
@@ -64,10 +64,10 @@ class Feature03Fragment : Fragment() {
         }
     }
 
-    private fun generateChart(binding: FragmentFeature03Binding, total: Float, cons: Float) {
+    private fun generateChart(binding: FragmentFeature03Binding, total: Float, cons: Float, rem: Float) {
         val calVariables: ArrayList<PieEntry> = ArrayList()
         calVariables.add(PieEntry(cons, "Consumed"))
-        calVariables.add(PieEntry(total - cons, "Needs"))
+        calVariables.add(PieEntry(rem, "Needs"))
 
         val colors = ArrayList<Int>()
         context?.let { ContextCompat.getColor(it, R.color.mediumBlue) }?.let { colors.add(it) }

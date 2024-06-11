@@ -49,7 +49,7 @@
     <string name="gender">Gender</string>
     <string name="height">Height (cm)</string>
     <string name="weight">Weight (kg)</string>
-    <string name="weight_t">Weight Target (kg)</string>
+    <string name="weight_t">Weight you want to lose or gain (kg)</string>
     <string name="duration">Duration to achieve your target (days)</string>
     <string name="track_weight">Track Weight</string>
     <string name="save">Save</string>
@@ -83,7 +83,7 @@
     <string name="act_value">sedentary</string>
 
     <!--  Feature 03  -->
-    <string name="chart_title">Today\'s Activity</string>
+    <string name="chart_title">Today\'s calorie</string>
     <string name="info_title">Here are some food informations!</string>
 
 </resources>

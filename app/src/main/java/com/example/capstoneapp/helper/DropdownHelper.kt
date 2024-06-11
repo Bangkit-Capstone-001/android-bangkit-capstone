@@ -37,3 +37,13 @@ fun attrToActivity(a: String): String {
         else -> "unknown"
     }
 }
+
+fun attrToActivityDropdown(a: String): String {
+    return when (a) {
+        "active" -> "Index 4 (Active): Moves a lot"
+        "moderate" -> "Index 3 (Moderate): Moves moderately"
+        "light" -> "Index 2 (Light): Moves a little"
+        "sedentary" -> "Index 1 (Sedentary): Moves rarely"
+        else -> "unknown"
+    }
+}
