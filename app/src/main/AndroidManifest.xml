@@ -15,6 +15,9 @@
         android:theme="@style/Theme.CapstoneApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Feature02.WorkoutFinish.WorkoutFinishActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Feature02.WorkoutSequence.WorkoutSequenceActivity"
             android:exported="false" />
         <activity
