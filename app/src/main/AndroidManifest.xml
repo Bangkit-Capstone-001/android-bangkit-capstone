@@ -15,6 +15,9 @@
         android:theme="@style/Theme.CapstoneApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Feature02.WorkoutStart.WorkoutStartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Feature02.WorkoutPlanDetail.WorkoutPlanDetailActivity"
             android:exported="false" />
         <activity
