@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.Feature02.WorkoutPreference.WorkoutLevelFragment">
+
+    <TextView
+        android:id="@+id/workoutLevel_tv_selectYourText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Your"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="#223767"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+    <TextView
+        android:id="@+id/workoutLevel_tv_workoutLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workout Level"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="#2970FF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workoutLevel_tv_selectYourText" />
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/workoutLevel_cl_preferencesContainer"
+        android:layout_width="275dp"
+        android:layout_height="208dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workoutLevel_tv_workoutLevel">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/workoutLevel_cl_preferences1"
+            android:layout_width="275dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_workout_preference_preferences"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/workoutLevel_cl_preferences2">
+
+            <ImageView
+                android:id="@+id/workoutLevel_iv_preferenceLogo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_beginner"
+                android:layout_marginStart="39dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/workoutLevel_tv_preferenceTitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beginner"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_marginStart="33dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/workoutLevel_iv_preferenceLogo1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/workoutLevel_cl_preferences2"
+            android:layout_width="275dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_workout_preference_preferences"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workoutLevel_cl_preferences1"
+            app:layout_constraintBottom_toTopOf="@id/workoutLevel_cl_preferences3">
+
+            <ImageView
+                android:id="@+id/workoutLevel_iv_preferenceLogo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_intermediate"
+                android:layout_marginStart="29dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/workoutLevel_tv_preferenceTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Intermediate"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_marginStart="22dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/workoutLevel_iv_preferenceLogo2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/workoutLevel_cl_preferences3"
+            android:layout_width="275dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_workout_preference_preferences"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workoutLevel_cl_preferences2"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/workoutLevel_iv_preferenceLogo3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_advance"
+                android:layout_marginStart="29dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/workoutLevel_tv_preferenceTitle3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Advance"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_marginStart="22dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/workoutLevel_iv_preferenceLogo3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -81,6 +81,8 @@
     <string name="goal_value">maintain weight</string>
     <string name="act_level">Activity level:</string>
     <string name="act_value">sedentary</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--  Feature 03  -->
     <string name="chart_title">Today\'s calorie</string>
