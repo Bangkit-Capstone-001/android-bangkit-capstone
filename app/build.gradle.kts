@@ -78,6 +78,6 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.3.0")
     implementation("androidx.activity:activity-ktx:1.3.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-
-
+    // Ucrop
+    implementation("com.github.yalantis:ucrop:2.2.8")
 }
