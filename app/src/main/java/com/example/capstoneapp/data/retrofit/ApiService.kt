@@ -38,6 +38,11 @@ interface ApiService {
         @Field("password") password: String
     ): Call<LoginResponse>
 
+    @POST("api/auth/logout")
+    fun logout(
+        @Header("Authorization") token: String
+    ): Call<EditProfileResponse>
+
     @GET("/api/user-profile")
     fun getProfile(
         @Header("Authorization") token: String

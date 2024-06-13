@@ -29,5 +29,11 @@ data class DataPlan(
 	val calorieEaten: Float? = null,
 
 	@field:SerializedName("weightTarget")
-	val weightTarget: Int? = null
+	val weightTarget: Int? = null,
+
+	@field:SerializedName("currentWeight")
+	val currentWeight: Int? = null,
+
+	@field:SerializedName("goal")
+	val goal: String? = null,
 )

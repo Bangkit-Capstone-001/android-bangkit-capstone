@@ -19,6 +19,7 @@ import com.example.capstoneapp.viewmodel.ProfileViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import kotlin.math.roundToInt
 
 class ProfileActivity : AppCompatActivity() {
     lateinit var binding: ActivityProfileBinding
@@ -38,8 +39,10 @@ class ProfileActivity : AppCompatActivity() {
         var _token = ""
 
         profileViewModel.getSession().observe(this) { user ->
-            _token = "Bearer ${user.token}"
-            setupAction(_token)
+            if (user.token != "") {
+                _token = "Bearer ${user.token}"
+                setupAction(_token)
+            }
         }
 
         setupView()
@@ -54,7 +57,7 @@ class ProfileActivity : AppCompatActivity() {
                 binding.edAge.setText(resp.data?.age?.toString() ?: "")
                 binding.edGender.setText(resp.data?.gender ?: "")
                 binding.edHeight.setText(resp.data?.currentHeight?.toString() ?: "")
-                binding.edWeight.setText(resp.data?.currentWeight?.toString() ?: "")
+                binding.edWeight.setText(resp.data?.currentWeight?.let { it.roundToInt().toString() } ?: "")
                 binding.edGoal.setText(resp.data?.goal?.let { attrToGoal(it) } ?: "")
                 binding.edAct.setText(resp.data?.activityLevel?.let { attrToActivityDropdown(it) } ?: "")
             }
@@ -99,7 +102,7 @@ class ProfileActivity : AppCompatActivity() {
         mainViewModel.getProfile(t)
 
         binding.buttonLogout.setOnClickListener {
-            mainViewModel.logout()
+            mainViewModel.logout(t)
             finish()
         }
 
@@ -142,7 +145,6 @@ class ProfileActivity : AppCompatActivity() {
                         profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
                     }
                 }
-                // profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
             }
         }
     }
@@ -156,6 +158,11 @@ class ProfileActivity : AppCompatActivity() {
         return when {
             name.isEmpty() -> {
                 showErrorDialog("Name cannot be empty")
+                false
+            }
+
+            name.length > 12 -> {
+                showErrorDialog("Name should be at most 12 characters")
                 false
             }
 
