@@ -64,6 +64,11 @@ class SignupActivity : AppCompatActivity() {
                 false
             }
 
+            name.length > 12 -> {
+                showErrorDialog("Name should be at most 12 characters")
+                false
+            }
+
             email.isEmpty() -> {
                 showErrorDialog("Email cannot be empty")
                 false

@@ -52,6 +52,7 @@ class Feature03Fragment : Fragment() {
             resp?.let {
                 if (it.status == 200) {
                     generateChart(binding, it.data?.calorie!!, it.data?.calorieEaten!!, it.data?.remainingCalories!!)
+                    generateGoalTarget(binding, it.data?.goal!!, it.data?.currentWeight!!, it.data?.weightTarget!!, it.data?.duration!!)
                 }
             }
         }
@@ -61,6 +62,16 @@ class Feature03Fragment : Fragment() {
                 adapter.submitList(res.data)
                 binding.rvFood.adapter = adapter
             }
+        }
+    }
+
+    private fun generateGoalTarget(binding: FragmentFeature03Binding, goal: String, currentWeight: Int, targetWeight: Int, duration: Int) {
+        if (goal == "weightGain") {
+            binding.tvGoalTarget.text = "⦿ ${currentWeight}kg → ${currentWeight+targetWeight}kg ($duration days)"
+        } else if (goal == "weightLoss") {
+            binding.tvGoalTarget.text = "⦿ ${currentWeight}kg → ${currentWeight-targetWeight}kg ($duration days)"
+        } else {
+            binding.tvGoalTarget.text = "⦿ Maintain your ${currentWeight}kg of weight"
         }
     }
 
