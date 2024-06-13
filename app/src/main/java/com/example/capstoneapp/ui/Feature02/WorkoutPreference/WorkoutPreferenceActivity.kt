@@ -16,7 +16,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), WorkoutLevelFragment.OnVa
 
     private lateinit var binding: ActivityWorkoutPreferenceBinding
     private lateinit var viewModel: WorkoutPreferenceViewModel
-    private lateinit var preference: WorkoutPreference
+    private var preference: WorkoutPreference = WorkoutPreference(null, null, null, null, null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), WorkoutLevelFragment.OnVa
     private fun setPreferenceSelection(preferenceIndex: Int) {
         val fragment = when (preferenceIndex) {
             0 -> WorkoutLevelFragment()
+            1 -> MuscleTargetFragment()
             else -> null
         }
 
@@ -52,7 +53,16 @@ class WorkoutPreferenceActivity : AppCompatActivity(), WorkoutLevelFragment.OnVa
         }
     }
 
-    override fun onValueTransfer(value: String) {
-        Log.d("STRING RECEIVED", value)
+    override fun onValueTransfer(tag:String, value: String) {
+        Log.d("STRING RECEIVED FROM $tag", value)
+
+        when (tag) {
+            "WorkoutLevel" -> preference = preference.copy(level = value)
+        }
+
+        viewModel.incrementPreferenceIndex()
+
+        Log.d("PREFERENCE", preference.toString())
+        Log.d("preferenceIndex", viewModel.preferenceIndex.toString())
     }
 }

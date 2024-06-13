@@ -13,4 +13,8 @@ class WorkoutPreferenceViewModel() : ViewModel() {
         _preferenceIndex.value = 0
     }
 
+    fun incrementPreferenceIndex() {
+        _preferenceIndex.value = _preferenceIndex.value?.plus(1)
+    }
+
 }

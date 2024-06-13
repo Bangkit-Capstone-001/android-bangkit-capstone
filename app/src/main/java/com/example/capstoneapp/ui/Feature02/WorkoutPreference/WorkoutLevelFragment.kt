@@ -18,7 +18,7 @@ class WorkoutLevelFragment() : Fragment() {
     private var listener: OnValueTransferListener? = null
 
     interface OnValueTransferListener {
-        fun onValueTransfer(value: String)
+        fun onValueTransfer(tag: String, value: String)
     }
 
     override fun onCreateView(
@@ -72,7 +72,7 @@ class WorkoutLevelFragment() : Fragment() {
     }
 
     private fun processSelection(clickValue: String) {
-        listener?.onValueTransfer(clickValue)
+        listener?.onValueTransfer("WorkoutLevel", clickValue)
         parentFragmentManager.beginTransaction().remove(this).commit()
 
     }
