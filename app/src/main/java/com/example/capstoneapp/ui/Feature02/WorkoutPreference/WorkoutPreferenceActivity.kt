@@ -8,13 +8,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.R
+import com.example.capstoneapp.data.WorkoutPreference
 import com.example.capstoneapp.databinding.ActivityWorkoutPreferenceBinding
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutPreference.WorkoutPreferenceViewModel
 
-class WorkoutPreferenceActivity : AppCompatActivity() {
+class WorkoutPreferenceActivity : AppCompatActivity(), WorkoutLevelFragment.OnValueTransferListener {
 
     private lateinit var binding: ActivityWorkoutPreferenceBinding
     private lateinit var viewModel: WorkoutPreferenceViewModel
+    private lateinit var preference: WorkoutPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,5 +50,9 @@ class WorkoutPreferenceActivity : AppCompatActivity() {
                 .replace(binding.workoutPreferenceClFragmentPlaceholder.id, fragment)
                 .commit()
         }
+    }
+
+    override fun onValueTransfer(value: String) {
+        Log.d("STRING RECEIVED", value)
     }
 }

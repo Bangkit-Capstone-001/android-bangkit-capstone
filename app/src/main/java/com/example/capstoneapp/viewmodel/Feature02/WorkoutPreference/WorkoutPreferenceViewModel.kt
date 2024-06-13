@@ -13,5 +13,4 @@ class WorkoutPreferenceViewModel() : ViewModel() {
         _preferenceIndex.value = 0
     }
 
-
 }
