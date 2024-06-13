@@ -31,7 +31,7 @@ class FoodHistAdapter : ListAdapter<DataFoodHist, FoodHistAdapter.MyViewHolder>(
 
         fun bind(foodHist: DataFoodHist) {
             binding.tvFoodName.text = "${foodHist.food?.namaBahanMakanan}"
-            binding.tvFoodNutrition.text = "${foodHist.calories} cal"
+            binding.tvFoodNutrition.text = "${Math.round(foodHist.calories as Double)} cal"
             binding.tvQuantity.text = "${foodHist.quantity} grams"
             binding.tvQuantity.visibility = View.VISIBLE
         }
