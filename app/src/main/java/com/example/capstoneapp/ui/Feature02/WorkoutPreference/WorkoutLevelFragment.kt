@@ -17,10 +17,6 @@ class WorkoutLevelFragment() : Fragment() {
     private val binding get() = _binding!!
     private var listener: OnValueTransferListener? = null
 
-    interface OnValueTransferListener {
-        fun onValueTransfer(tag: String, value: String)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,7 +48,6 @@ class WorkoutLevelFragment() : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        var az: String? = null
     }
 
     private fun onSelection() {
@@ -61,12 +56,10 @@ class WorkoutLevelFragment() : Fragment() {
         }
 
         binding.workoutLevelClPreferences2.setOnClickListener {
-            Log.d("CLICK VALUE", "Intermediate")
             processSelection("Intermediate")
         }
 
         binding.workoutLevelClPreferences3.setOnClickListener {
-            Log.d("CLICK VALUE", "Advance")
             processSelection("Advance")
         }
     }

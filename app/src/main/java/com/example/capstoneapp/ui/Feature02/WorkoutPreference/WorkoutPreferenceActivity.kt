@@ -12,7 +12,7 @@ import com.example.capstoneapp.data.WorkoutPreference
 import com.example.capstoneapp.databinding.ActivityWorkoutPreferenceBinding
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutPreference.WorkoutPreferenceViewModel
 
-class WorkoutPreferenceActivity : AppCompatActivity(), WorkoutLevelFragment.OnValueTransferListener {
+class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener {
 
     private lateinit var binding: ActivityWorkoutPreferenceBinding
     private lateinit var viewModel: WorkoutPreferenceViewModel
@@ -43,6 +43,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), WorkoutLevelFragment.OnVa
         val fragment = when (preferenceIndex) {
             0 -> WorkoutLevelFragment()
             1 -> MuscleTargetFragment()
+            2 -> ExerciseOptionFragment()
             else -> null
         }
 
@@ -58,6 +59,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), WorkoutLevelFragment.OnVa
 
         when (tag) {
             "WorkoutLevel" -> preference = preference.copy(level = value)
+            "MuscleTarget" -> preference = preference.copy(target = value)
         }
 
         viewModel.incrementPreferenceIndex()
