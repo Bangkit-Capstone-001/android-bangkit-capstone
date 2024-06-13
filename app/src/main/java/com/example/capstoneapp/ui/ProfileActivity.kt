@@ -39,8 +39,10 @@ class ProfileActivity : AppCompatActivity() {
         var _token = ""
 
         profileViewModel.getSession().observe(this) { user ->
-            _token = "Bearer ${user.token}"
-            setupAction(_token)
+            if (user.token != "") {
+                _token = "Bearer ${user.token}"
+                setupAction(_token)
+            }
         }
 
         setupView()
@@ -100,7 +102,7 @@ class ProfileActivity : AppCompatActivity() {
         mainViewModel.getProfile(t)
 
         binding.buttonLogout.setOnClickListener {
-            mainViewModel.logout()
+            mainViewModel.logout(t)
             finish()
         }
 
