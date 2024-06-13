@@ -2,6 +2,9 @@ package com.example.capstoneapp.data.response
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Variable  `Data`  refers to profile object
+ */
 data class GetProfileResponse(
 
 	@field:SerializedName("data")
@@ -20,7 +23,7 @@ data class Data(
 	val goal: String? = null,
 
 	@field:SerializedName("currentWeight")
-	val currentWeight: Any? = null,
+	val currentWeight: Float? = null,
 
 	@field:SerializedName("gender")
 	val gender: String? = null,

@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.data.pref.UserModel
+import com.example.capstoneapp.data.response.AddDietPlanResponse
+import com.example.capstoneapp.data.response.AddWeightResponse
 import com.example.capstoneapp.data.response.EditProfileResponse
 import com.example.capstoneapp.data.retrofit.ApiConfig
 import retrofit2.Call
@@ -14,9 +16,22 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
+    /**
+     * this view model implements 3 APIs: edit profile, add diet plan. track weight
+     *
+     * message returns general message for this activity
+     * isError is used for tracking API (edit profile)
+     * addPlanError is used for tracking API (add diet plan)
+     * addWeightError is used for tracking API (add weight)
+     */
     // LiveData Variables
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> get() = _isError
+    private val _addPlanError = MutableLiveData<Boolean>()
+    val addPlanError: LiveData<Boolean> get() = _addPlanError
+    private val _addWeightError = MutableLiveData<Boolean>()
+    val addWeightError: LiveData<Boolean> get() = _addWeightError
+
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
     private val _isLoading = MutableLiveData<Boolean>()
@@ -73,6 +88,68 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                 _isError.value = true
                 _message.value = t.message ?: "Unknown error"
                 Log.e(TAG, "onFailure: ${_message.value}")
+            }
+        })
+    }
+
+    fun addDietPlan(token: String, weightTarget: Float, duration: Int) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().addDietPlan(token, weightTarget, duration)
+        client.enqueue(object : Callback<AddDietPlanResponse> {
+            override fun onResponse(
+                call: Call<AddDietPlanResponse>,
+                response: Response<AddDietPlanResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    response.body()?.let { responseBody ->
+                        _addPlanError.value = false
+                        // _message.value = responseBody.message ?: "Success"
+                    } ?: run {
+                        _addPlanError.value = true
+                        Log.e(TAG, "Add diet plan | Null response")
+                    }
+                } else {
+                    _addPlanError.value = true
+                    Log.e(TAG, "Add diet plan | Bad request: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<AddDietPlanResponse>, t: Throwable) {
+                _isLoading.value = false
+                _addPlanError.value = true
+                Log.e(TAG, "Add diet plan | onFailure: Unknown error")
+            }
+        })
+    }
+
+    fun addWeight(token: String, date: String, weight: Float) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().addWeight(token, date, weight)
+        client.enqueue(object : Callback<AddWeightResponse> {
+            override fun onResponse(
+                call: Call<AddWeightResponse>,
+                response: Response<AddWeightResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    response.body()?.let { responseBody ->
+                        _addWeightError.value = false
+                        // _message.value = responseBody.message ?: "Success"
+                    } ?: run {
+                        _addWeightError.value = true
+                        Log.e(TAG, "Add weight | Null response")
+                    }
+                } else {
+                    _addWeightError.value = true
+                    Log.e(TAG, "Add weight | Bad request: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<AddWeightResponse>, t: Throwable) {
+                _isLoading.value = false
+                _addWeightError.value = true
+                Log.e(TAG, "Add weight | onFailure: Unknown error")
             }
         })
     }
