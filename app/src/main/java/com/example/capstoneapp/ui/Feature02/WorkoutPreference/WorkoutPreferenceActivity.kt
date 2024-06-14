@@ -28,6 +28,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener {
         viewModel.preferenceIndex.observe(this) { index ->
             Log.d("preferenceIndex", index.toString())
             setPreferenceSelection(index)
+            setProgressBar(index)
         }
 
         setAction()
@@ -44,6 +45,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener {
             0 -> WorkoutLevelFragment()
             1 -> MuscleTargetFragment()
             2 -> ExerciseOptionFragment()
+            3 -> WorkoutFrequencyFragment()
             else -> null
         }
 
@@ -54,12 +56,23 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener {
         }
     }
 
+    private fun setProgressBar(preferenceIndex: Int) {
+        when (preferenceIndex) {
+            0 -> binding.workoutPreferenceIvProgressBar.setImageResource(R.drawable.img_progress_bar_0)
+            1 -> binding.workoutPreferenceIvProgressBar.setImageResource(R.drawable.img_progress_bar_1)
+            2 -> binding.workoutPreferenceIvProgressBar.setImageResource(R.drawable.img_progress_bar_2)
+            3 -> binding.workoutPreferenceIvProgressBar.setImageResource(R.drawable.img_progress_bar_3)
+        }
+    }
+
     override fun onValueTransfer(tag:String, value: String) {
         Log.d("STRING RECEIVED FROM $tag", value)
 
         when (tag) {
             "WorkoutLevel" -> preference = preference.copy(level = value)
             "MuscleTarget" -> preference = preference.copy(target = value)
+            "ExerciseOption" -> preference = preference.copy(option = value)
+
         }
 
         viewModel.incrementPreferenceIndex()

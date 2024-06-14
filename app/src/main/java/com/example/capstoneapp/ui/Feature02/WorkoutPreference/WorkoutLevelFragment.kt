@@ -67,6 +67,5 @@ class WorkoutLevelFragment() : Fragment() {
     private fun processSelection(clickValue: String) {
         listener?.onValueTransfer("WorkoutLevel", clickValue)
         parentFragmentManager.beginTransaction().remove(this).commit()
-
     }
 }
