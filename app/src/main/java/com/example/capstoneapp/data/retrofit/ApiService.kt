@@ -8,6 +8,7 @@ import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
 import com.example.capstoneapp.data.response.LoginResponse
+import com.example.capstoneapp.data.response.RandomPreferenceWorkoutResponse
 import com.example.capstoneapp.data.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Field
@@ -114,4 +115,15 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("mealtime") mealtime: String
     ): Call<FoodHistResponse>
+
+    /**
+     * ---------------------------------- Food (retrieve food, add history, etc)
+     */
+    @GET("/api/workout/random")
+    fun getRandomPreferenceWorkout(
+        @Header("Authorization") token: String,
+        @Query("level") level: String,
+        @Query("target") target: String,
+        @Query("option") option: String
+    ): Call<RandomPreferenceWorkoutResponse>
 }

@@ -54,7 +54,7 @@ class ExerciseOptionFragment : Fragment() {
         }
 
         binding.exerciseOptionClPreferences3.setOnClickListener {
-            processSelection("Full Gym Tools")
+            processSelection("Full Gym Equipment")
         }
     }
 
