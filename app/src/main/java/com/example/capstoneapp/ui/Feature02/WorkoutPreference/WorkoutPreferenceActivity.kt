@@ -2,17 +2,14 @@ package com.example.capstoneapp.ui.Feature02.WorkoutPreference
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.R
 import com.example.capstoneapp.data.WorkoutPreference
 import com.example.capstoneapp.databinding.ActivityWorkoutPreferenceBinding
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutPreference.WorkoutPreferenceViewModel
 
-class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener {
+class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, OnArrayValueTransferListener {
 
     private lateinit var binding: ActivityWorkoutPreferenceBinding
     private lateinit var viewModel: WorkoutPreferenceViewModel
@@ -79,5 +76,12 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener {
 
         Log.d("PREFERENCE", preference.toString())
         Log.d("preferenceIndex", viewModel.preferenceIndex.toString())
+    }
+
+    override fun onArrayValueTransferListener(tag: String, value: MutableList<Int>) {
+        Log.d("ARRAY RECEIVED FROM $tag", value.toString())
+
+        preference = preference.copy(days = value as List<Int>)
+        Log.d("PREFERENCE", preference.toString())
     }
 }

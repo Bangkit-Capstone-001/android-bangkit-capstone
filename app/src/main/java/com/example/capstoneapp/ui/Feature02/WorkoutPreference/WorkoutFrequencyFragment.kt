@@ -16,7 +16,7 @@ class WorkoutFrequencyFragment : Fragment() {
 
     private var _binding: FragmentWorkoutFrequencyBinding? = null
     private val binding get() = _binding!!
-    private var listener: OnValueTransferListener? = null
+    private var listener: OnArrayValueTransferListener? = null
     // Make Sure Hari : [0, 1, 2, 3, 4, 5, 6]
     private val days = mutableListOf<Int>()
 
@@ -30,7 +30,7 @@ class WorkoutFrequencyFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnValueTransferListener) {
+        if (context is OnArrayValueTransferListener) {
             listener = context
         } else {
             throw RuntimeException("$context must implement OnStringTransferListener")
@@ -46,11 +46,19 @@ class WorkoutFrequencyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         onSelection()
+        setAction()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setAction() {
+        binding.workoutFrequencyClSelectWorkoutButton.setOnClickListener {
+            listener?.onArrayValueTransferListener("WorkoutFrequency", days)
+            parentFragmentManager.beginTransaction().remove(this).commit()
+        }
     }
 
     private fun onSelection() {
