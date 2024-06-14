@@ -49,11 +49,11 @@ class ExerciseOptionFragment : Fragment() {
             processSelection("Body Weight")
         }
 
-        binding.exerciseOptionClPreferences1.setOnClickListener {
+        binding.exerciseOptionClPreferences2.setOnClickListener {
             processSelection("Minimal Equipment")
         }
 
-        binding.exerciseOptionClPreferences1.setOnClickListener {
+        binding.exerciseOptionClPreferences3.setOnClickListener {
             processSelection("Full Gym Tools")
         }
     }
