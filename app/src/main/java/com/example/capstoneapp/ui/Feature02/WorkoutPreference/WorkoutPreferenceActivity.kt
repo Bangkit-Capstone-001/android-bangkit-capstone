@@ -1,5 +1,6 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutPreference
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.R
 import com.example.capstoneapp.data.WorkoutPreference
 import com.example.capstoneapp.databinding.ActivityWorkoutPreferenceBinding
+import com.example.capstoneapp.ui.Feature02.WorkoutList.WorkoutListActivity
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutPreference.WorkoutPreferenceViewModel
 
 class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, OnArrayValueTransferListener {
@@ -83,5 +85,15 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, 
 
         preference = preference.copy(days = value as List<Int>)
         Log.d("PREFERENCE", preference.toString())
+
+        val intent = Intent(this, WorkoutListActivity::class.java)
+        intent.putExtra(WorkoutListActivity.KEY_PREFERENCE, preference)
+        startActivity(intent)
+        // Kalo Navigasi aneh, edit ini
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.resetPreferenceIndex()
     }
 }
