@@ -265,7 +265,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workoutValidation_cl_scheduleContainer">
+        app:layout_constraintTop_toBottomOf="@id/workoutValidation_cl_scheduleContainer"
+        app:layout_constraintBottom_toTopOf="@+id/workoutValidation_cl_saveWorkoutPlanButton">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/workoutValidation_cl_scrollViewConstraintLayout"
