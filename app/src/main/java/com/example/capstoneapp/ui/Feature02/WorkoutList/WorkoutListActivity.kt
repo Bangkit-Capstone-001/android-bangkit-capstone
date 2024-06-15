@@ -17,6 +17,10 @@ class WorkoutListActivity : AppCompatActivity() {
     private val viewModel by viewModels<WorkoutListViewModel> {
         ViewModelFactory.getInstance(this)
     }
+    private var preference: WorkoutPreference? = null
+    private val selectedWorkouts = mutableListOf<String>()
+    private lateinit var allWorkouts: List<DataItem>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +30,7 @@ class WorkoutListActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.workoutListRvWorkoutItemList.layoutManager = layoutManager
 
-        val preference = intent.getParcelableExtra(KEY_PREFERENCE) as WorkoutPreference?
+        preference = intent.getParcelableExtra(KEY_PREFERENCE) as WorkoutPreference?
         Log.d("FROM WORKOUT LIST", preference.toString())
 
         viewModel.getSession().observe(this) { user ->
@@ -39,6 +43,7 @@ class WorkoutListActivity : AppCompatActivity() {
         viewModel.workouts.observe(this) { workouts ->
             Log.d("WORKOUTS", workouts.toString())
             setAdapter(workouts.data ?: emptyList<DataItem>())
+            allWorkouts = workouts.data as List<DataItem>
         }
 
         setAction()
@@ -51,9 +56,27 @@ class WorkoutListActivity : AppCompatActivity() {
     }
 
     private fun setAdapter(workoutList: List<DataItem?>) {
-        val adapter = WorkoutListAdapter()
+        val adapter = WorkoutListAdapter(
+            onItemClicked = {workoutItem -> onWorkoutItemClicked(workoutItem)},
+            isSelected = { id -> selectedWorkouts.contains(id)}
+        )
         adapter.submitList(workoutList)
         binding.workoutListRvWorkoutItemList.adapter = adapter
+    }
+
+    private fun onWorkoutItemClicked(workoutItem: DataItem) {
+        Log.d("CLICKED ITEM", workoutItem.toString())
+
+        // Kalo belom diklik
+        if (!selectedWorkouts.contains(workoutItem.id.toString())) {
+            selectedWorkouts.add(workoutItem.id.toString())
+        } else {
+            selectedWorkouts.remove(workoutItem.id.toString())
+        }
+        Log.d("WORKOUTS", selectedWorkouts.toString())
+//        val filteredWorkout = allWorkouts.filter { workouts ->
+//            !selectedWorkouts.contains(workouts.id.toString())
+//        }
     }
 
     companion object {
