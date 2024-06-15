@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.di.Injection
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutList.WorkoutListViewModel
+import com.example.capstoneapp.viewmodel.Feature02.WorkoutValidation.WorkoutValidationViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -32,6 +33,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(WorkoutListViewModel::class.java) -> {
                 WorkoutListViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(WorkoutValidationViewModel::class.java) -> {
+                WorkoutValidationViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -22,6 +22,7 @@ class WorkoutListActivity : AppCompatActivity() {
     }
     private var preference: WorkoutPreference? = null
     private val selectedWorkouts = mutableListOf<String>()
+    private val selectedWorkoutDataItem = mutableListOf<DataItem>()
     private lateinit var allWorkouts: List<DataItem>
 
 
@@ -68,7 +69,8 @@ class WorkoutListActivity : AppCompatActivity() {
 
         binding.workoutListClSaveWorkoutButton.setOnClickListener {
             if (checkAmountOfWorkout()) {
-                preference = preference?.copy(workoutIds = selectedWorkouts)
+                // Add here
+                preference = preference?.copy(workoutIds = selectedWorkouts, selectedWorkouts = selectedWorkoutDataItem)
 
                 val intent = Intent(this, WorkoutValidationActivity::class.java)
                 intent.putExtra(WorkoutValidationActivity.KEY_PREFERENCE, preference)
@@ -121,8 +123,10 @@ class WorkoutListActivity : AppCompatActivity() {
 
         if (!selectedWorkouts.contains(workoutItem.id.toString())) {
             selectedWorkouts.add(workoutItem.id.toString())
+            selectedWorkoutDataItem.add(workoutItem)
         } else {
             selectedWorkouts.remove(workoutItem.id.toString())
+            selectedWorkoutDataItem.remove(workoutItem)
         }
         Log.d("WORKOUTS", selectedWorkouts.toString())
     }

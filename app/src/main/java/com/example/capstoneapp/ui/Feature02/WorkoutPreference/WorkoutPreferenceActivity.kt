@@ -15,7 +15,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, 
 
     private lateinit var binding: ActivityWorkoutPreferenceBinding
     private lateinit var viewModel: WorkoutPreferenceViewModel
-    private var preference: WorkoutPreference = WorkoutPreference(null, null, null, null, null)
+    private var preference: WorkoutPreference = WorkoutPreference(null, null, null, null, null, null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
