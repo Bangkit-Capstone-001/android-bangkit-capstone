@@ -12,4 +12,5 @@
 
     <color name="darkRed">#CF0000</color>
     <color name="lightYellow">#FEF6E1</color>
+    <color name="contrastYellow">#FFCD6B</color>
 </resources>

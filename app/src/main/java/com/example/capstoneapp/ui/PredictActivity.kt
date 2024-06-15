@@ -12,7 +12,6 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,11 +21,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.picodiploma.loginwithanimation.helper.imageToUri
 import com.dicoding.picodiploma.loginwithanimation.helper.reduceFileImage
 import com.dicoding.picodiploma.loginwithanimation.helper.uriToFile
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityPredictBinding
+import com.example.capstoneapp.helper.PredictionAdapter
 import com.example.capstoneapp.viewmodel.PredictViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import com.yalantis.ucrop.UCrop
@@ -102,7 +103,20 @@ class PredictActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeViewModel() {}
+    private fun observeViewModel() {
+        predictViewModel.isError.observe(this) { error ->
+            if (!error) {
+                val res = predictViewModel.predictRes.value
+                val adapter = PredictionAdapter()
+                adapter.submitList(res)
+                binding.rvFood.adapter = adapter
+                binding.cardView2.visibility = View.VISIBLE
+            }
+            val message = predictViewModel.message.value
+            binding.tvInfo.text = message
+            showLoading(false)
+        }
+    }
 
     private fun setupView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -115,6 +129,8 @@ class PredictActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+        binding.rvFood.layoutManager = LinearLayoutManager(this)
+        binding.rvFood.adapter = PredictionAdapter()
     }
 
     /**
@@ -128,7 +144,7 @@ class PredictActivity : AppCompatActivity() {
 
             val uCrop = UCrop.of(inputUri, outputUri)
                 .withAspectRatio(5f, 5f)
-                .withMaxResultSize(800, 800)
+                .withMaxResultSize(224, 224)
 
             return uCrop.getIntent(context)
         }
@@ -178,7 +194,7 @@ class PredictActivity : AppCompatActivity() {
         ActivityResultContracts.TakePicture()
     ) { isSuccess ->
         if (isSuccess) {
-            currentImageUri?. let { uri ->
+            currentImageUri?.let { uri ->
                 startUCrop(uri)
             }
         }
@@ -213,6 +229,8 @@ class PredictActivity : AppCompatActivity() {
             binding.ivAddPreview.setImageURI(it)
             binding.ivAddPreview.invalidate()
         }
+        binding.tvInfo.text = getString(R.string.predict_info)
+        binding.cardView2.visibility = View.GONE
     }
 
     private fun addImage(token: String, context: Context) {
@@ -222,14 +240,14 @@ class PredictActivity : AppCompatActivity() {
             showLoading(true)
 
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
-            val fileRes = MultipartBody.Part.createFormData(
-                "photo",
+            val fileReq = MultipartBody.Part.createFormData(
+                "image",
                 imageFile.name,
                 requestImageFile
             )
 
             // addViewModel.addStory(token, fileRes, descriptionRes)
-            predictViewModel.predictImage()
+            predictViewModel.predictImage(token, fileReq)
         } ?: showToast("No image selected", context)
     }
 
