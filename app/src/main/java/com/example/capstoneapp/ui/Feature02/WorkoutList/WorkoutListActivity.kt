@@ -1,17 +1,13 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutList
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.capstoneapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.data.WorkoutPreference
+import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.databinding.ActivityWorkoutListBinding
-import com.example.capstoneapp.ui.WelcomeActivity
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutList.WorkoutListViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 
@@ -27,6 +23,9 @@ class WorkoutListActivity : AppCompatActivity() {
         binding = ActivityWorkoutListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val layoutManager = LinearLayoutManager(this)
+        binding.workoutListRvWorkoutItemList.layoutManager = layoutManager
+
         val preference = intent.getParcelableExtra(KEY_PREFERENCE) as WorkoutPreference?
         Log.d("FROM WORKOUT LIST", preference.toString())
 
@@ -39,6 +38,7 @@ class WorkoutListActivity : AppCompatActivity() {
 
         viewModel.workouts.observe(this) { workouts ->
             Log.d("WORKOUTS", workouts.toString())
+            setAdapter(workouts.data ?: emptyList<DataItem>())
         }
 
         setAction()
@@ -48,6 +48,12 @@ class WorkoutListActivity : AppCompatActivity() {
         binding.workoutListIvBackButton.setOnClickListener {
             finish()
         }
+    }
+
+    private fun setAdapter(workoutList: List<DataItem?>) {
+        val adapter = WorkoutListAdapter()
+        adapter.submitList(workoutList)
+        binding.workoutListRvWorkoutItemList.adapter = adapter
     }
 
     companion object {
