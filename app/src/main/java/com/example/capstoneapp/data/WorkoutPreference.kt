@@ -9,5 +9,5 @@ data class WorkoutPreference(
     val target: String?,
     val option: String?,
     val days: List<Int>?,
-    val workoutIds: IntArray?
+    val workoutIds: List<String>?
 ) : Parcelable

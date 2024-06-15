@@ -1,5 +1,6 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutList
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.data.WorkoutPreference
 import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.databinding.ActivityWorkoutListBinding
+import com.example.capstoneapp.ui.Feature02.WorkoutValidation.WorkoutValidationActivity
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutList.WorkoutListViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 
@@ -62,6 +64,26 @@ class WorkoutListActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.workoutListClSaveWorkoutButton.setOnClickListener {
+            if (checkAmountOfWorkout()) {
+                preference = preference?.copy(workoutIds = selectedWorkouts)
+
+                val intent = Intent(this, WorkoutValidationActivity::class.java)
+                intent.putExtra(WorkoutValidationActivity.KEY_PREFERENCE, preference)
+                startActivity(intent)
+                // Kalo Navigasi aneh, edit ini
+            }
+        }
+    }
+
+    private fun checkAmountOfWorkout() : Boolean {
+        return when (preference?.level) {
+            "Beginner" -> selectedWorkouts.size >= 5
+            "Intermediate" -> selectedWorkouts.size >= 7
+            "Advance" -> selectedWorkouts.size >= 10
+            else -> false
+        }
     }
 
     private fun setAdapter(workoutList: List<DataItem?>) {
@@ -76,16 +98,12 @@ class WorkoutListActivity : AppCompatActivity() {
     private fun onWorkoutItemClicked(workoutItem: DataItem) {
         Log.d("CLICKED ITEM", workoutItem.toString())
 
-        // Kalo belom diklik
         if (!selectedWorkouts.contains(workoutItem.id.toString())) {
             selectedWorkouts.add(workoutItem.id.toString())
         } else {
             selectedWorkouts.remove(workoutItem.id.toString())
         }
         Log.d("WORKOUTS", selectedWorkouts.toString())
-//        val filteredWorkout = allWorkouts.filter { workouts ->
-//            !selectedWorkouts.contains(workouts.id.toString())
-//        }
     }
 
     companion object {
