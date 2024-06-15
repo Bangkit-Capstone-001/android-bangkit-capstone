@@ -12,7 +12,6 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
@@ -102,7 +101,12 @@ class PredictActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeViewModel() {}
+    private fun observeViewModel() {
+        predictViewModel.message.observe(this) { message ->
+            binding.tvInfo.text = message
+            showLoading(false)
+        }
+    }
 
     private fun setupView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -128,7 +132,7 @@ class PredictActivity : AppCompatActivity() {
 
             val uCrop = UCrop.of(inputUri, outputUri)
                 .withAspectRatio(5f, 5f)
-                .withMaxResultSize(800, 800)
+                .withMaxResultSize(224, 224)
 
             return uCrop.getIntent(context)
         }
@@ -178,7 +182,7 @@ class PredictActivity : AppCompatActivity() {
         ActivityResultContracts.TakePicture()
     ) { isSuccess ->
         if (isSuccess) {
-            currentImageUri?. let { uri ->
+            currentImageUri?.let { uri ->
                 startUCrop(uri)
             }
         }
@@ -213,6 +217,7 @@ class PredictActivity : AppCompatActivity() {
             binding.ivAddPreview.setImageURI(it)
             binding.ivAddPreview.invalidate()
         }
+        binding.tvInfo.text = getString(R.string.predict_info)
     }
 
     private fun addImage(token: String, context: Context) {
@@ -222,14 +227,14 @@ class PredictActivity : AppCompatActivity() {
             showLoading(true)
 
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
-            val fileRes = MultipartBody.Part.createFormData(
-                "photo",
+            val fileReq = MultipartBody.Part.createFormData(
+                "image",
                 imageFile.name,
                 requestImageFile
             )
 
             // addViewModel.addStory(token, fileRes, descriptionRes)
-            predictViewModel.predictImage()
+            predictViewModel.predictImage(token, fileReq)
         } ?: showToast("No image selected", context)
     }
 

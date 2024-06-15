@@ -60,6 +60,7 @@
 
     <!--  Predict Page  -->
     <string name="predict_info">Please select an image, your image will be shown above. Then, please click Predict Button below to get your result.</string>
+    <string name="not_recognized">Your image is not recognized as a food, please try again with another image.</string>
 
     <!--  Add Food Page  -->
     <string name="add_food_title">Track your food</string>
