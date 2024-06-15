@@ -53,6 +53,15 @@ class WorkoutListActivity : AppCompatActivity() {
         binding.workoutListIvBackButton.setOnClickListener {
             finish()
         }
+
+        binding.workoutListClGenerateWorkoutButton.setOnClickListener {
+            viewModel.getSession().observe(this) { user ->
+                if (user.isLogin) {
+                    val token = "Bearer ${user.token}"
+                    viewModel.getRandomPreferenceWorkout(token, preference!!)
+                }
+            }
+        }
     }
 
     private fun setAdapter(workoutList: List<DataItem?>) {
