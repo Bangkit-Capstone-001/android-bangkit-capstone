@@ -21,11 +21,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.picodiploma.loginwithanimation.helper.imageToUri
 import com.dicoding.picodiploma.loginwithanimation.helper.reduceFileImage
 import com.dicoding.picodiploma.loginwithanimation.helper.uriToFile
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityPredictBinding
+import com.example.capstoneapp.helper.PredictionAdapter
 import com.example.capstoneapp.viewmodel.PredictViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import com.yalantis.ucrop.UCrop
@@ -102,7 +104,15 @@ class PredictActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        predictViewModel.message.observe(this) { message ->
+        predictViewModel.isError.observe(this) { error ->
+            if (!error) {
+                val res = predictViewModel.predictRes.value
+                val adapter = PredictionAdapter()
+                adapter.submitList(res)
+                binding.rvFood.adapter = adapter
+                binding.cardView2.visibility = View.VISIBLE
+            }
+            val message = predictViewModel.message.value
             binding.tvInfo.text = message
             showLoading(false)
         }
@@ -119,6 +129,8 @@ class PredictActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+        binding.rvFood.layoutManager = LinearLayoutManager(this)
+        binding.rvFood.adapter = PredictionAdapter()
     }
 
     /**
@@ -218,6 +230,7 @@ class PredictActivity : AppCompatActivity() {
             binding.ivAddPreview.invalidate()
         }
         binding.tvInfo.text = getString(R.string.predict_info)
+        binding.cardView2.visibility = View.GONE
     }
 
     private fun addImage(token: String, context: Context) {

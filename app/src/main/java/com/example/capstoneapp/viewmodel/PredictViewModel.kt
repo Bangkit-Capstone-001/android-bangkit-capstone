@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.data.pref.UserModel
+import com.example.capstoneapp.data.response.DataFood
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.retrofit.ApiConfig
 import okhttp3.MultipartBody
@@ -17,8 +18,8 @@ import retrofit2.Response
 
 class PredictViewModel(private val repository: UserRepository) : ViewModel() {
     // LiveData Variables
-    private val _predictRes = MutableLiveData<GetFoodResponse>()
-    val predictRes: LiveData<GetFoodResponse> get() = _predictRes
+    private val _predictRes = MutableLiveData<List<DataFood>>()
+    val predictRes: LiveData<List<DataFood>> get() = _predictRes
 
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> get() = _isError
@@ -42,26 +43,24 @@ class PredictViewModel(private val repository: UserRepository) : ViewModel() {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     response.body()?.let { responseBody ->
-                        _predictRes.value = responseBody
+                        _predictRes.value = (responseBody.data as List<DataFood>?)
                         _message.value = responseBody.message ?: "Success"
                         _isError.value = false
                     } ?: run {
-                        _isError.value = true
                         _message.value = "Null response"
-                        Log.e(TAG, "Null response")
+                        _isError.value = true
                     }
                 } else {
-                    _isError.value = true
                     _message.value = parseError(response)
-                    Log.e(TAG, "Bad request: ${_message.value}")
+                    _isError.value = true
                 }
             }
 
             override fun onFailure(call: Call<GetFoodResponse>, t: Throwable) {
-                _isError.value = true
+                Log.e(TAG, "onFailure: ${_message.value}")
                 _isLoading.value = false
                 _message.value = t.message ?: "Unknown error"
-                Log.e(TAG, "onFailure: ${_message.value}")
+                _isError.value = true
             }
         })
     }
