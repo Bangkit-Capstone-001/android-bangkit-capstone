@@ -24,6 +24,7 @@ class AddFoodActivity : AppCompatActivity() {
         binding = ActivityAddFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val foodName = intent.getStringExtra("EXTRA_FOOD")
         var _token = ""
 
         addFoodViewModel.getSession().observe(this) { user ->
@@ -32,7 +33,7 @@ class AddFoodActivity : AppCompatActivity() {
         }
 
         showLoading(false)
-        setupView()
+        setupView(foodName)
         observeViewModel()
     }
 
@@ -48,13 +49,14 @@ class AddFoodActivity : AppCompatActivity() {
         }
     }
 
-    fun setupView() {
+    fun setupView(foodName: String?) {
         val mealOptions = arrayOf("Breakfast", "Lunch", "Dinner")
         var adapter = ArrayAdapter(this, R.layout.item_option, mealOptions)
         binding.edMealtime.setAdapter(adapter)
 
         val foodOptions = listFood
         adapter = ArrayAdapter(this, R.layout.item_option, foodOptions)
+
         val ddFood = binding.edFood
         ddFood.setAdapter(adapter)
         ddFood.setOnItemClickListener { _, _, _, _ -> }
@@ -66,6 +68,11 @@ class AddFoodActivity : AppCompatActivity() {
                     ddFood.setText("")
                 }
             }
+        }
+
+        // Setup prefilled
+        if (foodName != null) {
+            ddFood.setText(foodName)
         }
     }
 

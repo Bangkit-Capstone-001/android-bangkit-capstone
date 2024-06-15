@@ -1,5 +1,6 @@
 package com.example.capstoneapp.helper
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneapp.data.response.DataFood
 import com.example.capstoneapp.databinding.ItemPredictionBinding
+import com.example.capstoneapp.ui.AddFoodActivity
 
 class PredictionAdapter : ListAdapter<DataFood, PredictionAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -35,6 +37,14 @@ class PredictionAdapter : ListAdapter<DataFood, PredictionAdapter.MyViewHolder>(
                 "Nutritions per ${food.komposisiPer}:" +
                         "\n• ${food.komposisiEnergiKal} cal  • ${food.komposisiKarbohidratG}g carbs, " +
                         "\n• ${food.komposisiProteinG}g protein  • ${food.komposisiLemakG}g fat"
+
+            binding.buttonAdd.setOnClickListener {
+                val context = it.context
+                val intent = Intent(context, AddFoodActivity::class.java).apply {
+                    putExtra("EXTRA_FOOD", food.namaBahanMakanan)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 
