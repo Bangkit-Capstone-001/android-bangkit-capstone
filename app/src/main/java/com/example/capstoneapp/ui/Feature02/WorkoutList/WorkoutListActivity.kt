@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.data.WorkoutPreference
@@ -73,7 +74,27 @@ class WorkoutListActivity : AppCompatActivity() {
                 intent.putExtra(WorkoutValidationActivity.KEY_PREFERENCE, preference)
                 startActivity(intent)
                 // Kalo Navigasi aneh, edit ini
+            } else {
+                val alertDialog = AlertDialog.Builder(this).apply {
+                    setTitle("Can not proceed yet!")
+                    setMessage("You need to choose at least " + determineAmountOfWorkout() + " workouts")
+                    setPositiveButton("Close") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    create()
+                }
+
+                alertDialog.show()
             }
+        }
+    }
+
+    private fun determineAmountOfWorkout() : String {
+        return when (preference?.level) {
+            "Beginner" -> "5"
+            "Intermediate" -> "7"
+            "Advance" -> "10"
+            else -> ""
         }
     }
 

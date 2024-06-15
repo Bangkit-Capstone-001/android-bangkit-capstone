@@ -23,6 +23,14 @@ class WorkoutValidationActivity : AppCompatActivity() {
 
         preference = intent.getParcelableExtra(WorkoutListActivity.KEY_PREFERENCE) as WorkoutPreference?
         Log.d("FROM WORKOUT VALIDATION", preference.toString())
+
+        setAction()
+    }
+
+    private fun setAction() {
+        binding.workoutValidationIvBackButton.setOnClickListener {
+            finish()
+        }
     }
 
     companion object {
