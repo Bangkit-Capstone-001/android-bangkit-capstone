@@ -21,6 +21,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -154,10 +155,10 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<GetWorkoutPlanResponse>
 
-    @DELETE("/api/workout/plan")
+    @DELETE("/api/workout/plan/{id}")
     fun deleteWorkoutPlan(
         @Header("Authorization") token: String,
-        @Query("workoutIds") workoutIds: List<String>
+        @Path("id") id: String
     ): Call<DeleteWorkoutPlanResponse>
 
     @FormUrlEncoded

@@ -69,7 +69,7 @@ class WorkoutPlanDetailViewModel(private val repository: UserRepository) : ViewM
         }
     }
 
-    fun deleteWorkoutPlan(token: String, workoutId: List<String>) {
+    fun deleteWorkoutPlan(token: String, workoutId: String) {
         val client = ApiConfig.getApiService().deleteWorkoutPlan(token, workoutId)
         try {
             client.enqueue(object : Callback<DeleteWorkoutPlanResponse> {

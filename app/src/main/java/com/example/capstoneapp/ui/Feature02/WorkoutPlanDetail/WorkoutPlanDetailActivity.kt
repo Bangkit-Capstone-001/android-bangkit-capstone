@@ -43,6 +43,7 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
         onDaySelection()
 
         viewModel.deleteResponse.observe(this) { result ->
+            Log.d("DELETION STATS", result.status.toString())
             if (result.status == 200) {
                 finish()
             }
@@ -57,9 +58,7 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
         binding.workoutPlanDetailClDeleteWorkoutPlanButton.setOnClickListener {
             viewModel.getSession().observe(this) { user ->
                 val token = "Bearer ${user.token}"
-                val listId: List<String> = listOf(detail.id!!)
-                Log.d("List ID", listId.toString())
-//                viewModel.deleteWorkoutPlan(token, listId)
+                viewModel.deleteWorkoutPlan(token, detail.id!!)
             }
         }
     }
