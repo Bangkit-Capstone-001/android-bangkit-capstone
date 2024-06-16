@@ -10,7 +10,9 @@ import com.example.capstoneapp.data.pref.UserModel
 import com.example.capstoneapp.data.response.AddDietPlanResponse
 import com.example.capstoneapp.data.response.AddWeightResponse
 import com.example.capstoneapp.data.response.EditProfileResponse
+import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.retrofit.ApiConfig
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -142,7 +144,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                     }
                 } else {
                     _addWeightError.value = true
-                    Log.e(TAG, "Add weight | Bad request: ${response.message()}")
+                    Log.e(TAG, "Add weight | Bad request: ${parseWeightError(response)}")
                 }
             }
 
@@ -152,6 +154,15 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                 Log.e(TAG, "Add weight | onFailure: Unknown error")
             }
         })
+    }
+
+    private fun parseWeightError(response: Response<AddWeightResponse>): String {
+        return try {
+            val errorBody = response.errorBody()?.string()
+            JSONObject(errorBody ?: "").getString("message")
+        } catch (e: Exception) {
+            response.message()
+        }
     }
 
     companion object {

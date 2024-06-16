@@ -65,14 +65,18 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         profileViewModel.message.observe(this) { message ->
+            if (profileViewModel.isError.value == true) {
+                showErrorDialog("Error updating general info.")
+            } else if (profileViewModel.addPlanError.value == true) {
+                showErrorDialog("Error updating diet plan.")
+            } else if (profileViewModel.addWeightError.value == true) {
+                showErrorDialog("Error updating weight.")
+            }
+
             if (profileViewModel.isError.value != true &&
                 profileViewModel.addPlanError.value != true &&
                 profileViewModel.addWeightError.value != true
-            ) {
-                showSuccessDialog()
-            } else {
-                showErrorDialog(getString(R.string.unknown_error))
-            }
+            ) { showSuccessDialog() }
         }
 
         profileViewModel.isLoading.observe(this) {
