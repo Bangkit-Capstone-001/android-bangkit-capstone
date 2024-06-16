@@ -1,9 +1,9 @@
 package com.example.capstoneapp.ui
 
+import NoFilterArrayAdapter
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -58,9 +58,12 @@ class ProfileActivity : AppCompatActivity() {
                 binding.edAge.setText(resp.data?.age?.toString() ?: "")
                 binding.edGender.setText(resp.data?.gender ?: "")
                 binding.edHeight.setText(resp.data?.currentHeight?.toString() ?: "")
-                binding.edWeight.setText(resp.data?.currentWeight?.let { it.roundToInt().toString() } ?: "")
+                binding.edWeight.setText(resp.data?.currentWeight?.let {
+                    it.roundToInt().toString()
+                } ?: "")
                 binding.edGoal.setText(resp.data?.goal?.let { attrToGoal(it) } ?: "")
-                binding.edAct.setText(resp.data?.activityLevel?.let { attrToActivityDropdown(it) } ?: "")
+                binding.edAct.setText(resp.data?.activityLevel?.let { attrToActivityDropdown(it) }
+                    ?: "")
             }
         }
 
@@ -76,7 +79,9 @@ class ProfileActivity : AppCompatActivity() {
             if (profileViewModel.isError.value != true &&
                 profileViewModel.addPlanError.value != true &&
                 profileViewModel.addWeightError.value != true
-            ) { showSuccessDialog() }
+            ) {
+                showSuccessDialog()
+            }
         }
 
         profileViewModel.isLoading.observe(this) {
@@ -86,18 +91,18 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun setupView() {
         val genderOptions = arrayOf("Male", "Female")
-        var adapter = ArrayAdapter(this, R.layout.item_option, genderOptions)
+        var adapter = NoFilterArrayAdapter(this, R.layout.item_option, genderOptions)
         binding.edGender.setAdapter(adapter)
 
         val goalOptions = arrayOf("Weight Gain", "Weight Loss", "Maintain Body")
-        adapter = ArrayAdapter(this, R.layout.item_option, goalOptions)
+        adapter = NoFilterArrayAdapter(this, R.layout.item_option, goalOptions)
         binding.edGoal.setAdapter(adapter)
 
         val activityOptions = arrayOf(
             "Index 4 (Active): Moves a lot", "Index 3 (Moderate): Moves moderately",
             "Index 2 (Light): Moves a little", "Index 1 (Sedentary): Moves rarely"
         )
-        adapter = ArrayAdapter(this, R.layout.item_option, activityOptions)
+        adapter = NoFilterArrayAdapter(this, R.layout.item_option, activityOptions)
         binding.edAct.setAdapter(adapter)
     }
 
@@ -146,7 +151,7 @@ class ProfileActivity : AppCompatActivity() {
                 profileViewModel.addWeight(t, fDate, fWeight)
 
                 profileViewModel.isError.observe(this) { err ->
-                    if(!err) {
+                    if (!err) {
                         profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
                     }
                 }
