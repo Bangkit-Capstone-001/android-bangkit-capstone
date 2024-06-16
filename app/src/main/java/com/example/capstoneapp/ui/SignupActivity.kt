@@ -32,6 +32,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
+        window.statusBarColor = getColor(R.color.black)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
@@ -61,6 +62,11 @@ class SignupActivity : AppCompatActivity() {
         return when {
             name.isEmpty() -> {
                 showErrorDialog("Name cannot be empty")
+                false
+            }
+
+            name.length > 12 -> {
+                showErrorDialog("Name should be at most 12 characters")
                 false
             }
 

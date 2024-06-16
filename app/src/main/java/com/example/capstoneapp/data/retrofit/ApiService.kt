@@ -3,18 +3,22 @@ package com.example.capstoneapp.data.retrofit
 import com.example.capstoneapp.data.response.AddDietPlanResponse
 import com.example.capstoneapp.data.response.AddWeightResponse
 import com.example.capstoneapp.data.response.EditProfileResponse
+import com.example.capstoneapp.data.response.FoodHistResponse
 import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
 import com.example.capstoneapp.data.response.LoginResponse
 import com.example.capstoneapp.data.response.RegisterResponse
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -36,6 +40,11 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<LoginResponse>
+
+    @POST("api/auth/logout")
+    fun logout(
+        @Header("Authorization") token: String
+    ): Call<EditProfileResponse>
 
     @GET("/api/user-profile")
     fun getProfile(
@@ -60,7 +69,7 @@ interface ApiService {
      */
 
     @FormUrlEncoded
-    @PUT("api/diet-plan")
+    @POST("api/diet-plan")
     fun addDietPlan(
         @Header("Authorization") token: String,
         @Field("weightTarget") weightTarget: Float,
@@ -107,4 +116,17 @@ interface ApiService {
         @Field("quantity") quantity: Float,
         @Field("mealtime") mealtime: String,
     ): Call<AddDietPlanResponse>
+
+    @GET("/api/food-analysis/today")
+    fun getTodaysFood(
+        @Header("Authorization") token: String,
+        @Query("mealtime") mealtime: String
+    ): Call<FoodHistResponse>
+
+    @Multipart
+    @POST("/api/food-analysis/picture")
+    fun predictImage(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ): Call<GetFoodResponse>
 }

@@ -1,9 +1,9 @@
 package com.example.capstoneapp.ui
 
+import NoFilterArrayAdapter
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -11,12 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityProfileBinding
 import com.example.capstoneapp.helper.activityToAttr
+import com.example.capstoneapp.helper.attrToActivityDropdown
+import com.example.capstoneapp.helper.attrToGoal
 import com.example.capstoneapp.helper.goalToAttr
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ProfileViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import kotlin.math.roundToInt
 
 class ProfileActivity : AppCompatActivity() {
     lateinit var binding: ActivityProfileBinding
@@ -30,14 +33,17 @@ class ProfileActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.black)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         var _token = ""
 
         profileViewModel.getSession().observe(this) { user ->
-            _token = "Bearer ${user.token}"
-            setupAction(_token)
+            if (user.token != "") {
+                _token = "Bearer ${user.token}"
+                setupAction(_token)
+            }
         }
 
         setupView()
@@ -46,14 +52,35 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
+        mainViewModel.userProfile.observe(this) { resp ->
+            if (resp.status == 200) {
+                binding.edName.setText(resp.data?.name)
+                binding.edAge.setText(resp.data?.age?.toString() ?: "")
+                binding.edGender.setText(resp.data?.gender ?: "")
+                binding.edHeight.setText(resp.data?.currentHeight?.toString() ?: "")
+                binding.edWeight.setText(resp.data?.currentWeight?.let {
+                    it.roundToInt().toString()
+                } ?: "")
+                binding.edGoal.setText(resp.data?.goal?.let { attrToGoal(it) } ?: "")
+                binding.edAct.setText(resp.data?.activityLevel?.let { attrToActivityDropdown(it) }
+                    ?: "")
+            }
+        }
+
         profileViewModel.message.observe(this) { message ->
+            if (profileViewModel.isError.value == true) {
+                showErrorDialog("Error updating general info.")
+            } else if (profileViewModel.addPlanError.value == true) {
+                showErrorDialog("Error updating diet plan.")
+            } else if (profileViewModel.addWeightError.value == true) {
+                showErrorDialog("Error updating weight.")
+            }
+
             if (profileViewModel.isError.value != true &&
                 profileViewModel.addPlanError.value != true &&
                 profileViewModel.addWeightError.value != true
             ) {
                 showSuccessDialog()
-            } else {
-                showErrorDialog(getString(R.string.unknown_error))
             }
         }
 
@@ -64,26 +91,28 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun setupView() {
         val genderOptions = arrayOf("Male", "Female")
-        var adapter = ArrayAdapter(this, R.layout.item_option, genderOptions)
+        var adapter = NoFilterArrayAdapter(this, R.layout.item_option, genderOptions)
         binding.edGender.setAdapter(adapter)
 
         val goalOptions = arrayOf("Weight Gain", "Weight Loss", "Maintain Body")
-        adapter = ArrayAdapter(this, R.layout.item_option, goalOptions)
+        adapter = NoFilterArrayAdapter(this, R.layout.item_option, goalOptions)
         binding.edGoal.setAdapter(adapter)
 
         val activityOptions = arrayOf(
             "Index 4 (Active): Moves a lot", "Index 3 (Moderate): Moves moderately",
             "Index 2 (Light): Moves a little", "Index 1 (Sedentary): Moves rarely"
         )
-        adapter = ArrayAdapter(this, R.layout.item_option, activityOptions)
+        adapter = NoFilterArrayAdapter(this, R.layout.item_option, activityOptions)
         binding.edAct.setAdapter(adapter)
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupAction(t: String) {
+        // Prefilled field
+        mainViewModel.getProfile(t)
+
         binding.buttonLogout.setOnClickListener {
-            mainViewModel.logout()
+            mainViewModel.logout(t)
             finish()
         }
 
@@ -119,8 +148,13 @@ class ProfileActivity : AppCompatActivity() {
                 profileViewModel.editProfile(
                     t, name, fAge, gender, fHeight, fWeight, fGoal, fAct
                 )
-                profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
                 profileViewModel.addWeight(t, fDate, fWeight)
+
+                profileViewModel.isError.observe(this) { err ->
+                    if (!err) {
+                        profileViewModel.addDietPlan(t, fWeightTarget, fDuration)
+                    }
+                }
             }
         }
     }
@@ -134,6 +168,11 @@ class ProfileActivity : AppCompatActivity() {
         return when {
             name.isEmpty() -> {
                 showErrorDialog("Name cannot be empty")
+                false
+            }
+
+            name.length > 12 -> {
+                showErrorDialog("Name should be at most 12 characters")
                 false
             }
 
@@ -187,7 +226,7 @@ class ProfileActivity : AppCompatActivity() {
                 false
             }
 
-            weightTarget.toInt() <= 0 -> {
+            weightTarget.toInt() < 0 -> {
                 showErrorDialog("Weight target must be greater than 0")
                 false
             }

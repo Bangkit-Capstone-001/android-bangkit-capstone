@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityMainBinding
+import com.example.capstoneapp.ui.Feature02.Feature02Fragment
 import com.example.capstoneapp.helper.listFood
 import com.example.capstoneapp.helper.retrieveAllFood
 import com.example.capstoneapp.ui.Feature04.Feature04Fragment
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.black)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

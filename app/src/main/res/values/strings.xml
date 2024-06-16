@@ -10,7 +10,7 @@
     <string name="token_unknown">Unable to find your session</string>
     <string name="login_again">Please login again</string>
     <string name="one_more">One more step!</string>
-    <string name="one_more_desc">OTo start using this app, please complete your data and set up your goals.</string>
+    <string name="one_more_desc">To start using this app, please complete your data and set up your goals.</string>
 
     <!--  Food type  -->
     <string name="breakfast">Breakfast</string>
@@ -49,7 +49,7 @@
     <string name="gender">Gender</string>
     <string name="height">Height (cm)</string>
     <string name="weight">Weight (kg)</string>
-    <string name="weight_t">Weight Target (kg)</string>
+    <string name="weight_t">Weight you want to lose or gain (kg)</string>
     <string name="duration">Duration to achieve your target (days)</string>
     <string name="track_weight">Track Weight</string>
     <string name="save">Save</string>
@@ -60,6 +60,8 @@
 
     <!--  Predict Page  -->
     <string name="predict_info">Please select an image, your image will be shown above. Then, please click Predict Button below to get your result.</string>
+    <string name="not_recognized">Your image is not recognized as a food, please try again with another image.</string>
+    <string name="related_result">Related results:</string>
 
     <!--  Add Food Page  -->
     <string name="add_food_title">Track your food</string>
@@ -81,9 +83,11 @@
     <string name="goal_value">maintain weight</string>
     <string name="act_level">Activity level:</string>
     <string name="act_value">sedentary</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--  Feature 03  -->
-    <string name="chart_title">Today\'s Activity</string>
+    <string name="chart_title">Today\'s calorie</string>
     <string name="info_title">Here are some food informations!</string>
 
 </resources>

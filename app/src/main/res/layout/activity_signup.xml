@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.SignupActivity">
@@ -43,7 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodTextView"
-        app:startIconDrawable="@drawable/ic_person" >
+        app:startIconDrawable="@drawable/ic_person"
+        app:boxStrokeColor="@color/focus_selector">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_register_name"
@@ -74,7 +76,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTextView"
-        app:startIconDrawable="@drawable/ic_email" >
+        app:startIconDrawable="@drawable/ic_email"
+        app:boxStrokeColor="@color/focus_selector">
 
         <com.example.capstoneapp.components.EmailField
             android:id="@+id/ed_register_email"
@@ -104,7 +107,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
-        app:startIconDrawable="@drawable/ic_lock" >
+        app:startIconDrawable="@drawable/ic_lock"
+        app:boxStrokeColor="@color/focus_selector">
 
         <com.example.capstoneapp.components.PasswordField
             android:id="@+id/ed_register_password"

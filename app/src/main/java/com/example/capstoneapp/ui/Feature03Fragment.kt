@@ -17,6 +17,7 @@ import com.example.capstoneapp.viewmodel.ViewModelFactory
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import kotlin.math.roundToInt
 
 class Feature03Fragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels {
@@ -51,7 +52,8 @@ class Feature03Fragment : Fragment() {
         mainViewModel.userPlan.observe(viewLifecycleOwner) { resp ->
             resp?.let {
                 if (it.status == 200) {
-                    generateChart(binding, it.data?.calorie!!, it.data?.calorieEaten!!)
+                    generateChart(binding, it.data?.calorie!!, it.data?.calorieEaten!!, it.data?.remainingCalories!!)
+                    generateGoalTarget(binding, it.data?.goal!!, it.data?.currentWeight!!, it.data?.weightTarget!!, it.data?.duration!!)
                 }
             }
         }
@@ -64,10 +66,20 @@ class Feature03Fragment : Fragment() {
         }
     }
 
-    private fun generateChart(binding: FragmentFeature03Binding, total: Float, cons: Float) {
+    private fun generateGoalTarget(binding: FragmentFeature03Binding, goal: String, currentWeight: Int, targetWeight: Int, duration: Int) {
+        if (goal == "weightGain") {
+            binding.tvGoalTarget.text = "Target: ${currentWeight}kg → ${currentWeight+targetWeight}kg ($duration days)"
+        } else if (goal == "weightLoss") {
+            binding.tvGoalTarget.text = "Target: ${currentWeight}kg → ${currentWeight-targetWeight}kg ($duration days)"
+        } else {
+            binding.tvGoalTarget.text = "Target: Maintain your ${currentWeight}kg of weight"
+        }
+    }
+
+    private fun generateChart(binding: FragmentFeature03Binding, total: Float, cons: Float, rem: Float) {
         val calVariables: ArrayList<PieEntry> = ArrayList()
         calVariables.add(PieEntry(cons, "Consumed"))
-        calVariables.add(PieEntry(total - cons, "Needs"))
+        calVariables.add(PieEntry(rem, "Needs"))
 
         val colors = ArrayList<Int>()
         context?.let { ContextCompat.getColor(it, R.color.mediumBlue) }?.let { colors.add(it) }
@@ -81,7 +93,7 @@ class Feature03Fragment : Fragment() {
 
         val data = PieData(pieData)
         binding.pieChart.data = data
-        binding.pieChart.centerText = "You need \ntotal: ${total.toInt()} cal"
+        binding.pieChart.centerText = "You need \ntotal: ${total.roundToInt()} cal"
         binding.pieChart.setCenterTextSize(15f)
         binding.pieChart.description.isEnabled = false
         binding.pieChart.animateY(1000)

@@ -27,24 +27,37 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="5dp"
+                    android:textSize="16dp"
                     android:text="@string/chart_title"
+                    android:textColor="@color/mediumBlue"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_goal_target"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingTop="10dp"
+                    android:textAlignment="center"
+                    android:text="@string/_e"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pie_chart" />
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/pie_chart"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:layout_marginBottom="10dp"
                     android:paddingBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -76,8 +89,10 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
                     android:paddingTop="10dp"
+                    android:textSize="16dp"
                     android:paddingBottom="10dp"
                     android:text="@string/info_title"
+                    android:textColor="@color/mediumBlue"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -114,8 +129,10 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
                     android:paddingTop="10dp"
+                    android:textSize="16dp"
                     android:paddingBottom="10dp"
                     android:text="@string/button_trackfood"
+                    android:textColor="@color/mediumBlue"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +154,7 @@
                     app:maxImageSize="18dp"
                     app:pressedTranslationZ="0dp"
                     app:srcCompat="@drawable/ic_add"
-                    app:tint="@color/raceBlue" />
+                    app:tint="@color/paleBlue" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/button_camera"
@@ -155,7 +172,7 @@
                     app:maxImageSize="18dp"
                     app:pressedTranslationZ="0dp"
                     app:srcCompat="@drawable/ic_cam"
-                    app:tint="@color/raceBlue" />
+                    app:tint="@color/paleBlue" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
