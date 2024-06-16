@@ -217,7 +217,7 @@ class ProfileActivity : AppCompatActivity() {
                 false
             }
 
-            weightTarget.toInt() <= 0 -> {
+            weightTarget.toInt() < 0 -> {
                 showErrorDialog("Weight target must be greater than 0")
                 false
             }
