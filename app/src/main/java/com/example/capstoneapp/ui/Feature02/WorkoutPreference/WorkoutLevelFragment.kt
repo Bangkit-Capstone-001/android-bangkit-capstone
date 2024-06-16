@@ -2,13 +2,10 @@ package com.example.capstoneapp.ui.Feature02.WorkoutPreference
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.capstoneapp.R
-import com.example.capstoneapp.data.WorkoutPreference
 import com.example.capstoneapp.databinding.FragmentWorkoutLevelBinding
 
 class WorkoutLevelFragment() : Fragment() {

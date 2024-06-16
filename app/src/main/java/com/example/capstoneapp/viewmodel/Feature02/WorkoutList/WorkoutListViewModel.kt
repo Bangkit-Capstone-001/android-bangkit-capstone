@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.capstoneapp.data.UserRepository
-import com.example.capstoneapp.data.WorkoutPreference
+import com.example.capstoneapp.data.pref.WorkoutPreference
 import com.example.capstoneapp.data.pref.UserModel
 import com.example.capstoneapp.data.response.RandomPreferenceWorkoutResponse
 import com.example.capstoneapp.data.retrofit.ApiConfig

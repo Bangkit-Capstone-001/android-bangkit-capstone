@@ -1,5 +1,6 @@
 package com.example.capstoneapp.data.retrofit
 
+import com.example.capstoneapp.data.pref.EditWorkoutPlanBody
 import com.example.capstoneapp.data.response.AddDietPlanResponse
 import com.example.capstoneapp.data.response.AddWeightResponse
 import com.example.capstoneapp.data.response.DeleteWorkoutPlanResponse
@@ -13,7 +14,9 @@ import com.example.capstoneapp.data.response.LoginResponse
 import com.example.capstoneapp.data.response.PostWorkoutPlanResponse
 import com.example.capstoneapp.data.response.RandomPreferenceWorkoutResponse
 import com.example.capstoneapp.data.response.RegisterResponse
+import com.example.capstoneapp.data.response.UpdateWorkoutPlanResponse
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -161,11 +164,10 @@ interface ApiService {
         @Path("id") id: String
     ): Call<DeleteWorkoutPlanResponse>
 
-    @FormUrlEncoded
-    @PUT("/api/workout/plan")
-    fun putWorkoutPlan(
+    @PUT("/api/workout/plan/{id}")
+    fun updateWorkoutPlan(
         @Header("Authorization") token: String,
-        @Field("days") days: List<Int>,
-        @Field("workoutIds") workoutIds: List<String>
-    )
+        @Path("id") id: String,
+        @Body editWorkoutPlanBody: EditWorkoutPlanBody
+    ): Call<UpdateWorkoutPlanResponse>
 }

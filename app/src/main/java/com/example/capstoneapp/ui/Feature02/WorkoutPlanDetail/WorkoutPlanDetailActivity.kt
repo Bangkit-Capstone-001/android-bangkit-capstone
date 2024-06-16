@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstoneapp.data.pref.EditWorkoutPlanBody
 import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.data.response.GetWorkoutsItem
@@ -48,6 +50,12 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        viewModel.updateWorkoutPlanResponse.observe(this) { result ->
+            if (result.status == 200) {
+                finish()
+            }
+        }
     }
 
     private fun setAction(detail: GetDataItem) {
@@ -61,8 +69,72 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
                 viewModel.deleteWorkoutPlan(token, detail.id!!)
             }
         }
+
+        binding.workoutPlanDetailTvSaveWorkoutPlanButton.setOnClickListener {
+            val editWorkoutPlanBody = EditWorkoutPlanBody(daysLocal, selectedWorkoutsId)
+
+            if (validateWorkout() && !isDayEmpty()) {
+                viewModel.getSession().observe(this) { user ->
+                    val token = "Bearer ${user.token}"
+                    viewModel.updateWorkoutPlan(token, detail.id!!, editWorkoutPlanBody)
+                }
+            }
+        }
     }
 
+    // VALIDATION
+    private fun validateWorkout(): Boolean {
+        if (!checkAmountOfWorkout()) {
+            val alertDialog = AlertDialog.Builder(this).apply {
+                setTitle("Can not proceed yet!")
+                setMessage("You need to choose at least " + determineAmountOfWorkout() + " workouts")
+                setPositiveButton("Close") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                create()
+            }
+
+            alertDialog.show()
+        }
+
+        return checkAmountOfWorkout()
+    }
+
+    private fun isDayEmpty(): Boolean {
+        if (daysLocal.isEmpty()) {
+            val alertDialog = AlertDialog.Builder(this).apply {
+                setTitle("Can not proceed yet!")
+                setMessage("You need to choose at least one day")
+                setPositiveButton("Close") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                create()
+            }
+
+            alertDialog.show()
+        }
+        return daysLocal.isEmpty()
+    }
+
+    private fun determineAmountOfWorkout() : String {
+        return when (detail?.level) {
+            "Beginner" -> "5"
+            "Intermediate" -> "7"
+            "Advance" -> "10"
+            else -> ""
+        }
+    }
+
+    private fun checkAmountOfWorkout() : Boolean {
+        return when (detail?.level) {
+            "Beginner" -> selectedWorkoutsId.size >= 5
+            "Intermediate" -> selectedWorkoutsId.size >= 7
+            "Advance" -> selectedWorkoutsId.size >= 10
+            else -> false
+        }
+    }
+
+    // WORKOUTS
     private fun initDisplay(detail: GetDataItem) {
         setInitDays(detail.days!!)
         setInitFavoriteWorkouts(detail.workouts!!)

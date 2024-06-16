@@ -9,7 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.R
-import com.example.capstoneapp.data.WorkoutPreference
+import com.example.capstoneapp.data.pref.WorkoutPreference
 import com.example.capstoneapp.databinding.ActivityWorkoutPreferenceBinding
 import com.example.capstoneapp.ui.Feature02.WorkoutList.WorkoutListActivity
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutPreference.WorkoutPreferenceViewModel

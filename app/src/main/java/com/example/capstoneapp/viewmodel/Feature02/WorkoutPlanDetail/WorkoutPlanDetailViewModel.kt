@@ -6,11 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.capstoneapp.data.UserRepository
+import com.example.capstoneapp.data.pref.EditWorkoutPlanBody
 import com.example.capstoneapp.data.pref.UserModel
 import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.data.response.DeleteWorkoutPlanResponse
 import com.example.capstoneapp.data.response.GetDataItem
+import com.example.capstoneapp.data.response.GetWorkoutPlanResponse
 import com.example.capstoneapp.data.response.RandomPreferenceWorkoutResponse
+import com.example.capstoneapp.data.response.UpdateWorkoutPlanResponse
 import com.example.capstoneapp.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +29,9 @@ class WorkoutPlanDetailViewModel(private val repository: UserRepository) : ViewM
 
     private val _deleteResponse = MutableLiveData<DeleteWorkoutPlanResponse>()
     val deleteResponse: LiveData<DeleteWorkoutPlanResponse> = _deleteResponse
+
+    private val _updateWorkoutPlanResponse = MutableLiveData<UpdateWorkoutPlanResponse>()
+    val updateWorkoutPlanResponse: LiveData<UpdateWorkoutPlanResponse> = _updateWorkoutPlanResponse
 
     fun addFavoriteWorkouts(dataItem: DataItem) {
         val currentFavorites = _favoriteWorkouts.value?.toMutableList() ?: mutableListOf()
@@ -60,7 +66,7 @@ class WorkoutPlanDetailViewModel(private val repository: UserRepository) : ViewM
                 }
 
                 override fun onFailure(call: Call<RandomPreferenceWorkoutResponse>, t: Throwable) {
-                    Log.e("WorkoutPlanDetail E3", "onFailure")
+                    Log.e("WorkoutPlanDetail E3", "onFailure: " + t.message.toString())
                 }
 
             })
@@ -69,8 +75,8 @@ class WorkoutPlanDetailViewModel(private val repository: UserRepository) : ViewM
         }
     }
 
-    fun deleteWorkoutPlan(token: String, workoutId: String) {
-        val client = ApiConfig.getApiService().deleteWorkoutPlan(token, workoutId)
+    fun deleteWorkoutPlan(token: String, planId: String) {
+        val client = ApiConfig.getApiService().deleteWorkoutPlan(token, planId)
         try {
             client.enqueue(object : Callback<DeleteWorkoutPlanResponse> {
                 override fun onResponse(
@@ -95,6 +101,35 @@ class WorkoutPlanDetailViewModel(private val repository: UserRepository) : ViewM
             })
         } catch (e: Exception) {
             Log.e("Delete Exception", e.toString())
+        }
+    }
+
+    fun updateWorkoutPlan(token: String, planId: String, editWorkoutPlanBody: EditWorkoutPlanBody) {
+        val client = ApiConfig.getApiService().updateWorkoutPlan(token, planId, editWorkoutPlanBody)
+        try {
+            client.enqueue(object : Callback<UpdateWorkoutPlanResponse> {
+                override fun onResponse(
+                    call: Call<UpdateWorkoutPlanResponse>,
+                    response: Response<UpdateWorkoutPlanResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            _updateWorkoutPlanResponse.value = response.body()
+                        } ?: run {
+                            Log.e("Update E1", "No Value")
+                        }
+                    } else {
+                        Log.e("Update E2", "Message : " + response.message() + "\nStatus : " + response.code() + "\nFull message : " + response.toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<UpdateWorkoutPlanResponse>, t: Throwable) {
+                    Log.e("Update E3", "onFailure")
+                }
+
+            })
+        } catch (e: Exception) {
+            Log.e("Update Exception", e.toString())
         }
     }
 

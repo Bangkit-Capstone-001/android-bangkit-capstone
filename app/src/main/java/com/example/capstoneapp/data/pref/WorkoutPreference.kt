@@ -1,4 +1,4 @@
-package com.example.capstoneapp.data
+package com.example.capstoneapp.data.pref
 
 import android.os.Parcelable
 import com.example.capstoneapp.data.response.DataItem

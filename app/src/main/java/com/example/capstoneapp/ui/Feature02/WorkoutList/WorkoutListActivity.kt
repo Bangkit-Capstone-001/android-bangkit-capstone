@@ -3,14 +3,13 @@ package com.example.capstoneapp.ui.Feature02.WorkoutList
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.capstoneapp.data.WorkoutPreference
+import com.example.capstoneapp.data.pref.WorkoutPreference
 import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.databinding.ActivityWorkoutListBinding
 import com.example.capstoneapp.ui.Feature02.WorkoutValidation.WorkoutValidationActivity
