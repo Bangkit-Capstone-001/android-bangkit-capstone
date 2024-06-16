@@ -35,7 +35,6 @@ class WorkoutListActivity : AppCompatActivity() {
         binding.workoutListRvWorkoutItemList.layoutManager = layoutManager
 
         preference = intent.getParcelableExtra(KEY_PREFERENCE) as WorkoutPreference?
-        Log.d("FROM WORKOUT LIST", preference.toString())
 
         viewModel.getSession().observe(this) { user ->
             if (user.isLogin) {
@@ -45,7 +44,6 @@ class WorkoutListActivity : AppCompatActivity() {
         }
 
         viewModel.workouts.observe(this) { workouts ->
-            Log.d("WORKOUTS", workouts.toString())
             setAdapter(workouts.data ?: emptyList<DataItem>())
             allWorkouts = workouts.data as List<DataItem>
         }
@@ -119,7 +117,6 @@ class WorkoutListActivity : AppCompatActivity() {
     }
 
     private fun onWorkoutItemClicked(workoutItem: DataItem) {
-        Log.d("CLICKED ITEM", workoutItem.toString())
 
         if (!selectedWorkouts.contains(workoutItem.id.toString())) {
             selectedWorkouts.add(workoutItem.id.toString())
@@ -128,7 +125,6 @@ class WorkoutListActivity : AppCompatActivity() {
             selectedWorkouts.remove(workoutItem.id.toString())
             selectedWorkoutDataItem.remove(workoutItem)
         }
-        Log.d("WORKOUTS", selectedWorkouts.toString())
     }
 
     companion object {

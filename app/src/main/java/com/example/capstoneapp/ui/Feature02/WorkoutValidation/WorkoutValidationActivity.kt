@@ -23,9 +23,8 @@ class WorkoutValidationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWorkoutValidationBinding
     private var preference: WorkoutPreference? = null
     private var days = mutableListOf<Int>()
-    private var selectedWorkouts = mutableListOf<String>()
+    private var selectedWorkoutsId = mutableListOf<String>()
     private var selectedWorkoutDataItem = mutableListOf<DataItem>()
-    private lateinit var allWorkouts: List<DataItem>
     private val viewModel by viewModels<WorkoutValidationViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -43,26 +42,23 @@ class WorkoutValidationActivity : AppCompatActivity() {
 
         // init preference
         preference = intent.getParcelableExtra(WorkoutListActivity.KEY_PREFERENCE) as WorkoutPreference?
-        Log.d("FROM WORKOUT VALIDATION", preference.toString())
-        preference?.selectedWorkouts?.forEach {
-            Log.d("IDS", it.id.toString())
-        }
+        Log.d("FROM WORKOUT VALIDATION", preference?.workoutIds.toString())
 
         // init days
         days = preference?.days as MutableList<Int>
         Log.d("DAYS", days.toString())
 
-        // init List of days
-        selectedWorkouts = preference?.workoutIds as MutableList<String>
 
-        // init List of Favorite Workouts
-        selectedWorkoutDataItem = preference?.selectedWorkouts as MutableList<DataItem>
+
+//        // init List of Favorite Workouts
+//        selectedWorkoutDataItem = preference?.selectedWorkouts as MutableList<DataItem>
         viewModel._favoriteWorkouts.value = preference?.selectedWorkouts
+        selectedWorkoutsId = preference?.workoutIds as MutableList<String>
 
-        viewModel.favoriteWorkouts.observe(this) {
-            setFavoriteAdapter(it)
+        viewModel.favoriteWorkouts.observe(this) { workouts ->
+            setFavoriteAdapter(workouts)
         }
-
+//
         initDisplay(preference!!)
         onSelection()
         setAction()
@@ -74,28 +70,30 @@ class WorkoutValidationActivity : AppCompatActivity() {
         }
     }
 
+
+    // FAVORITE WORKOUTS
     private fun setFavoriteAdapter(workoutList: List<DataItem?>) {
         val adapter = WorkoutListAdapter(
             onItemClicked = {workoutItem -> onWorkoutItemClicked(workoutItem)},
-            isSelected = { id -> selectedWorkouts.contains(id)}
+            isSelected = { id -> selectedWorkoutsId.contains(id)}
         )
         adapter.submitList(workoutList)
         binding.workoutValidationRvFavoriteWorkoutList.adapter = adapter
     }
 
     private fun onWorkoutItemClicked(workoutItem: DataItem) {
-        Log.d("CLICKED ITEM", workoutItem.toString())
-
-        if (!selectedWorkouts.contains(workoutItem.id.toString())) {
-            selectedWorkouts.add(workoutItem.id.toString())
-            selectedWorkoutDataItem.add(workoutItem)
+        if (!selectedWorkoutsId.contains(workoutItem.id.toString())) {
+            selectedWorkoutsId.add(workoutItem.id.toString())
+            viewModel.addFavoriteWorkouts(workoutItem)
         } else {
-            selectedWorkouts.remove(workoutItem.id.toString())
-            selectedWorkoutDataItem.remove(workoutItem)
+            selectedWorkoutsId.remove(workoutItem.id.toString())
+            viewModel.removeFavoriteWorkouts(workoutItem)
         }
-        Log.d("WORKOUTS", selectedWorkouts.toString())
     }
 
+
+
+    // DAYS
     private fun initDisplay(preference: WorkoutPreference) {
         preference.days.let { days ->
             if (days != null) {

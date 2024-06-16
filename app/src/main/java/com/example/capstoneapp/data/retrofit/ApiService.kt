@@ -117,12 +117,19 @@ interface ApiService {
     ): Call<FoodHistResponse>
 
     /**
-     * ---------------------------------- Food (retrieve food, add history, etc)
+     * ---------------------------------- Workouts (retrieve workouts)
      */
     @GET("/api/workout/random")
     fun getRandomPreferenceWorkout(
         @Header("Authorization") token: String,
         @Query("level") level: String,
+        @Query("target") target: String,
+        @Query("option") option: String
+    ): Call<RandomPreferenceWorkoutResponse>
+
+    @GET("api/workout/recommendations")
+    fun getRecommendedWorkouts(
+        @Header("Authorization") token: String,
         @Query("target") target: String,
         @Query("option") option: String
     ): Call<RandomPreferenceWorkoutResponse>

@@ -1,9 +1,10 @@
 package com.example.capstoneapp.data.response
 
+import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class RandomPreferenceWorkoutResponse(
 
 	@field:SerializedName("data")
@@ -14,16 +15,16 @@ data class RandomPreferenceWorkoutResponse(
 
 	@field:SerializedName("status")
 	val status: Int? = null
-)
+) : Parcelable
 
 @Parcelize
 data class DataItem(
 
-	@field:SerializedName("instructions")
-	val instructions: String? = null,
-
 	@field:SerializedName("short_description")
 	val shortDescription: String? = null,
+
+	@field:SerializedName("instructions")
+	val instructions: String? = null,
 
 	@field:SerializedName("rating")
 	val rating: Float? = null,
@@ -40,11 +41,14 @@ data class DataItem(
 	@field:SerializedName("body_group")
 	val bodyGroup: String? = null,
 
+	@field:SerializedName("youtube_links")
+	val youtubeLinks: String? = null,
+
 	@field:SerializedName("youtube_title")
 	val youtubeTitle: String? = null,
 
-	@field:SerializedName("youtube_links")
-	val youtubeLinks: String? = null,
+	@field:SerializedName("exerciseImages")
+	val exerciseImages: List<String?>? = null,
 
 	@field:SerializedName("exercise_name")
 	val exerciseName: String? = null,
