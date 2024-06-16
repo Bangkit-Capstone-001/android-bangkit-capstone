@@ -11,7 +11,7 @@ import com.example.capstoneapp.databinding.ItemMyPlansBinding
 import com.example.capstoneapp.databinding.ItemWorkoutBinding
 import com.example.capstoneapp.ui.Feature02.WorkoutPlanDetail.WorkoutPlanDetailActivity
 
-class WorkoutPlanAdapter(): ListAdapter<GetDataItem, WorkoutPlanAdapter.WorkoutPlanViewHolder>(DIFF_CALLBACK) {
+class WorkoutPlanAdapter : ListAdapter<GetDataItem, WorkoutPlanAdapter.WorkoutPlanViewHolder>(DIFF_CALLBACK) {
 
     class WorkoutPlanViewHolder(private val binding: ItemMyPlansBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(planItem: GetDataItem) {
