@@ -53,6 +53,7 @@ class PredictViewModel(private val repository: UserRepository) : ViewModel() {
                 } else {
                     _message.value = parseError(response)
                     _isError.value = true
+                    Log.e(TAG, "Bad request: ${_message.value}")
                 }
             }
 

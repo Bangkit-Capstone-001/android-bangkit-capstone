@@ -50,6 +50,7 @@ class AddFoodActivity : AppCompatActivity() {
     }
 
     fun setupView(foodName: String?) {
+        window.statusBarColor = getColor(R.color.black)
         val mealOptions = arrayOf("Breakfast", "Lunch", "Dinner")
         var adapter = ArrayAdapter(this, R.layout.item_option, mealOptions)
         binding.edMealtime.setAdapter(adapter)

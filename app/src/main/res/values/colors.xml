@@ -12,5 +12,7 @@
 
     <color name="darkRed">#CF0000</color>
     <color name="lightYellow">#FEF6E1</color>
+    <color name="paleYellow">#E0DEBB</color>
     <color name="contrastYellow">#FFCD6B</color>
+    <color name="yellow">#F1DF3E</color>
 </resources>

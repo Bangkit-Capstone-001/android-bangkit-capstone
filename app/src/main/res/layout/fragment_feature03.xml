@@ -154,7 +154,7 @@
                     app:maxImageSize="18dp"
                     app:pressedTranslationZ="0dp"
                     app:srcCompat="@drawable/ic_add"
-                    app:tint="@color/raceBlue" />
+                    app:tint="@color/paleBlue" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/button_camera"
@@ -172,7 +172,7 @@
                     app:maxImageSize="18dp"
                     app:pressedTranslationZ="0dp"
                     app:srcCompat="@drawable/ic_cam"
-                    app:tint="@color/raceBlue" />
+                    app:tint="@color/paleBlue" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
