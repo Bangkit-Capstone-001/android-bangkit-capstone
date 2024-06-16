@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.R
+import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.databinding.FragmentFeature02Binding
 import com.example.capstoneapp.ui.Feature02.WorkoutPreference.WorkoutPreferenceActivity
 import com.example.capstoneapp.viewmodel.Feature02.Feature02ViewModel
@@ -37,13 +39,24 @@ class Feature02Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val allPlanLayoutManager = LinearLayoutManager(requireContext())
+        binding.mainFragment2RvMyWorkoutPlans.layoutManager = allPlanLayoutManager
+
+        val dailyPlanLayoutManager = LinearLayoutManager(requireContext())
+        binding.mainFragment2RvWorkoutPlans.layoutManager = dailyPlanLayoutManager
+
         setAction()
 
         startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val shouldFinishSequentially = result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
                 if (shouldFinishSequentially) {
-                    // Handle the result here
+                    viewModel.getSession().observe(viewLifecycleOwner) { user ->
+                        if (user.isLogin) {
+                            val token = "Bearer ${user.token}"
+                            viewModel.getWorkoutPlans(token)
+                        }
+                    }
                 }
             }
         }
@@ -56,8 +69,8 @@ class Feature02Fragment : Fragment() {
         }
 
         viewModel.workoutPlans.observe(viewLifecycleOwner) { plans ->
-            // set Adapter ada 2 : 
-            Log.d("PLANS", plans.toString())
+            // set Adapter ada 2 :
+            setMyWorkoutPlans(plans)
         }
     }
 
@@ -71,5 +84,11 @@ class Feature02Fragment : Fragment() {
             val intent = Intent(requireContext(), WorkoutPreferenceActivity::class.java)
             startForResult.launch(intent)
         }
+    }
+
+    private fun setMyWorkoutPlans(plans: List<GetDataItem>) {
+        val adapter = WorkoutPlanAdapter()
+        adapter.submitList(plans)
+        binding.mainFragment2RvMyWorkoutPlans.adapter = adapter
     }
 }
