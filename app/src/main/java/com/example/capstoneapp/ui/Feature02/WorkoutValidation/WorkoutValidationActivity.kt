@@ -57,6 +57,14 @@ class WorkoutValidationActivity : AppCompatActivity() {
         initDisplay(preference!!)
         onSelection()
         setAction()
+
+        viewModel.postWorkoutPlanResult.observe(this) { result ->
+            result.onSuccess { response ->
+                Log.d("WorkoutValidation", "Post Success : $response")
+            }.onFailure { throwable ->
+                Log.e("WorkoutValidation", "Post Failed : ${throwable.message}")
+            }
+        }
     }
 
     private fun setAction() {
@@ -70,6 +78,11 @@ class WorkoutValidationActivity : AppCompatActivity() {
             if (validateWorkout() && !isDayEmpty()) {
                 Log.d("PREF DAYS", preference?.days.toString())
                 Log.d("PREF WORKOUTS", preference?.workoutIds.toString())
+
+                viewModel.getSession().observe(this) { user ->
+                    val token = "Bearer ${user.token}"
+                    viewModel.postWorkoutPlan(token, preference!!)
+                }
             }
         }
     }

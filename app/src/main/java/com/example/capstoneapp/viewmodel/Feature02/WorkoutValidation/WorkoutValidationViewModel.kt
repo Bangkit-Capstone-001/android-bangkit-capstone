@@ -9,6 +9,7 @@ import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.data.WorkoutPreference
 import com.example.capstoneapp.data.pref.UserModel
 import com.example.capstoneapp.data.response.DataItem
+import com.example.capstoneapp.data.response.PostWorkoutPlanResponse
 import com.example.capstoneapp.data.response.RandomPreferenceWorkoutResponse
 import com.example.capstoneapp.data.retrofit.ApiConfig
 import retrofit2.Call
@@ -20,8 +21,8 @@ class WorkoutValidationViewModel(private val repository: UserRepository) : ViewM
     val _favoriteWorkouts = MutableLiveData<List<DataItem>>()
     var favoriteWorkouts: LiveData<List<DataItem>> = _favoriteWorkouts
 
-    private val _recommendedWorkouts = MutableLiveData<List<DataItem>>()
-    val recommendedWorkouts: LiveData<List<DataItem>> = _recommendedWorkouts
+    private val _postWorkoutPlanResult = MutableLiveData<Result<PostWorkoutPlanResponse>>()
+    val postWorkoutPlanResult: LiveData<Result<PostWorkoutPlanResponse>> = _postWorkoutPlanResult
 
     fun addFavoriteWorkouts(dataItem: DataItem) {
         val currentFavorites = _favoriteWorkouts.value?.toMutableList() ?: mutableListOf()
@@ -35,32 +36,30 @@ class WorkoutValidationViewModel(private val repository: UserRepository) : ViewM
         _favoriteWorkouts.value = currentFavorites
     }
 
-    fun getRecommendedWorkouts(token: String, preference: WorkoutPreference) {
-        val client = ApiConfig.getApiService().getRecommendedWorkouts(token, preference.target!!, preference.option!!)
+    fun postWorkoutPlan(token: String, preference: WorkoutPreference) {
+        val client = ApiConfig.getApiService().postWorkoutPlan(token, preference.workoutIds!!, preference.days!!, preference.level!!, preference.option!!, preference.target!!)
         try {
-            client.enqueue(object : Callback<RandomPreferenceWorkoutResponse> {
+            client.enqueue(object : Callback<PostWorkoutPlanResponse> {
                 override fun onResponse(
-                    call: Call<RandomPreferenceWorkoutResponse>,
-                    response: Response<RandomPreferenceWorkoutResponse>
+                    call: Call<PostWorkoutPlanResponse>,
+                    response: Response<PostWorkoutPlanResponse>
                 ) {
                     if (response.isSuccessful) {
-                        response.body()?.let {
-                            _recommendedWorkouts.value = (response.body()!!.data as List<DataItem>?)!!
-                        } ?: run {
-                            Log.e("WorkoutValidation E1", "No Value")
-                        }
+                        _postWorkoutPlanResult.value = Result.success(response.body()!!)
                     } else {
-                        Log.e("WorkoutValidation E2", "Message : " + response.message() + "\nStatus : " + response.code())
+                        _postWorkoutPlanResult.value = Result.failure(Throwable(response.message()))
+                        Log.e("POST FAILED 1", "Failed code : ${response.code()}\nFailed message : ${response}")
                     }
                 }
 
-                override fun onFailure(call: Call<RandomPreferenceWorkoutResponse>, t: Throwable) {
-                    Log.e("WorkoutList E3", "onFailure")
+                override fun onFailure(call: Call<PostWorkoutPlanResponse>, t: Throwable) {
+                    _postWorkoutPlanResult.value = Result.failure(t)
+                    Log.e("POST FAILED 2", "Failed")
                 }
 
             })
         } catch (e: Exception) {
-            Log.e("WorkoutList Exception", e.toString())
+            Log.e("EXCEPTION", e.message.toString())
         }
     }
 

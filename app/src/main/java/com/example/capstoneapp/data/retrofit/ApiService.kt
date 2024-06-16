@@ -8,6 +8,7 @@ import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
 import com.example.capstoneapp.data.response.LoginResponse
+import com.example.capstoneapp.data.response.PostWorkoutPlanResponse
 import com.example.capstoneapp.data.response.RandomPreferenceWorkoutResponse
 import com.example.capstoneapp.data.response.RegisterResponse
 import retrofit2.Call
@@ -127,10 +128,21 @@ interface ApiService {
         @Query("option") option: String
     ): Call<RandomPreferenceWorkoutResponse>
 
-    @GET("api/workout/recommendations")
+    @GET("/api/workout/recommendations")
     fun getRecommendedWorkouts(
         @Header("Authorization") token: String,
         @Query("target") target: String,
         @Query("option") option: String
     ): Call<RandomPreferenceWorkoutResponse>
+
+    @FormUrlEncoded
+    @POST("/api/workout/plan")
+    fun postWorkoutPlan(
+        @Header("Authorization") token: String,
+        @Field("workoutIds") workoutIds: List<String>,
+        @Field("days") days: List<Int>,
+        @Field("level") level: String,
+        @Field("option") option: String,
+        @Field("target") target: String
+    ): Call<PostWorkoutPlanResponse>
 }
