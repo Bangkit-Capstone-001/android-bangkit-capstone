@@ -1,8 +1,11 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutList
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +27,7 @@ class WorkoutListActivity : AppCompatActivity() {
     private val selectedWorkouts = mutableListOf<String>()
     private val selectedWorkoutDataItem = mutableListOf<DataItem>()
     private lateinit var allWorkouts: List<DataItem>
-
+    private lateinit var startForResult: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,18 @@ class WorkoutListActivity : AppCompatActivity() {
         }
 
         setAction()
+
+        startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val shouldFinishSequentially = result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
+                if (shouldFinishSequentially) {
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("shouldFinishSequentially", true)
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish()
+                }
+            }
+        }
     }
 
     private fun setAction() {
@@ -72,7 +87,7 @@ class WorkoutListActivity : AppCompatActivity() {
 
                 val intent = Intent(this, WorkoutValidationActivity::class.java)
                 intent.putExtra(WorkoutValidationActivity.KEY_PREFERENCE, preference)
-                startActivity(intent)
+                startForResult.launch(intent)
                 // Kalo Navigasi aneh, edit ini
             } else {
                 val alertDialog = AlertDialog.Builder(this).apply {

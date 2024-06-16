@@ -1,5 +1,7 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutValidation
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -61,6 +63,10 @@ class WorkoutValidationActivity : AppCompatActivity() {
         viewModel.postWorkoutPlanResult.observe(this) { result ->
             result.onSuccess { response ->
                 Log.d("WorkoutValidation", "Post Success : $response")
+                val resultIntent = Intent()
+                resultIntent.putExtra("shouldFinishSequentially", true)
+                setResult(Activity.RESULT_OK, resultIntent)
+                finish()
             }.onFailure { throwable ->
                 Log.e("WorkoutValidation", "Post Failed : ${throwable.message}")
             }

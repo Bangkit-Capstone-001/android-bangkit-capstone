@@ -1,8 +1,11 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutPreference
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.R
@@ -15,6 +18,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, 
 
     private lateinit var binding: ActivityWorkoutPreferenceBinding
     private lateinit var viewModel: WorkoutPreferenceViewModel
+    private lateinit var startForResult: ActivityResultLauncher<Intent>
     private var preference: WorkoutPreference = WorkoutPreference(null, null, null, null, null, null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +35,18 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, 
         }
 
         setAction()
+
+        startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val shouldFinishSequentially = result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
+                if (shouldFinishSequentially) {
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("shouldFinishSequentially", true)
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish()
+                }
+            }
+        }
     }
 
     private fun setAction() {
@@ -88,7 +104,7 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, 
 
         val intent = Intent(this, WorkoutListActivity::class.java)
         intent.putExtra(WorkoutListActivity.KEY_PREFERENCE, preference)
-        startActivity(intent)
+        startForResult.launch(intent)
         // Kalo Navigasi aneh, edit ini
     }
 

@@ -1,11 +1,14 @@
 package com.example.capstoneapp.ui.Feature02
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.FragmentFeature02Binding
 import com.example.capstoneapp.ui.Feature02.WorkoutPreference.WorkoutPreferenceActivity
@@ -14,6 +17,7 @@ class Feature02Fragment : Fragment() {
 
     private var _binding: FragmentFeature02Binding? = null
     private val binding get() = _binding!!
+    private lateinit var startForResult: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +31,26 @@ class Feature02Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setAction()
+
+        startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val shouldFinishSequentially = result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
+                if (shouldFinishSequentially) {
+                    // Handle the result here
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun setAction() {
         binding.mainFragment2IvAddWorkoutPlanButton.setOnClickListener {
-            startActivity(Intent(activity, WorkoutPreferenceActivity::class.java))
+            val intent = Intent(requireContext(), WorkoutPreferenceActivity::class.java)
+            startForResult.launch(intent)
         }
     }
 }
