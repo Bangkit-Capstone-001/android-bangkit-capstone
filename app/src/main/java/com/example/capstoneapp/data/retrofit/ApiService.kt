@@ -7,6 +7,7 @@ import com.example.capstoneapp.data.response.FoodHistResponse
 import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
+import com.example.capstoneapp.data.response.GetWorkoutPlanResponse
 import com.example.capstoneapp.data.response.LoginResponse
 import com.example.capstoneapp.data.response.PostWorkoutPlanResponse
 import com.example.capstoneapp.data.response.RandomPreferenceWorkoutResponse
@@ -145,4 +146,9 @@ interface ApiService {
         @Field("option") option: String,
         @Field("target") target: String
     ): Call<PostWorkoutPlanResponse>
+
+    @GET("/api/workout/plan")
+    fun getWorkoutPlan(
+        @Header("Authorization") token: String
+    ): Call<GetWorkoutPlanResponse>
 }
