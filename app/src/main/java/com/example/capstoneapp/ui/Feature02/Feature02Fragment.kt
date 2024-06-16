@@ -51,12 +51,7 @@ class Feature02Fragment : Fragment() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val shouldFinishSequentially = result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
                 if (shouldFinishSequentially) {
-                    viewModel.getSession().observe(viewLifecycleOwner) { user ->
-                        if (user.isLogin) {
-                            val token = "Bearer ${user.token}"
-                            viewModel.getWorkoutPlans(token)
-                        }
-                    }
+
                 }
             }
         }
@@ -71,6 +66,19 @@ class Feature02Fragment : Fragment() {
         viewModel.workoutPlans.observe(viewLifecycleOwner) { plans ->
             // set Adapter ada 2 :
             setMyWorkoutPlans(plans)
+            plans.forEach {
+                Log.d("Workout IDs", it.id!!)
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getSession().observe(viewLifecycleOwner) { user ->
+            if (user.isLogin) {
+                val token = "Bearer ${user.token}"
+                viewModel.getWorkoutPlans(token)
+            }
         }
     }
 

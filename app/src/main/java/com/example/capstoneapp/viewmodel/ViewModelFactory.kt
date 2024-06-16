@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.di.Injection
+import com.example.capstoneapp.ui.Feature02.WorkoutPlanDetail.WorkoutPlanDetailActivity
 import com.example.capstoneapp.viewmodel.Feature02.Feature02ViewModel
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutList.WorkoutListViewModel
+import com.example.capstoneapp.viewmodel.Feature02.WorkoutPlanDetail.WorkoutPlanDetailViewModel
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutValidation.WorkoutValidationViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -40,6 +42,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(Feature02ViewModel::class.java) -> {
                 Feature02ViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(WorkoutPlanDetailViewModel::class.java) -> {
+                WorkoutPlanDetailViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

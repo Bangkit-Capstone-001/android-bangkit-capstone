@@ -27,7 +27,6 @@ class WorkoutValidationActivity : AppCompatActivity() {
     private var preference: WorkoutPreference? = null
     private var days = mutableListOf<Int>()
     private var selectedWorkoutsId = mutableListOf<String>()
-    private var selectedWorkoutDataItem = mutableListOf<DataItem>()
     private val viewModel by viewModels<WorkoutValidationViewModel> {
         ViewModelFactory.getInstance(this)
     }

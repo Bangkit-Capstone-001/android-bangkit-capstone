@@ -4,46 +4,143 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.data.response.GetWorkoutsItem
 import com.example.capstoneapp.databinding.ActivityWorkoutPlanDetailBinding
+import com.example.capstoneapp.ui.Feature02.WorkoutList.WorkoutListAdapter
+import com.example.capstoneapp.viewmodel.Feature02.WorkoutPlanDetail.WorkoutPlanDetailViewModel
+import com.example.capstoneapp.viewmodel.ViewModelFactory
 
 class WorkoutPlanDetailActivity : AppCompatActivity() {
 
     private var detail: GetDataItem? = null
     private lateinit var binding: ActivityWorkoutPlanDetailBinding
     private var daysLocal = mutableListOf<Int>()
+    private var selectedWorkoutsId = mutableListOf<String>()
+    private val viewModel by viewModels<WorkoutPlanDetailViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutPlanDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val favoriteWorkoutLayoutManager = LinearLayoutManager(this)
+        binding.workoutPlanDetailRvFavoriteWorkoutList.layoutManager = favoriteWorkoutLayoutManager
+
+        val recommendedWorkoutLayoutManager = LinearLayoutManager(this)
+        binding.workoutPlanDetailRvRecommendedWorkoutList.layoutManager = recommendedWorkoutLayoutManager
+
         detail = intent.getParcelableExtra(KEY_DETAIL) as GetDataItem?
 
         initDisplay(detail!!)
-        setAction()
+        setAction(detail!!)
         onDaySelection()
+
+        viewModel.deleteResponse.observe(this) { result ->
+            if (result.status == 200) {
+                finish()
+            }
+        }
     }
 
-    private fun setAction() {
+    private fun setAction(detail: GetDataItem) {
         binding.workoutPlanDetailIvBackButton.setOnClickListener {
             finish()
+        }
+
+        binding.workoutPlanDetailClDeleteWorkoutPlanButton.setOnClickListener {
+            viewModel.getSession().observe(this) { user ->
+                val token = "Bearer ${user.token}"
+                val listId: List<String> = listOf(detail.id!!)
+                Log.d("List ID", listId.toString())
+//                viewModel.deleteWorkoutPlan(token, listId)
+            }
         }
     }
 
     private fun initDisplay(detail: GetDataItem) {
         setInitDays(detail.days!!)
+        setInitFavoriteWorkouts(detail.workouts!!)
+        setInitRecommendedWorkout(detail)
     }
 
+    private fun setInitRecommendedWorkout(detail: GetDataItem) {
+        viewModel.getSession().observe(this) { user ->
+            val token = "Bearer ${user.token}"
+            viewModel.getRecommendedWorkout(token, detail!!)
+        }
+
+        viewModel.recommendedWorkouts.observe(this) { workouts ->
+            setRecommendedAdapter(workouts)
+        }
+    }
+
+    private fun setInitFavoriteWorkouts(workouts: List<GetWorkoutsItem?>) {
+        val dataItemWorkouts = workouts.map { workout ->
+            DataItem(
+                shortDescription = workout!!.shortDescription,
+                instructions = workout.instructions,
+                rating = workout.rating,
+                equipment = workout.equipment,
+                id = workout.id,
+                guideImgUrl = workout.guideImgUrl,
+                bodyGroup = workout.bodyGroup,
+                youtubeLinks = workout.youtubeLinks,
+                youtubeTitle = workout.youtubeTitle,
+                exerciseImages = workout.exerciseImages,
+                exerciseName = workout.exerciseName,
+                option = workout.option
+            )
+        }
+
+        viewModel._favoriteWorkouts.value = dataItemWorkouts
+        dataItemWorkouts.forEach {
+            selectedWorkoutsId.add(it.id!!)
+        }
+        setFavoriteAdapter(dataItemWorkouts)
+    }
+
+    private fun setFavoriteAdapter(workoutList: List<DataItem?>) {
+        val adapter = WorkoutListAdapter(
+            onItemClicked = {workoutItem -> onWorkoutItemClicked(workoutItem)},
+            isSelected = { id -> selectedWorkoutsId.contains(id)}
+        )
+        adapter.submitList(workoutList)
+        binding.workoutPlanDetailRvFavoriteWorkoutList.adapter = adapter
+    }
+
+    private fun setRecommendedAdapter(workoutList: List<DataItem?>) {
+        val adapter = WorkoutListAdapter(
+            onItemClicked = {workoutItem -> onWorkoutItemClicked(workoutItem)},
+            isSelected = { id -> selectedWorkoutsId.contains(id)}
+        )
+        adapter.submitList(workoutList)
+        binding.workoutPlanDetailRvRecommendedWorkoutList.adapter = adapter
+    }
+
+    private fun onWorkoutItemClicked(workoutItem: DataItem) {
+        if (!selectedWorkoutsId.contains(workoutItem.id.toString())) {
+            selectedWorkoutsId.add(workoutItem.id.toString())
+            viewModel.addFavoriteWorkouts(workoutItem)
+        } else {
+            selectedWorkoutsId.remove(workoutItem.id.toString())
+            viewModel.removeFavoriteWorkouts(workoutItem)
+        }
+
+        Log.d("Workout Size", selectedWorkoutsId.size.toString())
+
+    }
+
+    // DAYS
     private fun setInitDays(days: List<Int?>) {
         days.forEach { setClickedOnDayUI(it!!) }
         daysLocal = days as MutableList<Int>
-    }
-
-    private fun setMyWorkoutAdapter(workouts: List<GetWorkoutsItem>) {
-
     }
 
     private fun onDaySelection() {
