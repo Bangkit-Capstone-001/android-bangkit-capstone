@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneapp.data.response.DataFood
 import com.example.capstoneapp.databinding.ItemFoodBinding
+import kotlin.math.roundToInt
 
 /**
  * This is initially used as random food adapter
@@ -34,7 +35,7 @@ class FoodAdapter : ListAdapter<DataFood, FoodAdapter.MyViewHolder>(DIFF_CALLBAC
 
         fun bind(food: DataFood) {
             binding.tvFoodName.text = "• ${food.namaBahanMakanan}"
-            binding.tvFoodNutrition.text = "${food.komposisiEnergiKal} cal/${food.komposisiPer}"
+            binding.tvFoodNutrition.text = "${food.komposisiEnergiKal?.roundToInt()} cal/${food.komposisiPer}"
         }
     }
 

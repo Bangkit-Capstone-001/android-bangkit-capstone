@@ -82,8 +82,8 @@ class Feature03Fragment : Fragment() {
         calVariables.add(PieEntry(rem, "Needs"))
 
         val colors = ArrayList<Int>()
-        context?.let { ContextCompat.getColor(it, R.color.mediumBlue) }?.let { colors.add(it) }
-        context?.let { ContextCompat.getColor(it, R.color.paleBlue) }?.let { colors.add(it) }
+        context?.let { ContextCompat.getColor(it, R.color.yellow) }?.let { colors.add(it) }
+        context?.let { ContextCompat.getColor(it, R.color.paleYellow) }?.let { colors.add(it) }
 
         val pieData = PieDataSet(calVariables, "")
         pieData.colors = colors

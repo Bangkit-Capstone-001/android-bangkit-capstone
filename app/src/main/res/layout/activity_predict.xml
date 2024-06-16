@@ -153,7 +153,7 @@
         app:maxImageSize="35dp"
         app:pressedTranslationZ="0dp"
         app:srcCompat="@drawable/ic_gallery"
-        app:tint="@color/raceBlue" />
+        app:tint="@color/paleBlue" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_cam"
@@ -169,7 +169,7 @@
         app:maxImageSize="35dp"
         app:pressedTranslationZ="0dp"
         app:srcCompat="@drawable/ic_cam"
-        app:tint="@color/raceBlue" />
+        app:tint="@color/paleBlue" />
 
     <ProgressBar
         android:id="@+id/progressBar"
