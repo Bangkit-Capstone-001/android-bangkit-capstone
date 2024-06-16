@@ -91,8 +91,6 @@ class WorkoutValidationActivity : AppCompatActivity() {
         }
     }
 
-
-
     // DAYS
     private fun initDisplay(preference: WorkoutPreference) {
         preference.days.let { days ->

@@ -25,17 +25,13 @@ class WorkoutValidationViewModel(private val repository: UserRepository) : ViewM
 
     fun addFavoriteWorkouts(dataItem: DataItem) {
         val currentFavorites = _favoriteWorkouts.value?.toMutableList() ?: mutableListOf()
-
         currentFavorites.add(dataItem)
-
         _favoriteWorkouts.value = currentFavorites
     }
 
     fun removeFavoriteWorkouts(dataItem: DataItem) {
         val currentFavorites = _favoriteWorkouts.value?.toMutableList() ?: mutableListOf()
-
         currentFavorites.remove(dataItem)
-
         _favoriteWorkouts.value = currentFavorites
     }
 
