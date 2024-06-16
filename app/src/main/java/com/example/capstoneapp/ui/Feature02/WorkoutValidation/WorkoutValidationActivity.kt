@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -40,25 +41,19 @@ class WorkoutValidationActivity : AppCompatActivity() {
         val layoutManagerRecommended = LinearLayoutManager(this)
         binding.workoutValidationRvFavoriteWorkoutList.layoutManager = layoutManagerRecommended
 
-        // init preference
         preference = intent.getParcelableExtra(WorkoutListActivity.KEY_PREFERENCE) as WorkoutPreference?
         Log.d("FROM WORKOUT VALIDATION", preference?.workoutIds.toString())
 
-        // init days
         days = preference?.days as MutableList<Int>
         Log.d("DAYS", days.toString())
 
-
-
-//        // init List of Favorite Workouts
-//        selectedWorkoutDataItem = preference?.selectedWorkouts as MutableList<DataItem>
         viewModel._favoriteWorkouts.value = preference?.selectedWorkouts
         selectedWorkoutsId = preference?.workoutIds as MutableList<String>
 
         viewModel.favoriteWorkouts.observe(this) { workouts ->
             setFavoriteAdapter(workouts)
         }
-//
+
         initDisplay(preference!!)
         onSelection()
         setAction()
@@ -67,6 +62,66 @@ class WorkoutValidationActivity : AppCompatActivity() {
     private fun setAction() {
         binding.workoutValidationIvBackButton.setOnClickListener {
             finish()
+        }
+
+        binding.workoutValidationClSaveWorkoutPlanButton.setOnClickListener {
+            preference = preference?.copy(days = days, workoutIds = selectedWorkoutsId)
+
+            if (validateWorkout() && !isDayEmpty()) {
+                Log.d("PREF DAYS", preference?.days.toString())
+                Log.d("PREF WORKOUTS", preference?.workoutIds.toString())
+            }
+        }
+    }
+
+    // Validation
+    private fun validateWorkout(): Boolean {
+        if (!checkAmountOfWorkout()) {
+            val alertDialog = AlertDialog.Builder(this).apply {
+                setTitle("Can not proceed yet!")
+                setMessage("You need to choose at least " + determineAmountOfWorkout() + " workouts")
+                setPositiveButton("Close") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                create()
+            }
+
+            alertDialog.show()
+        }
+
+        return checkAmountOfWorkout()
+    }
+
+    private fun isDayEmpty(): Boolean {
+        if (days.isEmpty()) {
+            val alertDialog = AlertDialog.Builder(this).apply {
+                setTitle("Can not proceed yet!")
+                setMessage("You need to choose at least one day")
+                setPositiveButton("Close") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                create()
+            }
+
+            alertDialog.show()
+        }
+        return days.isEmpty()
+    }
+    private fun determineAmountOfWorkout() : String {
+        return when (preference?.level) {
+            "Beginner" -> "5"
+            "Intermediate" -> "7"
+            "Advance" -> "10"
+            else -> ""
+        }
+    }
+
+    private fun checkAmountOfWorkout() : Boolean {
+        return when (preference?.level) {
+            "Beginner" -> selectedWorkoutsId.size >= 5
+            "Intermediate" -> selectedWorkoutsId.size >= 7
+            "Advance" -> selectedWorkoutsId.size >= 10
+            else -> false
         }
     }
 
