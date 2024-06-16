@@ -46,6 +46,7 @@ class PredictActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.black)
         binding = ActivityPredictBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@android:color/transparent"
                     android:contentDescription="@string/settings"
                     app:elevation="0dp"
                     app:fabCustomSize="40dp"
@@ -95,8 +95,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/mediumBlue"
                     android:text="@string/_e"
+                    android:textColor="@color/mediumBlue"
                     android:textSize="25sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_profile"
                     app:layout_constraintTop_toTopOf="@+id/iv_profile" />
@@ -187,39 +187,31 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:gravity="center"
-                    app:singleSelection="true"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="8dp">
+                    app:singleSelection="true">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_breakfast"
                         style="@style/ToggleButtonWithIconOnly"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/breakfast"
-                        tools:layout_editor_absoluteX="168dp"
-                        tools:layout_editor_absoluteY="153dp" />
+                        android:text="@string/breakfast" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_lunch"
                         style="@style/ToggleButtonWithIconOnly"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/lunch"
-                        tools:layout_editor_absoluteX="173dp"
-                        tools:layout_editor_absoluteY="251dp" />
+                        android:text="@string/lunch" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_dinner"
                         style="@style/ToggleButtonWithIconOnly"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/dinner"
-                        tools:layout_editor_absoluteX="166dp"
-                        tools:layout_editor_absoluteY="340dp" />
+                        android:text="@string/dinner" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -237,9 +229,9 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
-                    android:textColor="@color/paleBlue"
                     android:backgroundTint="@color/mediumBlue"
-                    android:text="@string/button_trackfood" />
+                    android:text="@string/button_trackfood"
+                    android:textColor="@color/paleBlue" />
 
             </LinearLayout>
 

@@ -44,7 +44,7 @@
             app:maxImageSize="18dp"
             app:pressedTranslationZ="0dp"
             app:srcCompat="@drawable/ic_add"
-            app:tint="@color/raceBlue"
+            app:tint="@color/paleBlue"
             card_view:layout_constraintEnd_toEndOf="parent" />
 
         <TextView

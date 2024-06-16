@@ -33,6 +33,7 @@ class ProfileActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.black)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
