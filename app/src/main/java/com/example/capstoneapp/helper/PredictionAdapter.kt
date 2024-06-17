@@ -1,22 +1,20 @@
 package com.example.capstoneapp.helper
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneapp.data.response.DataFood
-import com.example.capstoneapp.databinding.ItemFoodBinding
-import kotlin.math.roundToInt
+import com.example.capstoneapp.databinding.ItemPredictionBinding
+import com.example.capstoneapp.ui.AddFoodActivity
 
-/**
- * This is initially used as random food adapter
- * Cannot be clicked
- */
-class FoodAdapter : ListAdapter<DataFood, FoodAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class PredictionAdapter : ListAdapter<DataFood, PredictionAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemPredictionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -30,12 +28,23 @@ class FoodAdapter : ListAdapter<DataFood, FoodAdapter.MyViewHolder>(DIFF_CALLBAC
     }
 
     // set-up display & onClick adapter
-    inner class MyViewHolder(val binding: ItemFoodBinding) :
+    inner class MyViewHolder(val binding: ItemPredictionBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(food: DataFood) {
-            binding.tvFoodName.text = "• ${food.namaBahanMakanan}"
-            binding.tvFoodNutrition.text = "${food.komposisiEnergiKal?.roundToInt()} cal/${food.komposisiPer}"
+            binding.tvFoodName.text = "${food.namaBahanMakanan}"
+            binding.tvInfo.text =
+                "Nutritions per ${food.komposisiPer}:" +
+                        "\n• ${food.komposisiEnergiKal} cal  • ${food.komposisiKarbohidratG}g carbs, " +
+                        "\n• ${food.komposisiProteinG}g protein  • ${food.komposisiLemakG}g fat"
+
+            binding.buttonAdd.setOnClickListener {
+                val context = it.context
+                val intent = Intent(context, AddFoodActivity::class.java).apply {
+                    putExtra("EXTRA_FOOD", food.namaBahanMakanan)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 

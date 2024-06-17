@@ -131,7 +131,7 @@ class Feature01Fragment : Fragment() {
             setTitle(R.string.token_unknown)
             setMessage(R.string.login_again)
             setPositiveButton(R.string.ok) { _, _ ->
-                mainViewModel.logout()
+                mainViewModel.logout(null)
             }
             setCancelable(false)
             create()

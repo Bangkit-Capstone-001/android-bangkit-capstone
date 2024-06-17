@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.AddFoodActivity">
 
     <TextView
@@ -14,10 +15,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/add_food_title"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/food_name"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        app:boxStrokeColor="@color/focus_selector"
         app:endIconTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,11 +83,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="8dp"
+            app:boxStrokeColor="@color/focus_selector"
             app:layout_constraintEnd_toStartOf="@id/mealtimeEditTextLayout"
+            app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/quantityTextView"
             app:layout_constraintWidth_default="spread"
-            app:layout_constraintHorizontal_weight="2"
             app:startIconDrawable="@drawable/ic_food_scale">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -113,11 +116,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="32dp"
+            app:boxStrokeColor="@color/focus_selector"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="3"
             app:layout_constraintStart_toEndOf="@id/quantityEditTextLayout"
             app:layout_constraintTop_toBottomOf="@id/mealtimeTextView"
             app:layout_constraintWidth_default="spread"
-            app:layout_constraintHorizontal_weight="3"
             app:startIconDrawable="@drawable/ic_cookie_clock">
 
             <AutoCompleteTextView
@@ -136,6 +140,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/mediumBlue"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />

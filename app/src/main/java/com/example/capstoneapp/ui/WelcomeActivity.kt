@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityWelcomeBinding
 
 class WelcomeActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
+        window.statusBarColor = getColor(R.color.black)
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())

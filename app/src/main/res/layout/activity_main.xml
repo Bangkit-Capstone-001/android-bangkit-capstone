@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/greyedWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
@@ -26,7 +27,7 @@
         android:paddingLeft="2dp"
         android:paddingRight="2dp"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
-        app:itemIconTint="@color/raceBlue"
+        app:itemIconTint="@color/paleBlue"
         app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

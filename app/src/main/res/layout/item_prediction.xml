@@ -26,37 +26,37 @@
             android:layout_marginEnd="2dp"
             android:fontFamily="@font/inter_bold"
             android:text="@string/name"
-            android:textColor="@color/lightGray"
-            android:textSize="12sp"
-            card_view:layout_constraintEnd_toStartOf="@+id/tv_food_nutrition"
+            android:textStyle="bold"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_food_nutrition"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:fontFamily="@font/inter"
-            android:text="@string/needs_value"
-            android:textColor="@color/mediumBlue"
-            android:textSize="11sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            android:backgroundTint="@color/mediumBlue"
+            app:elevation="0dp"
+            app:fabCustomSize="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:maxImageSize="18dp"
+            app:pressedTranslationZ="0dp"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/paleBlue"
+            card_view:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/tv_quantity"
+            android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:fontFamily="@font/inter"
+            android:text="desc"
             android:textColor="@color/lightGray"
-            android:textSize="11sp"
-            android:visibility="gone"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="@+id/tv_food_name"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_food_name" />

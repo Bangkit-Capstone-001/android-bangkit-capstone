@@ -19,14 +19,17 @@
 
     <!--  Auth Page  -->
     <string name="welcome_title">Welcome</string>
-    <string name="welcome_desc">Let\'s maintain your health!</string>
-    <string name="login_desc">Log into your account</string>
+    <string name="welcome_desc">Empowering you to live healthier, everyday</string>
+    <string name="login_desc">Glad to see you again.</string>
+    <string name="signup_desc">Create an account to continue.</string>
 
     <string name="login">Log in</string>
-    <string name="signup">Sign up</string>
+    <string name="signup">Sign Up</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="logout">Log out</string>
+    <string name="hello">Hello!</string>
+    <string name="welcome_back">Welcome back!</string>
 
     <string name="email_error">Make sure you fill in the correct email.</string>
     <string name="password_error">Password can\'t be less than 8 characters.</string>
@@ -44,7 +47,7 @@
 
     <!--  Profile Page  -->
     <string name="profile">User Profile</string>
-    <string name="set_goals">Set your goals!</string>
+    <string name="set_goals">User Goals</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
     <string name="height">Height (cm)</string>
@@ -60,6 +63,8 @@
 
     <!--  Predict Page  -->
     <string name="predict_info">Please select an image, your image will be shown above. Then, please click Predict Button below to get your result.</string>
+    <string name="not_recognized">Your image is not recognized as a food, please try again with another image.</string>
+    <string name="related_result">Related results:</string>
 
     <!--  Add Food Page  -->
     <string name="add_food_title">Track your food</string>
@@ -74,6 +79,8 @@
     <string name="needs_value">3500 cal</string>
     <string name="consumed">Consumed:</string>
     <string name="consumed_value">2750 cal</string>
+    <string name="title_workout">Plan a workout!</string>
+    <string name="desc_workout">Get active and stay healthy!</string>
     <string name="button_workout">Start working out</string>
     <string name="button_trackfood">Track your food!</string>
     <string name="settings">Settings</string>
@@ -81,11 +88,13 @@
     <string name="goal_value">maintain weight</string>
     <string name="act_level">Activity level:</string>
     <string name="act_value">sedentary</string>
+    <string name="premium">Premium</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--  Feature 03  -->
     <string name="chart_title">Today\'s calorie</string>
+    <string name="target_title">Current target</string>
     <string name="info_title">Here are some food informations!</string>
 
 </resources>
