@@ -4,18 +4,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.capstoneapp.R
 import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.data.response.GetWorkoutsItem
 import com.example.capstoneapp.databinding.ActivityWorkoutSequenceBinding
 import com.example.capstoneapp.ui.Feature02.WorkoutFinish.WorkoutFinishActivity
-import com.example.capstoneapp.viewmodel.Feature02.WorkoutPreference.WorkoutPreferenceViewModel
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutSequenceViewModel
+import com.google.android.material.carousel.CarouselLayoutManager
 
 class WorkoutSequenceActivity : AppCompatActivity() {
 
@@ -68,6 +64,11 @@ class WorkoutSequenceActivity : AppCompatActivity() {
                 Log.d("Youtube URL", youtubeUrl.toString())
             }
         }
+
+        val imageUrls = workoutItem.exerciseImages ?: emptyList()
+        val adapter = CarouselAdapter(imageUrls)
+        binding.workoutSequenceRvWorkoutCarousel.adapter = adapter
+        binding.workoutSequenceRvWorkoutCarousel.layoutManager = CarouselLayoutManager()
     }
 
     private fun setAction() {

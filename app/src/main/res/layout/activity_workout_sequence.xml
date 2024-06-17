@@ -41,15 +41,26 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     
-    <ImageView
-        android:id="@+id/workoutSequence_iv_workoutImagePlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_workout_sequence"
-        android:layout_marginTop="50dp"
+<!--    <ImageView-->
+<!--        android:id="@+id/workoutSequence_iv_workoutImagePlaceholder"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/img_workout_sequence"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer" />-->
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/workoutSequence_rv_workoutCarousel"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:layout_marginTop="30dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer" />
+        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutSequence_cl_workoutTitleContainer"
@@ -58,7 +69,7 @@
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workoutSequence_iv_workoutImagePlaceholder">
+        app:layout_constraintTop_toBottomOf="@id/workoutSequence_rv_workoutCarousel">
 
         <TextView
             android:id="@+id/workoutSequence_tv_workoutNamePlaceholder"
