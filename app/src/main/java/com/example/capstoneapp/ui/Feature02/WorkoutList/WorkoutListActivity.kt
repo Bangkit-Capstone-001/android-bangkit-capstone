@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstoneapp.R
 import com.example.capstoneapp.data.pref.WorkoutPreference
 import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.databinding.ActivityWorkoutListBinding
@@ -30,6 +31,7 @@ class WorkoutListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.black)
         binding = ActivityWorkoutListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -52,17 +54,19 @@ class WorkoutListActivity : AppCompatActivity() {
 
         setAction()
 
-        startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val shouldFinishSequentially = result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
-                if (shouldFinishSequentially) {
-                    val resultIntent = Intent()
-                    resultIntent.putExtra("shouldFinishSequentially", true)
-                    setResult(Activity.RESULT_OK, resultIntent)
-                    finish()
+        startForResult =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val shouldFinishSequentially =
+                        result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
+                    if (shouldFinishSequentially) {
+                        val resultIntent = Intent()
+                        resultIntent.putExtra("shouldFinishSequentially", true)
+                        setResult(Activity.RESULT_OK, resultIntent)
+                        finish()
+                    }
                 }
             }
-        }
     }
 
     private fun setAction() {
@@ -81,13 +85,14 @@ class WorkoutListActivity : AppCompatActivity() {
 
         binding.workoutListClSaveWorkoutButton.setOnClickListener {
             if (checkAmountOfWorkout()) {
-                // Add here
-                preference = preference?.copy(workoutIds = selectedWorkouts, selectedWorkouts = selectedWorkoutDataItem)
+                preference = preference?.copy(
+                    workoutIds = selectedWorkouts,
+                    selectedWorkouts = selectedWorkoutDataItem
+                )
 
                 val intent = Intent(this, WorkoutValidationActivity::class.java)
                 intent.putExtra(WorkoutValidationActivity.KEY_PREFERENCE, preference)
                 startForResult.launch(intent)
-                // Kalo Navigasi aneh, edit ini
             } else {
                 val alertDialog = AlertDialog.Builder(this).apply {
                     setTitle("Can not proceed yet!")
@@ -103,7 +108,7 @@ class WorkoutListActivity : AppCompatActivity() {
         }
     }
 
-    private fun determineAmountOfWorkout() : String {
+    private fun determineAmountOfWorkout(): String {
         return when (preference?.level) {
             "Beginner" -> "5"
             "Intermediate" -> "7"
@@ -112,7 +117,7 @@ class WorkoutListActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkAmountOfWorkout() : Boolean {
+    private fun checkAmountOfWorkout(): Boolean {
         return when (preference?.level) {
             "Beginner" -> selectedWorkouts.size >= 5
             "Intermediate" -> selectedWorkouts.size >= 7
@@ -123,8 +128,8 @@ class WorkoutListActivity : AppCompatActivity() {
 
     private fun setAdapter(workoutList: List<DataItem?>) {
         val adapter = WorkoutListAdapter(
-            onItemClicked = {workoutItem -> onWorkoutItemClicked(workoutItem)},
-            isSelected = { id -> selectedWorkouts.contains(id)}
+            onItemClicked = { workoutItem -> onWorkoutItemClicked(workoutItem) },
+            isSelected = { id -> selectedWorkouts.contains(id) }
         )
         adapter.submitList(workoutList)
         binding.workoutListRvWorkoutItemList.adapter = adapter

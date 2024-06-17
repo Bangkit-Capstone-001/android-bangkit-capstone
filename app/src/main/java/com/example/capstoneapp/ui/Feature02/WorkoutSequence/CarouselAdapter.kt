@@ -8,13 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneapp.R
 import com.squareup.picasso.Picasso
 
-class CarouselAdapter(private val items: List<String?>) : RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder>(){
+class CarouselAdapter(private val items: List<String?>) :
+    RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder>() {
     class CarouselViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.carousel_image_view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarouselViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_carousel, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_carousel, parent, false)
         return CarouselViewHolder(view)
     }
 

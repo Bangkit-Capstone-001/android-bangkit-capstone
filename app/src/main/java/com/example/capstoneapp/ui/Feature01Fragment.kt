@@ -121,6 +121,7 @@ class Feature01Fragment : Fragment() {
                 val intent = Intent(requireActivity(), ProfileActivity::class.java)
                 startActivity(intent)
             }
+            setCancelable(false)
             create()
             show()
         }

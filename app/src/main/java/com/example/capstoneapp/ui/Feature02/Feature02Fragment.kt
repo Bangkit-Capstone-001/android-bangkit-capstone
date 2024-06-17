@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.R
@@ -163,28 +164,44 @@ class Feature02Fragment : Fragment() {
     }
 
     private fun setClickedOnDayUI(dayIndex: Int) {
-        val lightBlue = Color.parseColor("#2970FF")
+        val lightBlue = context?.let { ContextCompat.getColor(it, R.color.paleBlue) }
+        val darkBlue = context?.let { ContextCompat.getColor(it, R.color.darkBlue) }
         when (dayIndex) {
-            0 -> binding.mainFragment2ClDayContainerSunday.setBackgroundColor(lightBlue)
-            1 -> binding.mainFragment2ClDayContainerMonday.setBackgroundColor(lightBlue)
-            2 -> binding.mainFragment2ClDayContainerTuesday.setBackgroundColor(lightBlue)
-            3 -> binding.mainFragment2ClDayContainerWednesday.setBackgroundColor(lightBlue)
-            4 -> binding.mainFragment2ClDayContainerThursday.setBackgroundColor(lightBlue)
-            5 -> binding.mainFragment2ClDayContainerFriday.setBackgroundColor(lightBlue)
-            6 -> binding.mainFragment2ClDayContainerSaturday.setBackgroundColor(lightBlue)
+            0 -> {binding.mainFragment2ClDayContainerSunday.setBackgroundColor(lightBlue!!)
+                  binding.mainFragment2TvDaySunday.setTextColor(darkBlue!!)}
+            1 -> {binding.mainFragment2ClDayContainerMonday.setBackgroundColor(lightBlue!!)
+                  binding.mainFragment2TvDayMonday.setTextColor(darkBlue!!)}
+            2 -> {binding.mainFragment2ClDayContainerTuesday.setBackgroundColor(lightBlue!!)
+                  binding.mainFragment2TvDayTuesday.setTextColor(darkBlue!!)}
+            3 -> {binding.mainFragment2ClDayContainerWednesday.setBackgroundColor(lightBlue!!)
+                  binding.mainFragment2TvDayWednesday.setTextColor(darkBlue!!)}
+            4 -> {binding.mainFragment2ClDayContainerThursday.setBackgroundColor(lightBlue!!)
+                  binding.mainFragment2TvDayThursday.setTextColor(darkBlue!!)}
+            5 -> {binding.mainFragment2ClDayContainerFriday.setBackgroundColor(lightBlue!!)
+                  binding.mainFragment2TvDayFriday.setTextColor(darkBlue!!)}
+            6 -> {binding.mainFragment2ClDayContainerSaturday.setBackgroundColor(lightBlue!!)
+                binding.mainFragment2TvDaySaturday.setTextColor(darkBlue!!)}
         }
     }
 
     private fun setClickedOffDayUI(dayIndex: Int) {
+        val white = context?.let { ContextCompat.getColor(it, R.color.white) }
         val darkBlue = Color.parseColor("#223767")
         when (dayIndex) {
-            0 -> binding.mainFragment2ClDayContainerSunday.setBackgroundColor(darkBlue)
-            1 -> binding.mainFragment2ClDayContainerMonday.setBackgroundColor(darkBlue)
-            2 -> binding.mainFragment2ClDayContainerTuesday.setBackgroundColor(darkBlue)
-            3 -> binding.mainFragment2ClDayContainerWednesday.setBackgroundColor(darkBlue)
-            4 -> binding.mainFragment2ClDayContainerThursday.setBackgroundColor(darkBlue)
-            5 -> binding.mainFragment2ClDayContainerFriday.setBackgroundColor(darkBlue)
-            6 -> binding.mainFragment2ClDayContainerSaturday.setBackgroundColor(darkBlue)
+            0 -> {binding.mainFragment2ClDayContainerSunday.setBackgroundColor(darkBlue)
+                  binding.mainFragment2TvDaySunday.setTextColor(white!!)}
+            1 -> {binding.mainFragment2ClDayContainerMonday.setBackgroundColor(darkBlue)
+                  binding.mainFragment2TvDayMonday.setTextColor(white!!)}
+            2 -> {binding.mainFragment2ClDayContainerTuesday.setBackgroundColor(darkBlue)
+                  binding.mainFragment2TvDayTuesday.setTextColor(white!!)}
+            3 -> {binding.mainFragment2ClDayContainerWednesday.setBackgroundColor(darkBlue)
+                  binding.mainFragment2TvDayWednesday.setTextColor(white!!)}
+            4 -> {binding.mainFragment2ClDayContainerThursday.setBackgroundColor(darkBlue)
+                  binding.mainFragment2TvDayThursday.setTextColor(white!!)}
+            5 -> {binding.mainFragment2ClDayContainerFriday.setBackgroundColor(darkBlue)
+                  binding.mainFragment2TvDayFriday.setTextColor(white!!)}
+            6 -> {binding.mainFragment2ClDayContainerSaturday.setBackgroundColor(darkBlue)
+                  binding.mainFragment2TvDaySaturday.setTextColor(white!!)}
         }
     }
 

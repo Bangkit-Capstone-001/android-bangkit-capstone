@@ -92,9 +92,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--  Feature 02  -->
+    <string name="create_workout">Create Workouts</string>
+    <string name="choose_workout">Choose your workouts</string>
+
     <!--  Feature 03  -->
     <string name="chart_title">Today\'s calorie</string>
     <string name="target_title">Current target</string>
     <string name="info_title">Here are some food informations!</string>
+    <string name="daily_w">Daily workouts</string>
+    <string name="all_w">All workout plans</string>
+    <string name="workout_schedule">Workout Schedule</string>
 
 </resources>

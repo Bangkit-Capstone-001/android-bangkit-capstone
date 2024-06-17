@@ -145,6 +145,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                 } else {
                     _addWeightError.value = true
                     Log.e(TAG, "Add weight | Bad request: ${parseWeightError(response)}")
+                    Log.e(TAG, "Date ${date}")
                 }
             }
 

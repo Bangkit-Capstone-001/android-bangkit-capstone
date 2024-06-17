@@ -1,10 +1,7 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutFinish
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.capstoneapp.R
 import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.databinding.ActivityWorkoutFinishBinding
@@ -16,6 +13,7 @@ class WorkoutFinishActivity : AppCompatActivity() {
     private var detail: GetDataItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBarColor = getColor(R.color.black)
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutFinishBinding.inflate(layoutInflater)
         setContentView(binding.root)

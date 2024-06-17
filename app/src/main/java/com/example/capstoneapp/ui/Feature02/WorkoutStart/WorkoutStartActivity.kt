@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstoneapp.R
 import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.data.response.GetWorkoutsItem
 import com.example.capstoneapp.databinding.ActivityWorkoutStartBinding
@@ -15,6 +16,7 @@ class WorkoutStartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWorkoutStartBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBarColor = getColor(R.color.black)
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutStartBinding.inflate(layoutInflater)
         setContentView(binding.root)

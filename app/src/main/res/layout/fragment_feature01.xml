@@ -182,9 +182,9 @@
             android:id="@+id/cv_food"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -247,7 +247,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
-                    android:backgroundTint="@color/darkBlue"
+                    android:backgroundTint="@color/mediumBlue"
                     android:text="@string/button_trackfood"
                     android:textColor="@color/white" />
 
@@ -259,7 +259,8 @@
             android:id="@+id/cv_workout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -284,13 +285,16 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter"
                     android:paddingStart="16dp"
                     android:text="@string/desc_workout"
                     android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/button_workout"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_workout" />
 
