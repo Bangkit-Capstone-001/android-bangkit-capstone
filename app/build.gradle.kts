@@ -81,4 +81,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     // Ucrop
     implementation("com.github.yalantis:ucrop:2.2.8")
+    // Picasso
+    implementation("com.squareup.picasso:picasso:2.8")
 }

@@ -1,5 +1,6 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutList
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneapp.R
 import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.databinding.ItemWorkoutBinding
+import com.squareup.picasso.Picasso
 
 class WorkoutListAdapter(
     private val onItemClicked: (DataItem) -> Unit,
@@ -18,6 +20,12 @@ class WorkoutListAdapter(
         private val isSelected: (String) -> Boolean) : RecyclerView.ViewHolder(binding.root) {
         fun bind(workoutItem: DataItem) {
             binding.itemWorkoutTvWorkoutTitlePlaceholder.text = workoutItem.exerciseName
+            try {
+                val imageUrl = workoutItem.exerciseImages?.get(0)
+                Picasso.get().load(imageUrl).resize(90, 50).centerCrop().into(binding.itemWorkoutIvWorkoutImagePlaceholder)
+            } catch (e: Exception) {
+                Log.e("IMAGE INSERTION", e.message.toString())
+            }
 
             if (isSelected(workoutItem.id.toString())) {
                 binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.img_like_icon_clicked)
