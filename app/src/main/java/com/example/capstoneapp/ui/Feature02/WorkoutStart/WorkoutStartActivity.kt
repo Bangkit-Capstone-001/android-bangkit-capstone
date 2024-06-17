@@ -41,7 +41,7 @@ class WorkoutStartActivity : AppCompatActivity() {
     }
 
     private fun setDisplay(detail: GetDataItem) {
-        binding.workoutStartTvPageTitle.text = "${detail.option} Body Workout"
+        binding.workoutStartTvPageTitle.text = "${detail.target} Body Workout"
         setAdapter(detail.workouts!!)
     }
 

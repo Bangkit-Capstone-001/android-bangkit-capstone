@@ -42,7 +42,9 @@ class WorkoutSequenceActivity : AppCompatActivity() {
             if (it < workoutList!!.size) {
                 setWorkoutItem(workoutList?.get(it)!!)
             } else {
-                startActivity(Intent(this, WorkoutFinishActivity::class.java))
+                val intent = Intent(this, WorkoutFinishActivity::class.java)
+                intent.putExtra(WorkoutFinishActivity.KEY_WORKOUTS, detail)
+                startActivity(intent)
                 finish()
             }
 

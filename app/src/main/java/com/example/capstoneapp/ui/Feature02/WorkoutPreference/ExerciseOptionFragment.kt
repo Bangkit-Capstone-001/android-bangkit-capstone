@@ -46,11 +46,11 @@ class ExerciseOptionFragment : Fragment() {
 
     private fun onSelection() {
         binding.exerciseOptionClPreferences1.setOnClickListener {
-            processSelection("Body Weight")
+            processSelection("Body Only")
         }
 
         binding.exerciseOptionClPreferences2.setOnClickListener {
-            processSelection("Minimal Equipment")
+            processSelection("Minimal Equipments")
         }
 
         binding.exerciseOptionClPreferences3.setOnClickListener {
