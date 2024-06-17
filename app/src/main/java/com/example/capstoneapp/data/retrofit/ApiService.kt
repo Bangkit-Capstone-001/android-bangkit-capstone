@@ -7,6 +7,7 @@ import com.example.capstoneapp.data.response.FoodHistResponse
 import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
+import com.example.capstoneapp.data.response.GetTrackerResponse
 import com.example.capstoneapp.data.response.LoginResponse
 import com.example.capstoneapp.data.response.RegisterResponse
 import okhttp3.MultipartBody
@@ -129,4 +130,9 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part
     ): Call<GetFoodResponse>
+
+    @GET("/api/tracker")
+    fun getTrackerData(
+        @Header("Authorization") token: String
+    ): Call<GetTrackerResponse>
 }

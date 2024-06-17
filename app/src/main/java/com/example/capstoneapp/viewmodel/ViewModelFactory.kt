@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.di.Injection
+import com.example.capstoneapp.viewmodel.Feature04.Feature04ViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -28,6 +29,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(AddFoodViewModel::class.java) -> {
                 AddFoodViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(Feature04ViewModel::class.java) -> {
+                Feature04ViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
