@@ -275,8 +275,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_favoriteWorkoutContainer"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -295,10 +295,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/workoutPlanDetail_rv_favoriteWorkoutList"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_tv_favoriteWorkoutTitle" />
+                    app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_tv_favoriteWorkoutTitle"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--            Recommended Workout-->
@@ -306,7 +308,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_recommendedWorkoutContainer"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:layout_marginTop="28dp"
                 android:paddingBottom="20dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -327,10 +329,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/workoutPlanDetail_rv_recommendedWorkoutList"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_tv_recommendedWorkoutTitle" />
+                    app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_tv_recommendedWorkoutTitle"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--    Konsensus ID-->
+    <!--    location_layout_name-->
+    <!--    cth : itemMyPlans_cl_something-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/itemMyPlans_cl_planContainer"
+        android:layout_width="257dp"
+        android:layout_height="51dp"
+        android:background="@drawable/shape_workout_preference_preferences"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/itemMyPlans_tv_planTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upper Body"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/itemMyPlans_tv_planOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Minimal Equipment)"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginStart="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemMyPlans_tv_planTarget"/>
+
+        <ImageView
+            android:id="@+id/itemMyPlans_iv_nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector_next_24x24"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

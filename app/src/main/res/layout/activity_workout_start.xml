@@ -45,7 +45,7 @@
         android:id="@+id/workoutStart_tv_numberOfWorkoutTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your workout today"
+        android:text="Your workouts"
         android:textSize="12sp"
         android:textStyle="bold"
         android:textColor="#223767"
@@ -57,10 +57,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/workoutStart_rv_workoutItemList"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workoutStart_tv_numberOfWorkoutTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/workoutStart_tv_numberOfWorkoutTitle"
+        app:layout_constraintBottom_toTopOf="@id/workoutStart_cl_startWorkoutButton"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutStart_cl_startWorkoutButton"
