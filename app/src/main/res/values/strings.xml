@@ -79,6 +79,8 @@
     <string name="needs_value">3500 cal</string>
     <string name="consumed">Consumed:</string>
     <string name="consumed_value">2750 cal</string>
+    <string name="title_workout">Plan a workout!</string>
+    <string name="desc_workout">Get active and stay healthy!</string>
     <string name="button_workout">Start working out</string>
     <string name="button_trackfood">Track your food!</string>
     <string name="settings">Settings</string>
@@ -86,6 +88,7 @@
     <string name="goal_value">maintain weight</string>
     <string name="act_level">Activity level:</string>
     <string name="act_value">sedentary</string>
+    <string name="premium">Premium</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
