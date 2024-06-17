@@ -1,6 +1,7 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutSequence
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -21,7 +22,6 @@ class WorkoutSequenceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWorkoutSequenceBinding
     private var workoutList: List<GetWorkoutsItem>? = null
     private var detail: GetDataItem? = null
-    private var currentWorkout: Int = 0
     private lateinit var viewModel: WorkoutSequenceViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +58,16 @@ class WorkoutSequenceActivity : AppCompatActivity() {
         binding.workoutSequenceTvWorkoutNamePlaceholder.text = workoutItem.exerciseName
         binding.workoutSequenceTvDescriptionPlaceholder.text = workoutItem.shortDescription
         binding.workoutSequenceTvInstructionPlaceholder.text = workoutItem.instructions
+        binding.workoutSequenceIvYoutubeAnchorPlaceholder.setOnClickListener {
+            val youtubeUrl = workoutItem.youtubeLinks
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl))
+            startActivity(intent)
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            } else {
+                Log.d("Youtube URL", youtubeUrl.toString())
+            }
+        }
     }
 
     private fun setAction() {
