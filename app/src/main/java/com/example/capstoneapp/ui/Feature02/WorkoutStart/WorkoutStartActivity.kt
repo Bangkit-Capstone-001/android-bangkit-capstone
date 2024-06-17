@@ -1,11 +1,13 @@
 package com.example.capstoneapp.ui.Feature02.WorkoutStart
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.data.response.GetWorkoutsItem
 import com.example.capstoneapp.databinding.ActivityWorkoutStartBinding
+import com.example.capstoneapp.ui.Feature02.WorkoutSequence.WorkoutSequenceActivity
 
 class WorkoutStartActivity : AppCompatActivity() {
 
@@ -29,6 +31,12 @@ class WorkoutStartActivity : AppCompatActivity() {
     private fun setAction() {
         binding.workoutStartIvBackButton.setOnClickListener {
             finish()
+        }
+
+        binding.workoutStartClStartWorkoutButton.setOnClickListener {
+            val intent = Intent(this, WorkoutSequenceActivity::class.java)
+            intent.putExtra(WorkoutSequenceActivity.KEY_WORKOUTS, detail)
+            startActivity(intent)
         }
     }
 
