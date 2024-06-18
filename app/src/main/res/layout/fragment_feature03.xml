@@ -61,7 +61,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter"
-                    android:text="@string/set_goals"
+                    android:text="@string/_e"
                     android:textColor="@color/lightGray"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_target"
