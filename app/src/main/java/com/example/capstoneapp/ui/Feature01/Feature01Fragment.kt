@@ -1,4 +1,4 @@
-package com.example.capstoneapp.ui
+package com.example.capstoneapp.ui.Feature01
 
 //import androidx.activity.viewModels
 import android.content.Intent
@@ -11,15 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.R
-import com.example.capstoneapp.data.pref.UserModel
-import com.example.capstoneapp.data.pref.UserPreference
 import com.example.capstoneapp.databinding.ActivityMainBinding
 import com.example.capstoneapp.databinding.FragmentFeature01Binding
-import com.example.capstoneapp.helper.FoodAdapter
-import com.example.capstoneapp.helper.FoodHistAdapter
+import com.example.capstoneapp.ui.Feature03.FoodHistAdapter
 import com.example.capstoneapp.helper.attrToActivity
 import com.example.capstoneapp.helper.attrToGoal
-import com.example.capstoneapp.helper.listFood
+import com.example.capstoneapp.ui.MainActivity
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 
@@ -121,6 +118,7 @@ class Feature01Fragment : Fragment() {
                 val intent = Intent(requireActivity(), ProfileActivity::class.java)
                 startActivity(intent)
             }
+            setCancelable(false)
             create()
             show()
         }

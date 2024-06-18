@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/greyedWhite"
     tools:context=".ui.Feature02.WorkoutPlanDetail.WorkoutPlanDetailActivity">
 
-    <!--    Konsensus ID-->
-    <!--    location_layout_name-->
-    <!--    cth : workoutPlanDetail_cl_something-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutPlanDetail_cl_pageTitleContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,238 +21,241 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Workout Plan Detail"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#223767"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/workoutPlanDetail_iv_backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/vector_back_24x24"
-            android:layout_marginStart="38dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:tint="@color/black" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--    Schedule Validation-->
+    <!--  Schedule Validation  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutPlanDetail_cl_scheduleContainer"
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:background="@drawable/shape_fragment4_container"
-        android:layout_marginTop="34dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_cl_pageTitleContainer">
 
         <TextView
             android:id="@+id/workoutPlanDetail_tv_scheduleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Workout Schedule"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#152042"
             android:layout_marginTop="7dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/workout_schedule"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--        Day Container-->
+        <!--  Day Container  -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/workoutPlanDetail_cl_dailyWorkoutPlanDays"
             android:layout_width="258dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_tv_scheduleTitle">
 
-            <!--            Sunday-->
+            <!--  Sunday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_dayContainerSunday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerMonday"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerMonday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_daySunday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="S"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Monday-->
+            <!--  Monday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_dayContainerMonday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerTuesday"
                 app:layout_constraintStart_toEndOf="@id/workoutPlanDetail_cl_dayContainerSunday"
-                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerTuesday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_dayMonday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="M"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Tuesday-->
+            <!--  Tuesday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_dayContainerTuesday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerWednesday"
                 app:layout_constraintStart_toEndOf="@id/workoutPlanDetail_cl_dayContainerMonday"
-                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerWednesday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_dayTuesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tu"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Wednesday-->
+            <!--  Wednesday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_dayContainerWednesday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerThursday"
                 app:layout_constraintStart_toEndOf="@id/workoutPlanDetail_cl_dayContainerTuesday"
-                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerThursday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_dayWednesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="W"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Thursday-->
+            <!--  Thursday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_dayContainerThursday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerFriday"
                 app:layout_constraintStart_toEndOf="@id/workoutPlanDetail_cl_dayContainerWednesday"
-                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerFriday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_dayThursday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Th"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Friday-->
+            <!--  Friday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_dayContainerFriday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerSaturday"
                 app:layout_constraintStart_toEndOf="@id/workoutPlanDetail_cl_dayContainerThursday"
-                app:layout_constraintEnd_toStartOf="@id/workoutPlanDetail_cl_dayContainerSaturday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_dayFriday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="F"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Saturday-->
+            <!--  Saturday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_dayContainerSaturday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/workoutPlanDetail_cl_dayContainerFriday"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_daySaturday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sa"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -262,8 +264,8 @@
         android:id="@+id/workoutPlanDetail_sv_scrollViewContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_cl_scheduleContainer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -271,24 +273,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!--            FavoriteWorkout-->
+            <!--  FavoriteWorkout  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_favoriteWorkoutContainer"
                 android:layout_width="300dp"
-                android:layout_height="250dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="190dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_favoriteWorkoutTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
                     android:text="Your Favorite Workout"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
                     android:textColor="#223767"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -296,33 +298,32 @@
                     android:id="@+id/workoutPlanDetail_rv_favoriteWorkoutList"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_tv_favoriteWorkoutTitle"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    tools:listitem="@layout/item_workout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Recommended Workout-->
-            <!--            Kalo nempel, coba atur Padding Bottom-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutPlanDetail_cl_recommendedWorkoutContainer"
                 android:layout_width="300dp"
-                android:layout_height="250dp"
-                android:layout_marginTop="28dp"
+                android:layout_height="210dp"
+                android:layout_marginTop="8dp"
                 android:paddingBottom="20dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_cl_favoriteWorkoutContainer">
 
                 <TextView
                     android:id="@+id/workoutPlanDetail_tv_recommendedWorkoutTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
                     android:text="Recommended Workout"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
                     android:textColor="#223767"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -330,11 +331,12 @@
                     android:id="@+id/workoutPlanDetail_rv_recommendedWorkoutList"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/workoutPlanDetail_tv_recommendedWorkoutTitle"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    tools:listitem="@layout/item_workout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -343,24 +345,24 @@
         android:id="@+id/workoutPlanDetail_cl_saveWorkoutPlanButton"
         android:layout_width="215dp"
         android:layout_height="37dp"
-        android:background="@drawable/shape_workout_list_button"
         android:layout_marginBottom="5dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/shape_workout_list_button"
+        app:layout_constraintBottom_toTopOf="@id/workoutPlanDetail_cl_deleteWorkoutPlanButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/workoutPlanDetail_cl_deleteWorkoutPlanButton">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/workoutPlanDetail_tv_saveWorkoutPlanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save Workout Plan"
-            android:textStyle="bold"
-            android:textSize="12sp"
             android:textColor="#ffffff"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -368,24 +370,24 @@
         android:id="@+id/workoutPlanDetail_cl_deleteWorkoutPlanButton"
         android:layout_width="215dp"
         android:layout_height="37dp"
-        android:background="@drawable/shape_delete_button"
         android:layout_marginBottom="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/shape_delete_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/workoutPlanDetail_tv_deleteWorkoutPlanButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete Workout Plan"
-            android:textStyle="bold"
-            android:textSize="12sp"
             android:textColor="#223767"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

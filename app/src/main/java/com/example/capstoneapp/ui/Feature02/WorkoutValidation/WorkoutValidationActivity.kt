@@ -8,7 +8,9 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstoneapp.R
 import com.example.capstoneapp.data.pref.WorkoutPreference
 import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.databinding.ActivityWorkoutValidationBinding
@@ -29,6 +31,7 @@ class WorkoutValidationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.black)
         binding = ActivityWorkoutValidationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -38,7 +41,8 @@ class WorkoutValidationActivity : AppCompatActivity() {
         val layoutManagerRecommended = LinearLayoutManager(this)
         binding.workoutValidationRvFavoriteWorkoutList.layoutManager = layoutManagerRecommended
 
-        preference = intent.getParcelableExtra(WorkoutListActivity.KEY_PREFERENCE) as WorkoutPreference?
+        preference =
+            intent.getParcelableExtra(WorkoutListActivity.KEY_PREFERENCE) as WorkoutPreference?
         Log.d("FROM WORKOUT VALIDATION", preference?.workoutIds.toString())
 
         days = preference?.days as MutableList<Int>
@@ -121,7 +125,8 @@ class WorkoutValidationActivity : AppCompatActivity() {
         }
         return days.isEmpty()
     }
-    private fun determineAmountOfWorkout() : String {
+
+    private fun determineAmountOfWorkout(): String {
         return when (preference?.level) {
             "Beginner" -> "5"
             "Intermediate" -> "7"
@@ -130,7 +135,7 @@ class WorkoutValidationActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkAmountOfWorkout() : Boolean {
+    private fun checkAmountOfWorkout(): Boolean {
         return when (preference?.level) {
             "Beginner" -> selectedWorkoutsId.size >= 5
             "Intermediate" -> selectedWorkoutsId.size >= 7
@@ -143,8 +148,8 @@ class WorkoutValidationActivity : AppCompatActivity() {
     // FAVORITE WORKOUTS
     private fun setFavoriteAdapter(workoutList: List<DataItem?>) {
         val adapter = WorkoutListAdapter(
-            onItemClicked = {workoutItem -> onWorkoutItemClicked(workoutItem)},
-            isSelected = { id -> selectedWorkoutsId.contains(id)}
+            onItemClicked = { workoutItem -> onWorkoutItemClicked(workoutItem) },
+            isSelected = { id -> selectedWorkoutsId.contains(id) }
         )
         adapter.submitList(workoutList)
         binding.workoutValidationRvFavoriteWorkoutList.adapter = adapter
@@ -214,28 +219,44 @@ class WorkoutValidationActivity : AppCompatActivity() {
     }
 
     private fun setClickedOnDayUI(dayIndex: Int) {
-        val lightBlue = Color.parseColor("#2970FF")
+        val lightBlue = ContextCompat.getColor(this, R.color.paleBlue)
+        val darkBlue = ContextCompat.getColor(this, R.color.darkBlue)
         when (dayIndex) {
-            0 -> binding.workoutValidationClDayContainerSunday.setBackgroundColor(lightBlue)
-            1 -> binding.workoutValidationClDayContainerMonday.setBackgroundColor(lightBlue)
-            2 -> binding.workoutValidationClDayContainerTuesday.setBackgroundColor(lightBlue)
-            3 -> binding.workoutValidationClDayContainerWednesday.setBackgroundColor(lightBlue)
-            4 -> binding.workoutValidationClDayContainerThursday.setBackgroundColor(lightBlue)
-            5 -> binding.workoutValidationClDayContainerFriday.setBackgroundColor(lightBlue)
-            6 -> binding.workoutValidationClDayContainerSaturday.setBackgroundColor(lightBlue)
+            0 -> {binding.workoutValidationClDayContainerSunday.setBackgroundColor(lightBlue!!)
+                binding.workoutValidationTvDaySunday.setTextColor(darkBlue!!)}
+            1 -> {binding.workoutValidationClDayContainerMonday.setBackgroundColor(lightBlue!!)
+                binding.workoutValidationTvDayMonday.setTextColor(darkBlue!!)}
+            2 -> {binding.workoutValidationClDayContainerTuesday.setBackgroundColor(lightBlue!!)
+                binding.workoutValidationTvDayTuesday.setTextColor(darkBlue!!)}
+            3 -> {binding.workoutValidationClDayContainerWednesday.setBackgroundColor(lightBlue!!)
+                binding.workoutValidationTvDayWednesday.setTextColor(darkBlue!!)}
+            4 -> {binding.workoutValidationClDayContainerThursday.setBackgroundColor(lightBlue!!)
+                binding.workoutValidationTvDayThursday.setTextColor(darkBlue!!)}
+            5 -> {binding.workoutValidationClDayContainerFriday.setBackgroundColor(lightBlue!!)
+                binding.workoutValidationTvDayFriday.setTextColor(darkBlue!!)}
+            6 -> {binding.workoutValidationClDayContainerSaturday.setBackgroundColor(lightBlue!!)
+                binding.workoutValidationTvDaySaturday.setTextColor(darkBlue!!)}
         }
     }
 
     private fun setClickedOffDayUI(dayIndex: Int) {
-        val darkBlue = Color.parseColor("#223767")
+        val white = ContextCompat.getColor(this, R.color.white)
+        val darkBlue = ContextCompat.getColor(this, R.color.darkBlue)
         when (dayIndex) {
-            0 -> binding.workoutValidationClDayContainerSunday.setBackgroundColor(darkBlue)
-            1 -> binding.workoutValidationClDayContainerMonday.setBackgroundColor(darkBlue)
-            2 -> binding.workoutValidationClDayContainerTuesday.setBackgroundColor(darkBlue)
-            3 -> binding.workoutValidationClDayContainerWednesday.setBackgroundColor(darkBlue)
-            4 -> binding.workoutValidationClDayContainerThursday.setBackgroundColor(darkBlue)
-            5 -> binding.workoutValidationClDayContainerFriday.setBackgroundColor(darkBlue)
-            6 -> binding.workoutValidationClDayContainerSaturday.setBackgroundColor(darkBlue)
+            0 -> {binding.workoutValidationClDayContainerSunday.setBackgroundColor(darkBlue)
+                binding.workoutValidationTvDaySunday.setTextColor(white)}
+            1 -> {binding.workoutValidationClDayContainerMonday.setBackgroundColor(darkBlue)
+                binding.workoutValidationTvDayMonday.setTextColor(white)}
+            2 -> {binding.workoutValidationClDayContainerTuesday.setBackgroundColor(darkBlue)
+                binding.workoutValidationTvDayTuesday.setTextColor(white)}
+            3 -> {binding.workoutValidationClDayContainerWednesday.setBackgroundColor(darkBlue)
+                binding.workoutValidationTvDayWednesday.setTextColor(white)}
+            4 -> {binding.workoutValidationClDayContainerThursday.setBackgroundColor(darkBlue)
+                binding.workoutValidationTvDayThursday.setTextColor(white)}
+            5 -> {binding.workoutValidationClDayContainerFriday.setBackgroundColor(darkBlue)
+                binding.workoutValidationTvDayFriday.setTextColor(white)}
+            6 -> {binding.workoutValidationClDayContainerSaturday.setBackgroundColor(darkBlue)
+                binding.workoutValidationTvDaySaturday.setTextColor(white)}
         }
     }
 

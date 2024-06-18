@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:padding="20dp"
     tools:context=".ui.Feature02.WorkoutPreference.ExerciseOptionFragment">
 
@@ -11,10 +12,10 @@
         android:id="@+id/exerciseOption_tv_selectYourText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
         android:text="Select Your"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:textColor="#223767"
+        android:textColor="@color/lightGray"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,120 +23,121 @@
         android:id="@+id/exerciseOption_tv_exerciseOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
         android:text="Tools Options"
-        android:textStyle="bold"
+        android:textColor="@color/paleBlue"
         android:textSize="24sp"
-        android:textColor="#2970FF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/exerciseOption_tv_selectYourText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/exerciseOption_cl_preferencesContainer"
-        android:layout_width="275dp"
+        android:layout_width="match_parent"
         android:layout_height="208dp"
         android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/exerciseOption_tv_exerciseOption">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/exerciseOption_cl_preferences1"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
+            app:layout_constraintBottom_toTopOf="@id/exerciseOption_cl_preferences2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/exerciseOption_cl_preferences2">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/exerciseOption_iv_preferenceLogo1"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_body_weight"
-                android:layout_marginStart="39dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/exerciseOption_tv_preferenceTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:text="Body Weight"
-                android:textSize="16sp"
                 android:textColor="#ffffff"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginStart="33dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/exerciseOption_iv_preferenceLogo1" />
+                app:layout_constraintStart_toEndOf="@id/exerciseOption_iv_preferenceLogo1"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/exerciseOption_cl_preferences2"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
+            app:layout_constraintBottom_toTopOf="@id/exerciseOption_cl_preferences3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/exerciseOption_cl_preferences1"
-            app:layout_constraintBottom_toTopOf="@id/exerciseOption_cl_preferences3">
+            app:layout_constraintTop_toBottomOf="@id/exerciseOption_cl_preferences1">
 
             <ImageView
                 android:id="@+id/exerciseOption_iv_preferenceLogo2"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_minimal_equipment"
-                android:layout_marginStart="29dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/exerciseOption_tv_preferenceTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:text="Minimal Equipment"
-                android:textSize="16sp"
                 android:textColor="#ffffff"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginStart="22dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/exerciseOption_iv_preferenceLogo2" />
+                app:layout_constraintStart_toEndOf="@id/exerciseOption_iv_preferenceLogo2"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/exerciseOption_cl_preferences3"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/exerciseOption_cl_preferences2"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/exerciseOption_cl_preferences2">
 
             <ImageView
                 android:id="@+id/exerciseOption_iv_preferenceLogo3"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_full_gym_tools"
-                android:layout_marginStart="29dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/exerciseOption_tv_preferenceTitle3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:text="Full Gym Tools"
-                android:textSize="16sp"
                 android:textColor="#ffffff"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginStart="22dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/exerciseOption_iv_preferenceLogo3" />
+                app:layout_constraintStart_toEndOf="@id/exerciseOption_iv_preferenceLogo3"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

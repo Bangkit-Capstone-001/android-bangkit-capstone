@@ -14,14 +14,17 @@ import com.example.capstoneapp.databinding.ActivityWorkoutPreferenceBinding
 import com.example.capstoneapp.ui.Feature02.WorkoutList.WorkoutListActivity
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutPreference.WorkoutPreferenceViewModel
 
-class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, OnArrayValueTransferListener {
+class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener,
+    OnArrayValueTransferListener {
 
     private lateinit var binding: ActivityWorkoutPreferenceBinding
     private lateinit var viewModel: WorkoutPreferenceViewModel
     private lateinit var startForResult: ActivityResultLauncher<Intent>
-    private var preference: WorkoutPreference = WorkoutPreference(null, null, null, null, null, null)
+    private var preference: WorkoutPreference =
+        WorkoutPreference(null, null, null, null, null, null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBarColor = getColor(R.color.black)
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutPreferenceBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,17 +39,19 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, 
 
         setAction()
 
-        startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val shouldFinishSequentially = result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
-                if (shouldFinishSequentially) {
-                    val resultIntent = Intent()
-                    resultIntent.putExtra("shouldFinishSequentially", true)
-                    setResult(Activity.RESULT_OK, resultIntent)
-                    finish()
+        startForResult =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val shouldFinishSequentially =
+                        result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
+                    if (shouldFinishSequentially) {
+                        val resultIntent = Intent()
+                        resultIntent.putExtra("shouldFinishSequentially", true)
+                        setResult(Activity.RESULT_OK, resultIntent)
+                        finish()
+                    }
                 }
             }
-        }
     }
 
     private fun setAction() {
@@ -80,14 +85,13 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, 
         }
     }
 
-    override fun onValueTransfer(tag:String, value: String) {
+    override fun onValueTransfer(tag: String, value: String) {
         Log.d("STRING RECEIVED FROM $tag", value)
 
         when (tag) {
             "WorkoutLevel" -> preference = preference.copy(level = value)
             "MuscleTarget" -> preference = preference.copy(target = value)
             "ExerciseOption" -> preference = preference.copy(option = value)
-
         }
 
         viewModel.incrementPreferenceIndex()
@@ -105,7 +109,6 @@ class WorkoutPreferenceActivity : AppCompatActivity(), OnValueTransferListener, 
         val intent = Intent(this, WorkoutListActivity::class.java)
         intent.putExtra(WorkoutListActivity.KEY_PREFERENCE, preference)
         startForResult.launch(intent)
-        // Kalo Navigasi aneh, edit ini
     }
 
     override fun onResume() {

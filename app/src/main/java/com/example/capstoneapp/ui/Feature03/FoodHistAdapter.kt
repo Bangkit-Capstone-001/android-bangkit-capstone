@@ -1,19 +1,15 @@
-package com.example.capstoneapp.helper
+package com.example.capstoneapp.ui.Feature03
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.capstoneapp.data.response.DataFood
+import com.example.capstoneapp.data.response.DataFoodHist
 import com.example.capstoneapp.databinding.ItemFoodBinding
-import kotlin.math.roundToInt
 
-/**
- * This is initially used as random food adapter
- * Cannot be clicked
- */
-class FoodAdapter : ListAdapter<DataFood, FoodAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FoodHistAdapter : ListAdapter<DataFoodHist, FoodHistAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,7 +21,7 @@ class FoodAdapter : ListAdapter<DataFood, FoodAdapter.MyViewHolder>(DIFF_CALLBAC
         holder.bind(review)
     }
 
-    override fun getItem(position: Int): DataFood {
+    override fun getItem(position: Int): DataFoodHist {
         return currentList[position]
     }
 
@@ -33,20 +29,22 @@ class FoodAdapter : ListAdapter<DataFood, FoodAdapter.MyViewHolder>(DIFF_CALLBAC
     inner class MyViewHolder(val binding: ItemFoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(food: DataFood) {
-            binding.tvFoodName.text = "• ${food.namaBahanMakanan}"
-            binding.tvFoodNutrition.text = "${food.komposisiEnergiKal?.roundToInt()} cal/${food.komposisiPer}"
+        fun bind(foodHist: DataFoodHist) {
+            binding.tvFoodName.text = "${foodHist.food?.namaBahanMakanan}"
+            binding.tvFoodNutrition.text = "${Math.round(foodHist.calories as Double)} cal"
+            binding.tvQuantity.text = "${foodHist.quantity} grams"
+            binding.tvQuantity.visibility = View.VISIBLE
         }
     }
 
     // check for changes
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataFood>() {
-            override fun areItemsTheSame(oldItem: DataFood, newItem: DataFood): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataFoodHist>() {
+            override fun areItemsTheSame(oldItem: DataFoodHist, newItem: DataFoodHist): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: DataFood, newItem: DataFood): Boolean {
+            override fun areContentsTheSame(oldItem: DataFoodHist, newItem: DataFoodHist): Boolean {
                 return oldItem == newItem
             }
         }

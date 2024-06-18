@@ -1,4 +1,4 @@
-package com.example.capstoneapp.viewmodel
+package com.example.capstoneapp.viewmodel.Feature01
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,7 +10,6 @@ import com.example.capstoneapp.data.pref.UserModel
 import com.example.capstoneapp.data.response.AddDietPlanResponse
 import com.example.capstoneapp.data.response.AddWeightResponse
 import com.example.capstoneapp.data.response.EditProfileResponse
-import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.retrofit.ApiConfig
 import org.json.JSONObject
 import retrofit2.Call
@@ -145,6 +144,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                 } else {
                     _addWeightError.value = true
                     Log.e(TAG, "Add weight | Bad request: ${parseWeightError(response)}")
+                    Log.e(TAG, "Date ${date}")
                 }
             }
 

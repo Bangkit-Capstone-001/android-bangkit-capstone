@@ -10,10 +10,9 @@ import com.example.capstoneapp.data.response.GetDietPlanResponse
 import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
 import com.example.capstoneapp.data.response.GetTrackerResponse
-import com.example.capstoneapp.data.response.LoginResponse
-import com.example.capstoneapp.data.response.PostTrackerResponse
 import com.example.capstoneapp.data.response.GetWorkoutPlanResponse
 import com.example.capstoneapp.data.response.LoginResponse
+import com.example.capstoneapp.data.response.PostTrackerResponse
 import com.example.capstoneapp.data.response.PostWorkoutPlanResponse
 import com.example.capstoneapp.data.response.RandomPreferenceWorkoutResponse
 import com.example.capstoneapp.data.response.RegisterResponse
@@ -29,8 +28,8 @@ import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
-import retrofit2.http.Path
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -94,18 +93,6 @@ interface ApiService {
     ): Call<GetDietPlanResponse>
 
     /**
-     * ---------------------------------- Tracker (track weight)
-     */
-
-    @FormUrlEncoded
-    @POST("api/tracker")
-    fun addWeight(
-        @Header("Authorization") token: String,
-        @Field("date") date: String,
-        @Field("weight") weight: Float,
-    ): Call<AddWeightResponse>
-
-    /**
      * ---------------------------------- Food (retrieve food, add history, etc)
      */
 
@@ -138,6 +125,7 @@ interface ApiService {
     /**
      * ---------------------------------- Workouts (retrieve workouts)
      */
+
     @GET("/api/workout/random")
     fun getRandomPreferenceWorkout(
         @Header("Authorization") token: String,
@@ -205,4 +193,12 @@ interface ApiService {
         @Field("date") date: String,
         @Field("weight") weight: Float
     ): Call<PostTrackerResponse>
+
+    @FormUrlEncoded
+    @POST("api/tracker")
+    fun addWeight(
+        @Header("Authorization") token: String,
+        @Field("date") date: String,
+        @Field("weight") weight: Float,
+    ): Call<AddWeightResponse>
 }

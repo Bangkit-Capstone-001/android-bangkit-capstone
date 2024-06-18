@@ -1,4 +1,4 @@
-package com.example.capstoneapp.ui
+package com.example.capstoneapp.ui.Feature03
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.FragmentFeature03Binding
-import com.example.capstoneapp.helper.FoodAdapter
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import com.github.mikephil.charting.data.PieData

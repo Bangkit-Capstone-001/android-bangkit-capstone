@@ -3,11 +3,12 @@ package com.example.capstoneapp.ui.Feature02.WorkoutPlanDetail
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstoneapp.R
 import com.example.capstoneapp.data.pref.EditWorkoutPlanBody
 import com.example.capstoneapp.data.response.DataItem
 import com.example.capstoneapp.data.response.GetDataItem
@@ -18,7 +19,6 @@ import com.example.capstoneapp.viewmodel.Feature02.WorkoutPlanDetail.WorkoutPlan
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 
 class WorkoutPlanDetailActivity : AppCompatActivity() {
-
     private var detail: GetDataItem? = null
     private lateinit var binding: ActivityWorkoutPlanDetailBinding
     private var daysLocal = mutableListOf<Int>()
@@ -29,6 +29,7 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.black)
         binding = ActivityWorkoutPlanDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -36,7 +37,8 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
         binding.workoutPlanDetailRvFavoriteWorkoutList.layoutManager = favoriteWorkoutLayoutManager
 
         val recommendedWorkoutLayoutManager = LinearLayoutManager(this)
-        binding.workoutPlanDetailRvRecommendedWorkoutList.layoutManager = recommendedWorkoutLayoutManager
+        binding.workoutPlanDetailRvRecommendedWorkoutList.layoutManager =
+            recommendedWorkoutLayoutManager
 
         detail = intent.getParcelableExtra(KEY_DETAIL) as GetDataItem?
 
@@ -116,7 +118,7 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
         return daysLocal.isEmpty()
     }
 
-    private fun determineAmountOfWorkout() : String {
+    private fun determineAmountOfWorkout(): String {
         return when (detail?.level) {
             "Beginner" -> "5"
             "Intermediate" -> "7"
@@ -125,7 +127,7 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkAmountOfWorkout() : Boolean {
+    private fun checkAmountOfWorkout(): Boolean {
         return when (detail?.level) {
             "Beginner" -> selectedWorkoutsId.size >= 5
             "Intermediate" -> selectedWorkoutsId.size >= 7
@@ -179,8 +181,8 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
 
     private fun setFavoriteAdapter(workoutList: List<DataItem?>) {
         val adapter = WorkoutListAdapter(
-            onItemClicked = {workoutItem -> onWorkoutItemClicked(workoutItem)},
-            isSelected = { id -> selectedWorkoutsId.contains(id)}
+            onItemClicked = { workoutItem -> onWorkoutItemClicked(workoutItem) },
+            isSelected = { id -> selectedWorkoutsId.contains(id) }
         )
         adapter.submitList(workoutList)
         binding.workoutPlanDetailRvFavoriteWorkoutList.adapter = adapter
@@ -188,8 +190,8 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
 
     private fun setRecommendedAdapter(workoutList: List<DataItem?>) {
         val adapter = WorkoutListAdapter(
-            onItemClicked = {workoutItem -> onWorkoutItemClicked(workoutItem)},
-            isSelected = { id -> selectedWorkoutsId.contains(id)}
+            onItemClicked = { workoutItem -> onWorkoutItemClicked(workoutItem) },
+            isSelected = { id -> selectedWorkoutsId.contains(id) }
         )
         adapter.submitList(workoutList)
         binding.workoutPlanDetailRvRecommendedWorkoutList.adapter = adapter
@@ -257,28 +259,44 @@ class WorkoutPlanDetailActivity : AppCompatActivity() {
     }
 
     private fun setClickedOnDayUI(dayIndex: Int) {
-        val lightBlue = Color.parseColor("#2970FF")
+        val lightBlue = ContextCompat.getColor(this, R.color.paleBlue)
+        val darkBlue = ContextCompat.getColor(this, R.color.darkBlue)
         when (dayIndex) {
-            0 -> binding.workoutPlanDetailClDayContainerSunday.setBackgroundColor(lightBlue)
-            1 -> binding.workoutPlanDetailClDayContainerMonday.setBackgroundColor(lightBlue)
-            2 -> binding.workoutPlanDetailClDayContainerTuesday.setBackgroundColor(lightBlue)
-            3 -> binding.workoutPlanDetailClDayContainerWednesday.setBackgroundColor(lightBlue)
-            4 -> binding.workoutPlanDetailClDayContainerThursday.setBackgroundColor(lightBlue)
-            5 -> binding.workoutPlanDetailClDayContainerFriday.setBackgroundColor(lightBlue)
-            6 -> binding.workoutPlanDetailClDayContainerSaturday.setBackgroundColor(lightBlue)
+            0 -> {binding.workoutPlanDetailClDayContainerSunday.setBackgroundColor(lightBlue!!)
+                binding.workoutPlanDetailTvDaySunday.setTextColor(darkBlue!!)}
+            1 -> {binding.workoutPlanDetailClDayContainerMonday.setBackgroundColor(lightBlue!!)
+                binding.workoutPlanDetailTvDayMonday.setTextColor(darkBlue!!)}
+            2 -> {binding.workoutPlanDetailClDayContainerTuesday.setBackgroundColor(lightBlue!!)
+                binding.workoutPlanDetailTvDayTuesday.setTextColor(darkBlue!!)}
+            3 -> {binding.workoutPlanDetailClDayContainerWednesday.setBackgroundColor(lightBlue!!)
+                binding.workoutPlanDetailTvDayWednesday.setTextColor(darkBlue!!)}
+            4 -> {binding.workoutPlanDetailClDayContainerThursday.setBackgroundColor(lightBlue!!)
+                binding.workoutPlanDetailTvDayThursday.setTextColor(darkBlue!!)}
+            5 -> {binding.workoutPlanDetailClDayContainerFriday.setBackgroundColor(lightBlue!!)
+                binding.workoutPlanDetailTvDayFriday.setTextColor(darkBlue!!)}
+            6 -> {binding.workoutPlanDetailClDayContainerSaturday.setBackgroundColor(lightBlue!!)
+                binding.workoutPlanDetailTvDaySaturday.setTextColor(darkBlue!!)}
         }
     }
 
     private fun setClickedOffDayUI(dayIndex: Int) {
-        val darkBlue = Color.parseColor("#223767")
+        val white = ContextCompat.getColor(this, R.color.white)
+        val darkBlue = ContextCompat.getColor(this, R.color.darkBlue)
         when (dayIndex) {
-            0 -> binding.workoutPlanDetailClDayContainerSunday.setBackgroundColor(darkBlue)
-            1 -> binding.workoutPlanDetailClDayContainerMonday.setBackgroundColor(darkBlue)
-            2 -> binding.workoutPlanDetailClDayContainerTuesday.setBackgroundColor(darkBlue)
-            3 -> binding.workoutPlanDetailClDayContainerWednesday.setBackgroundColor(darkBlue)
-            4 -> binding.workoutPlanDetailClDayContainerThursday.setBackgroundColor(darkBlue)
-            5 -> binding.workoutPlanDetailClDayContainerFriday.setBackgroundColor(darkBlue)
-            6 -> binding.workoutPlanDetailClDayContainerSaturday.setBackgroundColor(darkBlue)
+            0 -> {binding.workoutPlanDetailClDayContainerSunday.setBackgroundColor(darkBlue)
+                binding.workoutPlanDetailTvDaySunday.setTextColor(white)}
+            1 -> {binding.workoutPlanDetailClDayContainerMonday.setBackgroundColor(darkBlue)
+                binding.workoutPlanDetailTvDayMonday.setTextColor(white)}
+            2 -> {binding.workoutPlanDetailTvDayTuesday.setBackgroundColor(darkBlue)
+                binding.workoutPlanDetailTvDayTuesday.setTextColor(white)}
+            3 -> {binding.workoutPlanDetailClDayContainerWednesday.setBackgroundColor(darkBlue)
+                binding.workoutPlanDetailTvDayWednesday.setTextColor(white)}
+            4 -> {binding.workoutPlanDetailClDayContainerThursday.setBackgroundColor(darkBlue)
+                binding.workoutPlanDetailTvDayThursday.setTextColor(white)}
+            5 -> {binding.workoutPlanDetailClDayContainerFriday.setBackgroundColor(darkBlue)
+                binding.workoutPlanDetailTvDayFriday.setTextColor(white)}
+            6 -> {binding.workoutPlanDetailClDayContainerSaturday.setBackgroundColor(darkBlue)
+                binding.workoutPlanDetailTvDaySaturday.setTextColor(white)}
         }
     }
 

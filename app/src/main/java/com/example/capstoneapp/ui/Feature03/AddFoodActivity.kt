@@ -1,4 +1,4 @@
-package com.example.capstoneapp.ui
+package com.example.capstoneapp.ui.Feature03
 
 import android.os.Bundle
 import android.view.View
@@ -8,9 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityAddFoodBinding
-import com.example.capstoneapp.helper.dictFood
-import com.example.capstoneapp.helper.listFood
-import com.example.capstoneapp.viewmodel.AddFoodViewModel
+import com.example.capstoneapp.viewmodel.Feature03.AddFoodViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 
 class AddFoodActivity : AppCompatActivity() {

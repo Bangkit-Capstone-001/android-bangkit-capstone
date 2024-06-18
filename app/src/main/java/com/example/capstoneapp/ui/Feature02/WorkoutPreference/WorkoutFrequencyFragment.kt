@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.FragmentWorkoutFrequencyBinding
 import com.example.capstoneapp.databinding.FragmentWorkoutLevelBinding
@@ -109,28 +110,44 @@ class WorkoutFrequencyFragment : Fragment() {
     }
 
     private fun setClickedOnDayUI(dayIndex: Int) {
-        val lightBlue = Color.parseColor("#2970FF")
+        val lightBlue = context?.let { ContextCompat.getColor(it, R.color.paleBlue) }
+        val darkBlue = context?.let { ContextCompat.getColor(it, R.color.darkBlue) }
         when (dayIndex) {
-            0 -> binding.workoutFrequencyClDayContainerSunday.setBackgroundColor(lightBlue)
-            1 -> binding.workoutFrequencyClDayContainerMonday.setBackgroundColor(lightBlue)
-            2 -> binding.workoutFrequencyClDayContainerTuesday.setBackgroundColor(lightBlue)
-            3 -> binding.workoutFrequencyClDayContainerWednesday.setBackgroundColor(lightBlue)
-            4 -> binding.workoutFrequencyClDayContainerThursday.setBackgroundColor(lightBlue)
-            5 -> binding.workoutFrequencyClDayContainerFriday.setBackgroundColor(lightBlue)
-            6 -> binding.workoutFrequencyClDayContainerSaturday.setBackgroundColor(lightBlue)
+            0 -> {binding.workoutFrequencyClDayContainerSunday.setBackgroundColor(lightBlue!!)
+                binding.workoutFrequencyTvDaySunday.setTextColor(darkBlue!!)}
+            1 -> {binding.workoutFrequencyClDayContainerMonday.setBackgroundColor(lightBlue!!)
+                binding.workoutFrequencyTvDayMonday.setTextColor(darkBlue!!)}
+            2 -> {binding.workoutFrequencyClDayContainerTuesday.setBackgroundColor(lightBlue!!)
+                binding.workoutFrequencyTvDayTuesday.setTextColor(darkBlue!!)}
+            3 -> {binding.workoutFrequencyClDayContainerWednesday.setBackgroundColor(lightBlue!!)
+                binding.workoutFrequencyTvDayWednesday.setTextColor(darkBlue!!)}
+            4 -> {binding.workoutFrequencyClDayContainerThursday.setBackgroundColor(lightBlue!!)
+                binding.workoutFrequencyTvDayThursday.setTextColor(darkBlue!!)}
+            5 -> {binding.workoutFrequencyClDayContainerFriday.setBackgroundColor(lightBlue!!)
+                binding.workoutFrequencyTvDayFriday.setTextColor(darkBlue!!)}
+            6 -> {binding.workoutFrequencyClDayContainerSaturday.setBackgroundColor(lightBlue!!)
+                binding.workoutFrequencyTvDaySaturday.setTextColor(darkBlue!!)}
         }
     }
 
     private fun setClickedOffDayUI(dayIndex: Int) {
+        val white = context?.let { ContextCompat.getColor(it, R.color.white) }
         val darkBlue = Color.parseColor("#223767")
         when (dayIndex) {
-            0 -> binding.workoutFrequencyClDayContainerSunday.setBackgroundColor(darkBlue)
-            1 -> binding.workoutFrequencyClDayContainerMonday.setBackgroundColor(darkBlue)
-            2 -> binding.workoutFrequencyClDayContainerTuesday.setBackgroundColor(darkBlue)
-            3 -> binding.workoutFrequencyClDayContainerWednesday.setBackgroundColor(darkBlue)
-            4 -> binding.workoutFrequencyClDayContainerThursday.setBackgroundColor(darkBlue)
-            5 -> binding.workoutFrequencyClDayContainerFriday.setBackgroundColor(darkBlue)
-            6 -> binding.workoutFrequencyClDayContainerSaturday.setBackgroundColor(darkBlue)
+            0 -> {binding.workoutFrequencyClDayContainerSunday.setBackgroundColor(darkBlue)
+                binding.workoutFrequencyTvDaySunday.setTextColor(white!!)}
+            1 -> {binding.workoutFrequencyClDayContainerMonday.setBackgroundColor(darkBlue)
+                binding.workoutFrequencyTvDayMonday.setTextColor(white!!)}
+            2 -> {binding.workoutFrequencyClDayContainerTuesday.setBackgroundColor(darkBlue)
+                binding.workoutFrequencyTvDayTuesday.setTextColor(white!!)}
+            3 -> {binding.workoutFrequencyClDayContainerWednesday.setBackgroundColor(darkBlue)
+                binding.workoutFrequencyTvDayWednesday.setTextColor(white!!)}
+            4 -> {binding.workoutFrequencyClDayContainerThursday.setBackgroundColor(darkBlue)
+                binding.workoutFrequencyTvDayThursday.setTextColor(white!!)}
+            5 -> {binding.workoutFrequencyClDayContainerFriday.setBackgroundColor(darkBlue)
+                binding.workoutFrequencyTvDayFriday.setTextColor(white!!)}
+            6 -> {binding.workoutFrequencyClDayContainerSaturday.setBackgroundColor(darkBlue)
+                binding.workoutFrequencyTvDaySaturday.setTextColor(white!!)}
         }
     }
 }

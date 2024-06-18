@@ -12,12 +12,14 @@ import com.squareup.picasso.Picasso
 
 class SelectedWorkoutAdapter : ListAdapter<GetWorkoutsItem, SelectedWorkoutAdapter.SelectedWorkoutViewHolder>(DIFF_CALLBACK) {
 
-    class SelectedWorkoutViewHolder(private val binding: ItemWorkout2Binding) : RecyclerView.ViewHolder(binding.root) {
+    class SelectedWorkoutViewHolder(private val binding: ItemWorkout2Binding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(workout: GetWorkoutsItem) {
             binding.itemWorkout2TvWorkoutTitlePlaceholder.text = workout.exerciseName
             try {
                 val imageUrl = workout.exerciseImages?.get(0)
-                Picasso.get().load(imageUrl).resize(90, 50).centerCrop().into(binding.itemWorkout2IvWorkoutImagePlaceholder)
+                Picasso.get().load(imageUrl).resize(90, 50).centerCrop()
+                    .into(binding.itemWorkout2IvWorkoutImagePlaceholder)
             } catch (e: Exception) {
                 Log.e("INSERTION ERROR", e.message.toString())
             }
@@ -25,7 +27,8 @@ class SelectedWorkoutAdapter : ListAdapter<GetWorkoutsItem, SelectedWorkoutAdapt
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectedWorkoutViewHolder {
-        val binding = ItemWorkout2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemWorkout2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SelectedWorkoutViewHolder(binding)
     }
 

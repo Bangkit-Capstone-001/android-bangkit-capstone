@@ -83,4 +83,6 @@ dependencies {
     implementation("com.github.yalantis:ucrop:2.2.8")
     // Picasso
     implementation("com.squareup.picasso:picasso:2.8")
+    // Justify
+    implementation("me.biubiubiu.justifytext:library:1.1")
 }

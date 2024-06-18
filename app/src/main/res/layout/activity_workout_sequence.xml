@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/greyedWhite"
     tools:context=".ui.Feature02.WorkoutSequence.WorkoutSequenceActivity">
 
-    <!--    Konsensus ID-->
-    <!--    location_layout_name-->
-    <!--    cth : workoutSequence_cl_something-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutSequence_cl_pageTitleContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,160 +20,168 @@
             android:id="@+id/workoutSequence_tv_pageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
             android:text="X Workout"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#223767"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/workoutSequence_iv_backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/vector_back_24x24"
-            android:layout_marginStart="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
-<!--    <ImageView-->
-<!--        android:id="@+id/workoutSequence_iv_workoutImagePlaceholder"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/img_workout_sequence"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer" />-->
-    
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/workoutSequence_rv_workoutCarousel"
         android:layout_width="match_parent"
         android:layout_height="196dp"
-        android:layout_marginTop="30dp"
+        android:padding="3dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutSequence_cl_workoutTitleContainer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginHorizontal="38dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/workoutSequence_rv_workoutCarousel">
 
         <TextView
             android:id="@+id/workoutSequence_tv_workoutNamePlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
             android:text="Sit Up"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#223767"
+            android:textColor="@color/darkBlue"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_workoutTitleContainer"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_workoutTitleContainer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!--    Description-->
+            <!--  Description  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutSequence_cl_descriptionContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="38dp"
-                android:layout_marginTop="40dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:paddingStart="38dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/workoutSequence_tv_descriptionTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
                     android:text="Description"
-                    android:textSize="14sp"
-                    android:textColor="#223767"
-                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <me.biubiubiu.justifytext.library.JustifyTextView
                     android:id="@+id/workoutSequence_tv_descriptionPlaceholder"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultrices egestas rutrum. Nulla eget sapien eu nibh tincidunt dictum vitae vitae erat"
-                    app:layout_constraintTop_toBottomOf="@id/workoutSequence_tv_descriptionTitle"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/_e"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/workoutSequence_tv_descriptionTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--    Instruction-->
+            <!--  Instruction  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutSequence_cl_instructionContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="38dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="4dp"
+                android:paddingStart="38dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_descriptionContainer">
 
                 <TextView
                     android:id="@+id/workoutSequence_tv_instructionTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
                     android:text="Instruction"
-                    android:textSize="14sp"
-                    android:textColor="#223767"
-                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <me.biubiubiu.justifytext.library.JustifyTextView
                     android:id="@+id/workoutSequence_tv_instructionPlaceholder"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultrices egestas rutrum. Nulla eget sapien eu nibh tincidunt dictum vitae vitae erat"
-                    app:layout_constraintTop_toBottomOf="@id/workoutSequence_tv_instructionTitle"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/_e"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/workoutSequence_tv_instructionTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutSequence_cl_youtubeAnchorContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:paddingHorizontal="38dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_instructionContainer">
 
                 <TextView
                     android:id="@+id/workoutSequence_tv_youtubeAnchorTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
                     android:text="Watch it on Youtube"
-                    android:textSize="14sp"
-                    android:textColor="#223767"
-                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -182,37 +189,38 @@
                     android:id="@+id/workoutSequence_iv_youtubeAnchorPlaceholder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/img_youtube"
                     android:layout_marginStart="10dp"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/ic_youtube"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/workoutSequence_tv_youtubeAnchorTitle"/>
+                    app:layout_constraintStart_toEndOf="@+id/workoutSequence_tv_youtubeAnchorTitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/darkRed" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workoutSequence_cl_nextWorkoutButton"
                 android:layout_width="215dp"
                 android:layout_height="37dp"
-                android:background="@drawable/shape_workout_list_button"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="26dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/shape_workout_list_button"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_youtubeAnchorContainer"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_youtubeAnchorContainer">
 
                 <TextView
                     android:id="@+id/workoutSequence_tv_nextWorkoutTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Next Workout"
-                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:textColor="#ffffff"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

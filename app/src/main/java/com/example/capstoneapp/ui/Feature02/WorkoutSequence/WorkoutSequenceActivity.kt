@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.capstoneapp.R
 import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.data.response.GetWorkoutsItem
 import com.example.capstoneapp.databinding.ActivityWorkoutSequenceBinding
@@ -21,6 +22,7 @@ class WorkoutSequenceActivity : AppCompatActivity() {
     private lateinit var viewModel: WorkoutSequenceViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBarColor = getColor(R.color.black)
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutSequenceBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -54,8 +56,8 @@ class WorkoutSequenceActivity : AppCompatActivity() {
     private fun setWorkoutItem(workoutItem: GetWorkoutsItem) {
         binding.workoutSequenceTvPageTitle.text = "${workoutItem.bodyGroup} Body Workout"
         binding.workoutSequenceTvWorkoutNamePlaceholder.text = workoutItem.exerciseName
-        binding.workoutSequenceTvDescriptionPlaceholder.text = workoutItem.shortDescription
-        binding.workoutSequenceTvInstructionPlaceholder.text = workoutItem.instructions
+        binding.workoutSequenceTvDescriptionPlaceholder.text = "${workoutItem.shortDescription}\n"
+        binding.workoutSequenceTvInstructionPlaceholder.text = "${workoutItem.instructions}\n"
         binding.workoutSequenceIvYoutubeAnchorPlaceholder.setOnClickListener {
             val youtubeUrl = workoutItem.youtubeLinks
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl))

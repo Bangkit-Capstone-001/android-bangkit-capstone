@@ -2,18 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/greyedWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Feature02.WorkoutStart.WorkoutStartActivity">
 
-    <!--    Konsensus ID-->
-    <!--    location_layout_name-->
-    <!--    cth : workoutStart_cl_something-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutStart_cl_pageTitleContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,70 +20,62 @@
             android:id="@+id/workoutStart_tv_pageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
             android:text="X Workout"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#223767"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/workoutStart_iv_backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/vector_back_24x24"
-            android:layout_marginStart="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/workoutStart_tv_numberOfWorkoutTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your workouts"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:textColor="#223767"
-        android:layout_marginTop="44dp"
-        android:layout_marginStart="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workoutStart_cl_pageTitleContainer" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/workoutStart_rv_workoutItemList"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/workoutStart_cl_startWorkoutButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workoutStart_tv_numberOfWorkoutTitle"
-        app:layout_constraintBottom_toTopOf="@id/workoutStart_cl_startWorkoutButton"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workoutStart_cl_pageTitleContainer" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutStart_cl_startWorkoutButton"
         android:layout_width="215dp"
         android:layout_height="37dp"
-        android:background="@drawable/shape_workout_list_button"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="26dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/shape_workout_list_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workoutStart_rv_workoutItemList">
 
         <TextView
             android:id="@+id/workoutStart_tv_startWorkoutTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Working Out"
-            android:textStyle="bold"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/start"
+            android:textColor="@color/white"
             android:textSize="12sp"
-            android:textColor="#ffffff"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

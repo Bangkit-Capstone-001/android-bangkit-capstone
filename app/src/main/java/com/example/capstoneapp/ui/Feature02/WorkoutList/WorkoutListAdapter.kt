@@ -13,32 +13,35 @@ import com.squareup.picasso.Picasso
 
 class WorkoutListAdapter(
     private val onItemClicked: (DataItem) -> Unit,
-    private val isSelected: (String) -> Boolean) : ListAdapter<DataItem, WorkoutListAdapter.WorkoutListViewHolder>(DIFF_CALLBACK) {
+    private val isSelected: (String) -> Boolean
+) : ListAdapter<DataItem, WorkoutListAdapter.WorkoutListViewHolder>(DIFF_CALLBACK) {
     class WorkoutListViewHolder(
         private val binding: ItemWorkoutBinding,
         private val onItemClicked: (DataItem) -> Unit,
-        private val isSelected: (String) -> Boolean) : RecyclerView.ViewHolder(binding.root) {
+        private val isSelected: (String) -> Boolean
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(workoutItem: DataItem) {
             binding.itemWorkoutTvWorkoutTitlePlaceholder.text = workoutItem.exerciseName
             try {
                 val imageUrl = workoutItem.exerciseImages?.get(0)
-                Picasso.get().load(imageUrl).resize(90, 50).centerCrop().into(binding.itemWorkoutIvWorkoutImagePlaceholder)
+                Picasso.get().load(imageUrl).resize(90, 50).centerCrop()
+                    .into(binding.itemWorkoutIvWorkoutImagePlaceholder)
             } catch (e: Exception) {
                 Log.e("IMAGE INSERTION", e.message.toString())
             }
 
             if (isSelected(workoutItem.id.toString())) {
-                binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.img_like_icon_clicked)
+                binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.ic_heart)
             } else {
-                binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.img_like_icon)
+                binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.ic_heart_outline)
             }
 
             binding.itemWorkoutIvLikeButton.setOnClickListener {
                 onItemClicked(workoutItem)
                 if (isSelected(workoutItem.id.toString())) {
-                    binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.img_like_icon_clicked)
+                    binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.ic_heart)
                 } else {
-                    binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.img_like_icon)
+                    binding.itemWorkoutIvLikeButton.setImageResource(R.drawable.ic_heart_outline)
                 }
             }
         }
@@ -56,9 +59,11 @@ class WorkoutListAdapter(
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataItem>() {
-            override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean = oldItem == newItem
+            override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean =
+                oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean = oldItem == newItem
+            override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean =
+                oldItem == newItem
 
         }
     }

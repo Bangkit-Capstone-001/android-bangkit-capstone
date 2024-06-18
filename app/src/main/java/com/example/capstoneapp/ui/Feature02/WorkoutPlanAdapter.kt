@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.databinding.ItemMyPlansBinding
-import com.example.capstoneapp.databinding.ItemWorkoutBinding
 import com.example.capstoneapp.ui.Feature02.WorkoutPlanDetail.WorkoutPlanDetailActivity
 
-class WorkoutPlanAdapter : ListAdapter<GetDataItem, WorkoutPlanAdapter.WorkoutPlanViewHolder>(DIFF_CALLBACK) {
+class WorkoutPlanAdapter :
+    ListAdapter<GetDataItem, WorkoutPlanAdapter.WorkoutPlanViewHolder>(DIFF_CALLBACK) {
 
-    class WorkoutPlanViewHolder(private val binding: ItemMyPlansBinding) : RecyclerView.ViewHolder(binding.root) {
+    class WorkoutPlanViewHolder(private val binding: ItemMyPlansBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(planItem: GetDataItem) {
             val target = "${planItem.target} Body"
             val option = "(${planItem.option})"
@@ -40,9 +41,11 @@ class WorkoutPlanAdapter : ListAdapter<GetDataItem, WorkoutPlanAdapter.WorkoutPl
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GetDataItem>() {
-            override fun areItemsTheSame(oldItem: GetDataItem, newItem: GetDataItem): Boolean = oldItem == newItem
+            override fun areItemsTheSame(oldItem: GetDataItem, newItem: GetDataItem): Boolean =
+                oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: GetDataItem, newItem: GetDataItem): Boolean = oldItem == newItem
+            override fun areContentsTheSame(oldItem: GetDataItem, newItem: GetDataItem): Boolean =
+                oldItem == newItem
 
         }
     }

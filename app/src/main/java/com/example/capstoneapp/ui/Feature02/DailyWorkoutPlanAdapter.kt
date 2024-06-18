@@ -10,8 +10,10 @@ import com.example.capstoneapp.data.response.GetDataItem
 import com.example.capstoneapp.databinding.ItemDailyPlansBinding
 import com.example.capstoneapp.ui.Feature02.WorkoutStart.WorkoutStartActivity
 
-class DailyWorkoutPlanAdapter : ListAdapter<GetDataItem, DailyWorkoutPlanAdapter.DailyWorkoutPlanViewHolder>(DIFF_CALLBACK) {
-    class DailyWorkoutPlanViewHolder(private val binding: ItemDailyPlansBinding) : RecyclerView.ViewHolder(binding.root) {
+class DailyWorkoutPlanAdapter :
+    ListAdapter<GetDataItem, DailyWorkoutPlanAdapter.DailyWorkoutPlanViewHolder>(DIFF_CALLBACK) {
+    class DailyWorkoutPlanViewHolder(private val binding: ItemDailyPlansBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(planItem: GetDataItem) {
             val target = "${planItem.target} Body"
             val option = "(${planItem.option})"
@@ -27,7 +29,8 @@ class DailyWorkoutPlanAdapter : ListAdapter<GetDataItem, DailyWorkoutPlanAdapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyWorkoutPlanViewHolder {
-        val binding = ItemDailyPlansBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemDailyPlansBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DailyWorkoutPlanViewHolder(binding)
     }
 
@@ -38,9 +41,11 @@ class DailyWorkoutPlanAdapter : ListAdapter<GetDataItem, DailyWorkoutPlanAdapter
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GetDataItem>() {
-            override fun areItemsTheSame(oldItem: GetDataItem, newItem: GetDataItem): Boolean = oldItem == newItem
+            override fun areItemsTheSame(oldItem: GetDataItem, newItem: GetDataItem): Boolean =
+                oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: GetDataItem, newItem: GetDataItem): Boolean = oldItem == newItem
+            override fun areContentsTheSame(oldItem: GetDataItem, newItem: GetDataItem): Boolean =
+                oldItem == newItem
 
         }
     }
