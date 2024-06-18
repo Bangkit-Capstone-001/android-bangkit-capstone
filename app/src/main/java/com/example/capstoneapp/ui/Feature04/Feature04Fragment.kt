@@ -104,13 +104,11 @@ class Feature04Fragment : Fragment() {
         lineChart.data = lineData
         lineChart.invalidate()
 
-        val dateInterval = 3
-
         lineChart.xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
             setDrawGridLines(false)
             granularity = 1f
-            setDateValueFormatter(dates, dateInterval)
+            setDateValueFormatter(dates)
         }
 
         lineChart.axisLeft.apply {
@@ -119,20 +117,35 @@ class Feature04Fragment : Fragment() {
 
         lineChart.axisRight.isEnabled = false
         lineChart.description.isEnabled = false
+        lineChart.legend.isEnabled = false
 
         lineChart.xAxis.setLabelCount(dates.size, true)
         lineChart.xAxis.textSize = 8f
         lineChart.axisLeft.textSize = 8f
     }
 
-    private fun XAxis.setDateValueFormatter(dates: List<String>, interval: Int) {
+    private fun XAxis.setDateValueFormatter(dates: List<String>) {
+        val interval = when {
+            dates.size <= 5 -> 1
+            dates.size <= 10 -> 3
+            else -> dates.size / 2
+        }
+
         valueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
                 val index = value.toInt()
-                return if (index >= 0 && index < dates.size && index % interval == 0) {
-                    dates[index]
-                } else {
-                    ""
+                return when (interval) {
+                    1 -> dates.getOrNull(index) ?: ""
+                    3 -> if (index % 3 == 0) dates.getOrNull(index) ?: "" else ""
+                    else -> {
+                        val middleIndex = dates.size / 2
+                        when (index) {
+                            0 -> dates.first()
+                            middleIndex -> dates[middleIndex]
+                            dates.size - 1 -> dates.last()
+                            else -> ""
+                        }
+                    }
                 }
             }
         }
