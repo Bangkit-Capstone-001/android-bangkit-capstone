@@ -58,7 +58,7 @@
         android:id="@+id/workoutFinish_tv_accomplishmentText"
         android:layout_width="221dp"
         android:layout_height="wrap_content"
-        android:text="You’ve Completed Your Workout Plan Today"
+        android:text="You’ve Completed Your Workout"
         android:gravity="center"
         android:textColor="#2970FF"
         android:textSize="18sp"

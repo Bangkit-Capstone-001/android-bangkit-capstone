@@ -22,7 +22,7 @@
         android:id="@+id/exerciseOption_tv_exerciseOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Muscle Target"
+        android:text="Tools Options"
         android:textStyle="bold"
         android:textSize="24sp"
         android:textColor="#2970FF"

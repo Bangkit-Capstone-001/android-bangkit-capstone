@@ -259,82 +259,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
-        android:id="@+id/workoutValidation_sv_scrollViewContainer"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/workoutValidation_tv_favoriteWorkoutTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Your Favorite Workouts"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#223767"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workoutValidation_cl_scheduleContainer"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/workoutValidation_rv_favoriteWorkoutList"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workoutValidation_cl_scheduleContainer">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/workoutValidation_cl_scrollViewConstraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-<!--            FavoriteWorkout-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/workoutValidation_cl_favoriteWorkoutContainer"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/workoutValidation_tv_favoriteWorkoutTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Your Favorite Workout"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="#223767"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/workoutValidation_rv_favoriteWorkoutList"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/workoutValidation_tv_favoriteWorkoutTitle" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--            Recommended Workout-->
-<!--            Kalo nempel, coba atur Padding Bottom-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/workoutValidation_cl_recommendedWorkoutContainer"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:paddingBottom="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/workoutValidation_cl_favoriteWorkoutContainer">
-
-                <TextView
-                    android:id="@+id/workoutValidation_tv_recommendedWorkoutTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recommended Workout"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="#223767"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/workoutValidation_rv_recommendedWorkoutList"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/workoutValidation_tv_recommendedWorkoutTitle" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@id/workoutValidation_tv_favoriteWorkoutTitle"
+        app:layout_constraintBottom_toTopOf="@id/workoutValidation_cl_saveWorkoutPlanButton"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutValidation_cl_saveWorkoutPlanButton"

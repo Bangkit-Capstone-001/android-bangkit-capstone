@@ -41,15 +41,26 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     
-    <ImageView
-        android:id="@+id/workoutSequence_iv_workoutImagePlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_workout_sequence"
-        android:layout_marginTop="50dp"
+<!--    <ImageView-->
+<!--        android:id="@+id/workoutSequence_iv_workoutImagePlaceholder"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/img_workout_sequence"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer" />-->
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/workoutSequence_rv_workoutCarousel"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:layout_marginTop="30dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer" />
+        app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_pageTitleContainer"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutSequence_cl_workoutTitleContainer"
@@ -58,7 +69,7 @@
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workoutSequence_iv_workoutImagePlaceholder">
+        app:layout_constraintTop_toBottomOf="@id/workoutSequence_rv_workoutCarousel">
 
         <TextView
             android:id="@+id/workoutSequence_tv_workoutNamePlaceholder"
@@ -70,40 +81,18 @@
             android:textColor="#223767"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/workoutSequence_tv_x"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="X"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#223767"
-            android:layout_marginStart="30dp"
-            app:layout_constraintStart_toEndOf="@id/workoutSequence_tv_workoutNamePlaceholder"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#223767"
-            app:layout_constraintStart_toEndOf="@id/workoutSequence_tv_x"
-            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_workoutTitleContainer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <!--    Description-->
@@ -169,7 +158,39 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/workoutSequence_cl_startWorkoutButton"
+                android:id="@+id/workoutSequence_cl_youtubeAnchorContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="38dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_instructionContainer">
+
+                <TextView
+                    android:id="@+id/workoutSequence_tv_youtubeAnchorTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Watch it on Youtube"
+                    android:textSize="14sp"
+                    android:textColor="#223767"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/workoutSequence_iv_youtubeAnchorPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_youtube"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/workoutSequence_tv_youtubeAnchorTitle"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/workoutSequence_cl_nextWorkoutButton"
                 android:layout_width="215dp"
                 android:layout_height="37dp"
                 android:background="@drawable/shape_workout_list_button"
@@ -177,10 +198,11 @@
                 android:layout_marginBottom="26dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_instructionContainer">
+                app:layout_constraintTop_toBottomOf="@id/workoutSequence_cl_youtubeAnchorContainer"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
-                    android:id="@+id/workoutSequence_tv_startWorkoutTitle"
+                    android:id="@+id/workoutSequence_tv_nextWorkoutTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Next Workout"

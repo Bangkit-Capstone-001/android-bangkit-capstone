@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -80,4 +81,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     // Ucrop
     implementation("com.github.yalantis:ucrop:2.2.8")
+    // Picasso
+    implementation("com.squareup.picasso:picasso:2.8")
 }

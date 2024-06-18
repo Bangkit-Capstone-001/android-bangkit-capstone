@@ -68,11 +68,11 @@ class Feature03Fragment : Fragment() {
 
     private fun generateGoalTarget(binding: FragmentFeature03Binding, goal: String, currentWeight: Int, targetWeight: Int, duration: Int) {
         if (goal == "weightGain") {
-            binding.tvGoalTarget.text = "Target: ${currentWeight}kg → ${currentWeight+targetWeight}kg ($duration days)"
+            binding.tvGoalTarget.text = "${currentWeight}kg → ${currentWeight+targetWeight}kg ($duration days)"
         } else if (goal == "weightLoss") {
-            binding.tvGoalTarget.text = "Target: ${currentWeight}kg → ${currentWeight-targetWeight}kg ($duration days)"
+            binding.tvGoalTarget.text = "${currentWeight}kg → ${currentWeight-targetWeight}kg ($duration days)"
         } else {
-            binding.tvGoalTarget.text = "Target: Maintain your ${currentWeight}kg of weight"
+            binding.tvGoalTarget.text = "Maintain your ${currentWeight}kg of weight"
         }
     }
 
