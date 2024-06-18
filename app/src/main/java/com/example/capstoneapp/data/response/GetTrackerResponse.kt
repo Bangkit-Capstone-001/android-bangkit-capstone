@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class GetTrackerResponse(
 
 	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
+	val data: List<GetTrackerDataItem?>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null,
@@ -14,7 +14,7 @@ data class GetTrackerResponse(
 	val status: Int? = null
 )
 
-data class DataItem(
+data class GetTrackerDataItem(
 
 	@field:SerializedName("date")
 	val date: String? = null,

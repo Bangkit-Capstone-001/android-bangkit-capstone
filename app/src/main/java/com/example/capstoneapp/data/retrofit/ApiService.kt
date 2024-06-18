@@ -9,6 +9,7 @@ import com.example.capstoneapp.data.response.GetFoodResponse
 import com.example.capstoneapp.data.response.GetProfileResponse
 import com.example.capstoneapp.data.response.GetTrackerResponse
 import com.example.capstoneapp.data.response.LoginResponse
+import com.example.capstoneapp.data.response.PostTrackerResponse
 import com.example.capstoneapp.data.response.RegisterResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -131,8 +132,20 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Call<GetFoodResponse>
 
+    /**
+     * ---------------------------------- Tracker (Get and Post weight data)
+     */
+
     @GET("/api/tracker")
     fun getTrackerData(
         @Header("Authorization") token: String
     ): Call<GetTrackerResponse>
+
+    @FormUrlEncoded
+    @POST("/api/tracker")
+    fun postTrackerData(
+        @Header("Authorization") token: String,
+        @Field("date") date: String,
+        @Field("weight") weight: Float
+    ): Call<PostTrackerResponse>
 }
