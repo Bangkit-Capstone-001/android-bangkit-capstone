@@ -1,5 +1,6 @@
 package com.example.capstoneapp.ui.Feature03
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityAddFoodBinding
+import com.example.capstoneapp.ui.MainActivity
 import com.example.capstoneapp.viewmodel.Feature03.AddFoodViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 
@@ -130,7 +132,12 @@ class AddFoodActivity : AppCompatActivity() {
         AlertDialog.Builder(this).apply {
             setTitle(R.string.success)
             setMessage("Success add food for today!")
-            setPositiveButton(R.string.ok) { _, _ -> finish() }
+            setPositiveButton(R.string.ok) { _, _ ->
+                val intent = Intent(this@AddFoodActivity, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                startActivity(intent)
+                finish()
+            }
             create()
             show()
         }
