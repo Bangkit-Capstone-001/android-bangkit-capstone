@@ -10,6 +10,7 @@ import com.example.capstoneapp.data.pref.UserModel
 import com.example.capstoneapp.data.response.GetTrackerResponse
 import com.example.capstoneapp.data.response.PostTrackerResponse
 import com.example.capstoneapp.data.retrofit.ApiConfig
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,7 +20,7 @@ class Feature04ViewModel(private val repository: UserRepository) : ViewModel() {
     private val _getTrackerResponse = MutableLiveData<GetTrackerResponse>()
     val getTrackerResponse: LiveData<GetTrackerResponse> = _getTrackerResponse
 
-    private val _postTrackerresponse = MutableLiveData<PostTrackerResponse>()
+    val _postTrackerresponse = MutableLiveData<PostTrackerResponse>()
     val postTrackerResponse: LiveData<PostTrackerResponse> = _postTrackerresponse
 
     fun getTrackerData(token: String) {
@@ -37,7 +38,10 @@ class Feature04ViewModel(private val repository: UserRepository) : ViewModel() {
                             Log.e("GetTrackerData E1", "Null Response")
                         }
                     } else {
-                        Log.e("GetTrackerData E2", "Bad request: ${response.code()} - ${response.errorBody()?.string()}")
+                        Log.e(
+                            "GetTrackerData E2",
+                            "Bad request: ${response.code()} - ${response.errorBody()?.string()}"
+                        )
                     }
                 }
 
@@ -66,21 +70,35 @@ class Feature04ViewModel(private val repository: UserRepository) : ViewModel() {
                             Log.e("PostTrackerData E1", "Null Response")
                         }
                     } else {
-                        Log.e("PostTrackerData E2", "Bad request: ${response.code()} - ${response.errorBody()?.string()}")
+                        val message = parseChartError(response)
+                        Log.e("PostTrackerData E2", "Bad request: ${message}")
+                        handleError(message)
                     }
                 }
 
                 override fun onFailure(call: Call<PostTrackerResponse>, t: Throwable) {
                     Log.e("PostTrackerData E3", "onFailure: " + t.toString())
                 }
-
             })
         } catch (e: Exception) {
             Log.e("PostTrackerData E", e.message.toString())
         }
     }
 
+    private fun parseChartError(response: Response<PostTrackerResponse>): String {
+        return try {
+            val errorBody = response.errorBody()?.string()
+            JSONObject(errorBody ?: "").getString("message")
+        } catch (e: Exception) {
+            response.message()
+        }
+    }
+
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
+    }
+
+    private fun handleError(message: String) {
+        _postTrackerresponse.postValue(PostTrackerResponse(status = 500, message = message))
     }
 }

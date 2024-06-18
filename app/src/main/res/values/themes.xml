@@ -2,6 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.CapstoneApp" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/darkBlue</item>
+        <item name="colorPrimaryVariant">@color/mediumBlue</item>
+        <item name="colorOnPrimary">@color/paleBlue</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/contrastYellow</item>
+        <item name="colorSecondaryVariant">@color/paleYellow</item>
+        <item name="colorOnSecondary">@color/black</item>
     </style>
 
     <style name="Theme.CapstoneApp" parent="Base.Theme.CapstoneApp" />

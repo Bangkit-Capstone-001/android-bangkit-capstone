@@ -89,8 +89,6 @@
     <string name="act_level">Activity level:</string>
     <string name="act_value">sedentary</string>
     <string name="premium">Premium</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--  Feature 02  -->
     <string name="create_workout">Create Workouts</string>
@@ -104,5 +102,10 @@
     <string name="daily_w">Daily workouts</string>
     <string name="all_w">All workout plans</string>
     <string name="workout_schedule">Workout Schedule</string>
+
+    <!--  Feature 04  -->
+    <string name="weight_graph">Your weight history</string>
+    <string name="insert_update">Track your weight</string>
+    <string name="date">Date:</string>
 
 </resources>

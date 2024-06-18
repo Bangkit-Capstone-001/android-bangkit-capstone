@@ -38,7 +38,7 @@
         <activity
             android:name=".ui.Feature02.WorkoutList.WorkoutListActivity"
             android:exported="false" />
-      <activity
+        <activity
             android:name=".ui.Feature02.WorkoutPreference.WorkoutPreferenceActivity"
             android:exported="false" />
         <activity
@@ -50,7 +50,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.PredictActivity"
-
             android:exported="false" />
         <activity
             android:name=".ui.ProfileActivity"

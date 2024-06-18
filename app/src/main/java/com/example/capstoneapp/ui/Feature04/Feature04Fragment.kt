@@ -3,18 +3,18 @@ package com.example.capstoneapp.ui.Feature04
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.capstoneapp.R
 import com.example.capstoneapp.data.response.GetTrackerDataItem
+import com.example.capstoneapp.data.response.PostTrackerResponse
 import com.example.capstoneapp.databinding.FragmentFeature04Binding
 import com.example.capstoneapp.viewmodel.Feature04.Feature04ViewModel
-import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -23,8 +23,11 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class Feature04Fragment : Fragment() {
 
@@ -34,6 +37,7 @@ class Feature04Fragment : Fragment() {
     private var _binding: FragmentFeature04Binding? = null
     private val binding get() = _binding!!
     private lateinit var lineChart: LineChart
+    private var theDate: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,13 +61,23 @@ class Feature04Fragment : Fragment() {
         }
 
         viewModel.postTrackerResponse.observe(viewLifecycleOwner) { response ->
-            if (response.status == 200) {
-                getTrackerData()
+            if (response.status == 200 || response.status == 500) {
+                try {
+                    if (response.status == 200) {
+                        getTrackerData()
+                        setSuccess()
+                    } else {
+                        showErrorDialog(response.message.toString())
+                    }
+                } catch (e: Exception) {
+                    showErrorDialog(e.message.toString())
+                }
             }
         }
 
         getTrackerData()
         onSaveClicked()
+        setAction()
     }
 
     override fun onDestroyView() {
@@ -76,6 +90,39 @@ class Feature04Fragment : Fragment() {
             if (user.isLogin) {
                 val token = "Bearer ${user.token}"
                 viewModel.getTrackerData(token)
+            }
+        }
+    }
+
+    private fun setSuccess() {
+        showSuccessDialog()
+        binding.fragmentFeature04TieWeightFormInputEditText.setText("")
+        binding.fragmentFeature04TvDateSelectionTitle.text = ""
+        theDate = null
+    }
+
+    private fun setAction() {
+        binding.fragmentFeature04IvCalendar.setOnClickListener {
+            val datePicker =
+                MaterialDatePicker.Builder.datePicker()
+                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .setTitleText("Select date")
+                    .build()
+
+            datePicker.show(parentFragmentManager, "SelectDate")
+
+            datePicker.addOnPositiveButtonClickListener { selectedDate ->
+                Log.d("Selected Date 1", selectedDate.toString())
+                val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+                calendar.timeInMillis = selectedDate
+
+                val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val formattedDate = format.format(calendar.time)
+
+                Log.d("Selected Date 2", formattedDate.toString())
+
+                theDate = formattedDate.toString()
+                binding.fragmentFeature04TvDateSelectionTitle.text = theDate
             }
         }
     }
@@ -95,6 +142,7 @@ class Feature04Fragment : Fragment() {
             setDrawCircles(true)
             lineWidth = 2f
             circleRadius = 4f
+            fillColor = resources.getColor(R.color.paleBlue, null)
             color = resources.getColor(R.color.mediumBlue, null)
             setCircleColor(resources.getColor(R.color.contrastYellow, null))
             valueTextSize = 12f
@@ -155,17 +203,13 @@ class Feature04Fragment : Fragment() {
     private fun onSaveClicked() {
         binding.fragmentFeature04BtnSaveWeight.setOnClickListener {
             val weight = binding.fragmentFeature04TieWeightFormInputEditText.text.toString()
-            if (weight.isEmpty()) {
-                showErrorDialog("Weight cannot be empty")
+            if (weight.isEmpty() || theDate == null) {
+                showErrorDialog("Make sure your data is completed.")
             } else {
-                val currentDate = LocalDate.now()
-                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                val formattedDate = currentDate.format(formatter)
-
                 viewModel.getSession().observe(viewLifecycleOwner) { user ->
-                    if (user.isLogin) {
+                    if (user.isLogin && theDate != null) {
                         val token = "Bearer ${user.token}"
-                        viewModel.postTracker(token, formattedDate, weight.toFloat())
+                        viewModel.postTracker(token, theDate!!, weight.toFloat())
                     }
                 }
             }
@@ -177,6 +221,24 @@ class Feature04Fragment : Fragment() {
             setTitle(R.string.warning)
             setMessage(message)
             setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+            create()
+            show()
+        }
+    }
+
+    private fun showSuccessDialog() {
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle(R.string.success)
+            setMessage("Your weight is successfuly tracked.")
+            setPositiveButton(R.string.ok) { dialog, _ ->
+                dialog.dismiss()
+                viewModel._postTrackerresponse.postValue(
+                    PostTrackerResponse(
+                        status = 0,
+                        message = null
+                    )
+                )
+            }
             create()
             show()
         }
