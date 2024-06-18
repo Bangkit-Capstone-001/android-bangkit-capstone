@@ -99,7 +99,7 @@ class Feature04Fragment : Fragment() {
     private fun setSuccess() {
         showSuccessDialog()
         binding.fragmentFeature04TieWeightFormInputEditText.setText("")
-        binding.fragmentFeature04TvDateSelectionTitle.text = ""
+        binding.fragmentFeature04TvDateSelected.text = ""
         theDate = null
     }
 
@@ -134,7 +134,7 @@ class Feature04Fragment : Fragment() {
                 Log.d("Selected Date 2", formattedDate.toString())
 
                 theDate = formattedDate.toString()
-                binding.fragmentFeature04TvDateSelectionTitle.text = theDate
+                binding.fragmentFeature04TvDateSelected.text = theDate
             }
         }
     }
@@ -157,7 +157,7 @@ class Feature04Fragment : Fragment() {
             fillColor = resources.getColor(R.color.paleBlue, null)
             color = resources.getColor(R.color.mediumBlue, null)
             setCircleColor(resources.getColor(R.color.contrastYellow, null))
-            valueTextSize = 12f
+            valueTextSize = 8f
         }
 
         val lineData = LineData(lineDataSet)
@@ -180,7 +180,7 @@ class Feature04Fragment : Fragment() {
         lineChart.legend.isEnabled = false
 
         lineChart.xAxis.setLabelCount(dates.size, true)
-        lineChart.xAxis.textSize = 8f
+        lineChart.xAxis.textSize = 6f
         lineChart.axisLeft.textSize = 8f
     }
 

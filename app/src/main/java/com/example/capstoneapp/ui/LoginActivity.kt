@@ -96,6 +96,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+            setCancelable(false)
             create()
             show()
         }

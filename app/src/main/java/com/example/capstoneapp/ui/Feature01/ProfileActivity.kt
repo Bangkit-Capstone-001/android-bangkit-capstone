@@ -14,8 +14,8 @@ import com.example.capstoneapp.helper.activityToAttr
 import com.example.capstoneapp.helper.attrToActivityDropdown
 import com.example.capstoneapp.helper.attrToGoal
 import com.example.capstoneapp.helper.goalToAttr
-import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.Feature01.ProfileViewModel
+import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -112,8 +112,7 @@ class ProfileActivity : AppCompatActivity() {
         mainViewModel.getProfile(t)
 
         binding.buttonLogout.setOnClickListener {
-            mainViewModel.logout(t)
-            finish()
+            showLogoutDialog(t)
         }
 
         binding.buttonSave.setOnClickListener {
@@ -261,6 +260,22 @@ class ProfileActivity : AppCompatActivity() {
             setMessage(getString(R.string.edit_success))
             setPositiveButton(R.string.ok) { _, _ -> finish() }
             setCancelable(false)
+            create()
+            show()
+        }
+    }
+
+    private fun showLogoutDialog(t: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle(R.string.logout_title)
+            setMessage(getString(R.string.logout_desc))
+            setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            setPositiveButton(R.string.yes) { _, _ ->
+                mainViewModel.logout(t)
+                finish()
+            }
             create()
             show()
         }

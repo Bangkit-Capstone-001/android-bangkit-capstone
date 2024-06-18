@@ -29,7 +29,7 @@
     <string name="password_error">Password can\'t be less than 8 characters.</string>
 
     <string name="regis_failed">Registration failed!</string>
-    <string name="regis_success">Account %1$s has been created.</string>
+    <string name="regis_success">Account with email %1$s successfully created.</string>
     <string name="login_success">Login successful!</string>
 
     <string name="success">Success!</string>
@@ -46,11 +46,17 @@
     <string name="weight">Weight (kg)</string>
     <string name="weight_t">Weight you want to lose or gain (kg)</string>
     <string name="duration">Duration to achieve your target (days)</string>
+    <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="warning">Warning!</string>
     <string name="edit_success">Your profile is successfully updated!</string>
     <string name="goal2">Goal</string>
     <string name="act_level2">Activity level</string>
+
+    <string name="logout_title">You are about to leave.</string>
+    <string name="logout_desc">Are you sure to leave this app?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
 
     <!--  Predict Page  -->
     <string name="predict_info">Please select an image, your image will be shown above. Then, please click Predict Button below to get your result.</string>
