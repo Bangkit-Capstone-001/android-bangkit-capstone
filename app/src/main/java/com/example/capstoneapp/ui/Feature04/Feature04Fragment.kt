@@ -68,9 +68,11 @@ class Feature04Fragment : Fragment() {
                         setSuccess()
                     } else {
                         showErrorDialog(response.message.toString())
+                        resetState()
                     }
                 } catch (e: Exception) {
                     showErrorDialog(e.message.toString())
+                    resetState()
                 }
             }
         }
@@ -101,12 +103,22 @@ class Feature04Fragment : Fragment() {
         theDate = null
     }
 
+    private fun resetState() {
+        viewModel._postTrackerresponse.postValue(
+            PostTrackerResponse(
+                status = 0,
+                message = null
+            )
+        )
+    }
+
     private fun setAction() {
         binding.fragmentFeature04IvCalendar.setOnClickListener {
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
                     .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                     .setTitleText("Select date")
+                    .setTheme(R.style.CustomDatePicker)
                     .build()
 
             datePicker.show(parentFragmentManager, "SelectDate")
@@ -232,12 +244,7 @@ class Feature04Fragment : Fragment() {
             setMessage("Your weight is successfuly tracked.")
             setPositiveButton(R.string.ok) { dialog, _ ->
                 dialog.dismiss()
-                viewModel._postTrackerresponse.postValue(
-                    PostTrackerResponse(
-                        status = 0,
-                        message = null
-                    )
-                )
+                resetState()
             }
             create()
             show()

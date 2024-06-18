@@ -1,16 +1,17 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.CapstoneApp" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Base.Theme.CapstoneApp" parent="Theme.Material3.Light.NoActionBar"></style>
+
+    <style name="Theme.CapstoneApp" parent="Base.Theme.CapstoneApp">
+        <!-- Secondary brand color. -->
         <item name="colorPrimary">@color/darkBlue</item>
         <item name="colorPrimaryVariant">@color/mediumBlue</item>
-        <item name="colorOnPrimary">@color/paleBlue</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/contrastYellow</item>
         <item name="colorSecondaryVariant">@color/paleYellow</item>
         <item name="colorOnSecondary">@color/black</item>
     </style>
-
-    <style name="Theme.CapstoneApp" parent="Base.Theme.CapstoneApp" />
 
     <!--  NavBar: Active Indicator  -->
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
@@ -31,4 +32,14 @@
         <item name="strokeColor">@color/mediumBlue</item>
         <item name="android:textColor">@color/mediumBlue</item>
     </style>
+
+    <!--  DatePicker  -->
+    <style name="CustomDatePicker" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="materialCalendarStyle">@style/CustomMaterialCalendar</item>
+    </style>
+
+    <style name="CustomMaterialCalendar" parent="Widget.MaterialComponents.MaterialCalendar">
+        <item name="backgroundTint">@color/greyedWhite</item>
+    </style>
+
 </resources>
