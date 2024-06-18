@@ -68,6 +68,10 @@
     <string name="quantity">Quantity (grams)</string>
     <string name="mealtime">Mealtime</string>
 
+    <!--  Predict Page  -->
+    <string name="congrats">Congratulations!</string>
+    <string name="congrats_desc">You’ve completed your workout</string>
+
     <!--  Feature 01  -->
     <string name="name">Name</string>
     <string name="needs_value">3500 cal</string>
