@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.ProfileActivity">
+    tools:context=".ui.Feature01.ProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
@@ -20,9 +20,9 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:text="@string/profile"
-            android:textColor="@color/black"
+            android:textColor="@color/darkBlue"
             android:textSize="20sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/inter_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -208,9 +208,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:text="@string/set_goals"
-            android:textColor="@color/black"
+            android:textColor="@color/darkBlue"
             android:textSize="20sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/inter_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -351,6 +351,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="24dp"
+            android:fontFamily="@font/inter_bold"
             android:backgroundTint="@color/mediumBlue"
             android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -364,6 +365,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="24dp"
+            android:fontFamily="@font/inter_bold"
             android:backgroundTint="@color/darkRed"
             android:text="@string/logout"
             app:layout_constraintBottom_toBottomOf="parent"

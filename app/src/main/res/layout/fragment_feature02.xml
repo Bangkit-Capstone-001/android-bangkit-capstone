@@ -6,297 +6,323 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.Feature02.Feature02Fragment">
 
-    <!--    Konsensus ID-->
-    <!--    location_layout_name-->
-    <!--    cth : mainFragment2_cl_dailyWorkoutPlanContainer-->
-
     <!--    Daily Workout Plan-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainFragment2_cl_dailyWorkoutPlanContainer"
-        android:layout_width="300dp"
-        android:layout_height="242dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/shape_fragment4_container"
-        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/mainFragment2_tv_dailyWorkoutTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daily Workout"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#152042"
             android:layout_marginTop="13dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/daily_w"
+            android:textColor="#152042"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--        Day Container-->
+        <!--  Day Container  -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mainFragment2_cl_dailyWorkoutPlanDays"
-            android:layout_width="258dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mainFragment2_tv_dailyWorkoutTitle">
 
-            <!--            Sunday-->
+            <!--  Sunday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainFragment2_cl_dayContainerSunday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerMonday"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerMonday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/mainFragment2_tv_daySunday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="S"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Monday-->
+            <!--  Monday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainFragment2_cl_dayContainerMonday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerTuesday"
                 app:layout_constraintStart_toEndOf="@id/mainFragment2_cl_dayContainerSunday"
-                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerTuesday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/mainFragment2_tv_dayMonday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="M"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Tuesday-->
+            <!--  Tuesday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainFragment2_cl_dayContainerTuesday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerWednesday"
                 app:layout_constraintStart_toEndOf="@id/mainFragment2_cl_dayContainerMonday"
-                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerWednesday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/mainFragment2_tv_dayTuesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tu"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Wednesday-->
+            <!--  Wednesday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainFragment2_cl_dayContainerWednesday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerThursday"
                 app:layout_constraintStart_toEndOf="@id/mainFragment2_cl_dayContainerTuesday"
-                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerThursday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/mainFragment2_tv_dayWednesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="W"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Thursday-->
+            <!--  Thursday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainFragment2_cl_dayContainerThursday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerFriday"
                 app:layout_constraintStart_toEndOf="@id/mainFragment2_cl_dayContainerWednesday"
-                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerFriday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/mainFragment2_tv_dayThursday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Th"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Friday-->
+            <!--  Friday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainFragment2_cl_dayContainerFriday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerSaturday"
                 app:layout_constraintStart_toEndOf="@id/mainFragment2_cl_dayContainerThursday"
-                app:layout_constraintEnd_toStartOf="@id/mainFragment2_cl_dayContainerSaturday">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/mainFragment2_tv_dayFriday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="F"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            Saturday-->
+            <!--  Saturday  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainFragment2_cl_dayContainerSaturday"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/shape_fragment4_day_item_container"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mainFragment2_cl_dayContainerFriday"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/mainFragment2_tv_daySaturday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sa"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!--        RecyclerView-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/mainFragment2_md_divider_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            app:dividerColor="#152042"
+            app:dividerThickness="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainFragment2_cl_dailyWorkoutPlanDays" />
+
+        <!--  RecyclerView  -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mainFragment2_rv_workoutPlans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/mainFragment2_cl_dailyWorkoutPlanDays"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/mainFragment2_md_divider_2"
+            tools:listitem="@layout/item_daily_plans" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--    My Workout Plans-->
+    <!--  My Workout Plans  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainFragment2_cl_myWorkoutPlansContainer"
-        android:layout_width="300dp"
-        android:layout_height="242dp"
-        android:background="@drawable/shape_fragment4_container"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/mainFragment2_cl_dailyWorkoutPlanContainer"
+        android:elevation="15dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape_fragment4_container"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/mainFragment2_cl_dailyWorkoutPlanContainer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mainFragment2_cl_myWorkoutPlansTitleContainer"
-            android:layout_width="258dp"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="24dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/mainFragment2_tv_myWorkoutPlansTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Workout Plans"
+                android:text="@string/all_w"
+                android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#152042"
-                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/inter_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/mainFragment2_iv_addWorkoutPlanButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/vector_add_24x24"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/mainFragment2_md_divider"
-            android:layout_width="258dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            app:layout_constraintTop_toBottomOf="@+id/mainFragment2_cl_myWorkoutPlansTitleContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            app:dividerColor="#152042"
             app:dividerThickness="2dp"
-            app:dividerColor="#152042"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainFragment2_cl_myWorkoutPlansTitleContainer" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mainFragment2_rv_myWorkoutPlans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/mainFragment2_md_divider"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/mainFragment2_md_divider"
+            tools:listitem="@layout/item_my_plans" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

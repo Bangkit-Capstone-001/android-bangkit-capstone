@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneapp.data.response.DataFood
 import com.example.capstoneapp.databinding.ItemPredictionBinding
-import com.example.capstoneapp.ui.AddFoodActivity
+import com.example.capstoneapp.ui.Feature03.AddFoodActivity
 
 class PredictionAdapter : ListAdapter<DataFood, PredictionAdapter.MyViewHolder>(DIFF_CALLBACK) {
 

@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityMainBinding
 import com.example.capstoneapp.ui.Feature02.Feature02Fragment
-import com.example.capstoneapp.helper.listFood
-import com.example.capstoneapp.helper.retrieveAllFood
+import com.example.capstoneapp.ui.Feature03.listFood
+import com.example.capstoneapp.ui.Feature03.retrieveAllFood
+import com.example.capstoneapp.ui.Feature01.Feature01Fragment
+import com.example.capstoneapp.ui.Feature03.Feature03Fragment
 import com.example.capstoneapp.ui.Feature04.Feature04Fragment
 import com.example.capstoneapp.viewmodel.MainViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory

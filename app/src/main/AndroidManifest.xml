@@ -38,7 +38,7 @@
         <activity
             android:name=".ui.Feature02.WorkoutList.WorkoutListActivity"
             android:exported="false" />
-      <activity
+        <activity
             android:name=".ui.Feature02.WorkoutPreference.WorkoutPreferenceActivity"
             android:exported="false" />
         <activity
@@ -46,14 +46,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.AddFoodActivity"
+            android:name=".ui.Feature03.AddFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.PredictActivity"
-
+            android:name=".ui.Feature03.PredictActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ProfileActivity"
+            android:name=".ui.Feature01.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.LoginActivity"

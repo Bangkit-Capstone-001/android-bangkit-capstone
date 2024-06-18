@@ -1,4 +1,4 @@
-package com.example.capstoneapp.ui
+package com.example.capstoneapp.ui.Feature01
 
 import NoFilterArrayAdapter
 import android.os.Build
@@ -15,7 +15,7 @@ import com.example.capstoneapp.helper.attrToActivityDropdown
 import com.example.capstoneapp.helper.attrToGoal
 import com.example.capstoneapp.helper.goalToAttr
 import com.example.capstoneapp.viewmodel.MainViewModel
-import com.example.capstoneapp.viewmodel.ProfileViewModel
+import com.example.capstoneapp.viewmodel.Feature01.ProfileViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
