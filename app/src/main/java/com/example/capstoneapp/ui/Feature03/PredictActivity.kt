@@ -1,4 +1,4 @@
-package com.example.capstoneapp.ui
+package com.example.capstoneapp.ui.Feature03
 
 import android.Manifest
 import android.content.Context
@@ -28,7 +28,7 @@ import com.dicoding.picodiploma.loginwithanimation.helper.uriToFile
 import com.example.capstoneapp.R
 import com.example.capstoneapp.databinding.ActivityPredictBinding
 import com.example.capstoneapp.helper.PredictionAdapter
-import com.example.capstoneapp.viewmodel.PredictViewModel
+import com.example.capstoneapp.viewmodel.Feature03.PredictViewModel
 import com.example.capstoneapp.viewmodel.ViewModelFactory
 import com.yalantis.ucrop.UCrop
 import okhttp3.MediaType.Companion.toMediaType

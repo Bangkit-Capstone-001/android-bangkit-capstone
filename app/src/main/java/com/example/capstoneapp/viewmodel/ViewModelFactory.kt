@@ -5,10 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.di.Injection
+import com.example.capstoneapp.viewmodel.Feature01.ProfileViewModel
 import com.example.capstoneapp.viewmodel.Feature02.Feature02ViewModel
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutList.WorkoutListViewModel
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutPlanDetail.WorkoutPlanDetailViewModel
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutValidation.WorkoutValidationViewModel
+import com.example.capstoneapp.viewmodel.Feature03.AddFoodViewModel
+import com.example.capstoneapp.viewmodel.Feature03.PredictViewModel
 import com.example.capstoneapp.viewmodel.Feature04.Feature04ViewModel
 
 class ViewModelFactory(private val repository: UserRepository) :
