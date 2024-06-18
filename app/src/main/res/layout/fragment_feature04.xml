@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Your Weight Journey"
         android:textSize="24sp"
-        android:textColor="#223767"
-        android:textStyle="bold"
+        android:textColor="@color/mediumBlue"
+        android:fontFamily="@font/inter_bold"
         android:layout_marginTop="42dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,8 +63,8 @@
                 android:layout_height="wrap_content"
                 android:text="Insert or Update Your Current Weight!"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="#223767"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/mediumBlue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
