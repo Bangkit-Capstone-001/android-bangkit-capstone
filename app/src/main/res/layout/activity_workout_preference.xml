@@ -3,14 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/greyedWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/greyedWhite"
     tools:context=".ui.Feature02.WorkoutPreference.WorkoutPreferenceActivity">
 
-    <!--    Konsensus ID-->
-    <!--    location_layout_name-->
-    <!--    cth : workoutPreference_cl_something-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutPreference_cl_pageTitleContainer"
         android:layout_width="match_parent"
@@ -23,35 +20,37 @@
             android:id="@+id/workoutPreference_tv_pageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Workout Preference"
-            android:textSize="18sp"
             android:fontFamily="@font/inter_bold"
+            android:text="Workout Preference"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/workoutPreference_iv_backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/vector_back_24x24"
             android:layout_marginStart="38dp"
+            android:src="@drawable/vector_back_24x24"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/workoutPreference_cl_preferenceSelectionContainer"
-        android:layout_width="330dp"
+        android:layout_width="match_parent"
         android:layout_height="377dp"
-        android:elevation="15dp"
-        android:background="@drawable/shape_fragment4_container"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="46dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape_fragment4_container"
+        android:elevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/workoutPreference_cl_pageTitleContainer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,8 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="63dp"
             android:background="@drawable/shape_fragment2_progress_bar_container"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -68,10 +67,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/img_progress_bar_0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

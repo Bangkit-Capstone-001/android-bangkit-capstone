@@ -95,6 +95,7 @@
     <!--  Feature 02  -->
     <string name="create_workout">Create Workouts</string>
     <string name="choose_workout">Choose your workouts</string>
+    <string name="start">Start</string>
 
     <!--  Feature 03  -->
     <string name="chart_title">Today\'s calorie</string>

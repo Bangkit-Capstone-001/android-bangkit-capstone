@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:padding="20dp"
@@ -42,7 +42,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/workoutLevel_cl_preferences1"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toTopOf="@id/workoutLevel_cl_preferences2"
@@ -51,9 +51,10 @@
 
             <ImageView
                 android:id="@+id/workoutLevel_iv_preferenceLogo1"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="39dp"
+                android:layout_marginStart="45dp"
+                android:maxHeight="10dp"
                 android:src="@drawable/img_beginner"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,20 +64,21 @@
                 android:id="@+id/workoutLevel_tv_preferenceTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="33dp"
+                android:layout_marginStart="36dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="Beginner"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/workoutLevel_iv_preferenceLogo1"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.513" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/workoutLevel_cl_preferences2"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toTopOf="@id/workoutLevel_cl_preferences3"
@@ -85,9 +87,9 @@
 
             <ImageView
                 android:id="@+id/workoutLevel_iv_preferenceLogo2"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
+                android:layout_marginStart="35dp"
                 android:src="@drawable/img_intermediate"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -97,20 +99,21 @@
                 android:id="@+id/workoutLevel_tv_preferenceTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
+                android:layout_marginStart="28dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="Intermediate"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/workoutLevel_iv_preferenceLogo2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.513" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/workoutLevel_cl_preferences3"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -119,9 +122,9 @@
 
             <ImageView
                 android:id="@+id/workoutLevel_iv_preferenceLogo3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_advance"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,6 +144,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,8 +56,8 @@ class WorkoutSequenceActivity : AppCompatActivity() {
     private fun setWorkoutItem(workoutItem: GetWorkoutsItem) {
         binding.workoutSequenceTvPageTitle.text = "${workoutItem.bodyGroup} Body Workout"
         binding.workoutSequenceTvWorkoutNamePlaceholder.text = workoutItem.exerciseName
-        binding.workoutSequenceTvDescriptionPlaceholder.text = workoutItem.shortDescription
-        binding.workoutSequenceTvInstructionPlaceholder.text = workoutItem.instructions
+        binding.workoutSequenceTvDescriptionPlaceholder.text = "${workoutItem.shortDescription}\n"
+        binding.workoutSequenceTvInstructionPlaceholder.text = "${workoutItem.instructions}\n"
         binding.workoutSequenceIvYoutubeAnchorPlaceholder.setOnClickListener {
             val youtubeUrl = workoutItem.youtubeLinks
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl))

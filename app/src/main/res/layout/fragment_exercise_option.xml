@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:padding="20dp"
@@ -12,10 +12,10 @@
         android:id="@+id/exerciseOption_tv_selectYourText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
         android:text="Select Your"
         android:textColor="@color/lightGray"
         android:textSize="14dp"
-        android:fontFamily="@font/inter_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,10 +23,10 @@
         android:id="@+id/exerciseOption_tv_exerciseOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
         android:text="Tools Options"
         android:textColor="@color/paleBlue"
         android:textSize="24sp"
-        android:fontFamily="@font/inter_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/exerciseOption_tv_selectYourText" />
 
@@ -41,7 +41,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/exerciseOption_cl_preferences1"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toTopOf="@id/exerciseOption_cl_preferences2"
@@ -50,9 +50,9 @@
 
             <ImageView
                 android:id="@+id/exerciseOption_iv_preferenceLogo1"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="39dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_body_weight"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
                 android:id="@+id/exerciseOption_tv_preferenceTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="33dp"
+                android:layout_marginStart="32dp"
                 android:text="Body Weight"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
@@ -75,7 +75,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/exerciseOption_cl_preferences2"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toTopOf="@id/exerciseOption_cl_preferences3"
@@ -84,9 +84,9 @@
 
             <ImageView
                 android:id="@+id/exerciseOption_iv_preferenceLogo2"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_minimal_equipment"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
                 android:id="@+id/exerciseOption_tv_preferenceTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
+                android:layout_marginStart="32dp"
                 android:text="Minimal Equipment"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
@@ -109,7 +109,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/exerciseOption_cl_preferences3"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -118,9 +118,9 @@
 
             <ImageView
                 android:id="@+id/exerciseOption_iv_preferenceLogo3"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_full_gym_tools"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +130,7 @@
                 android:id="@+id/exerciseOption_tv_preferenceTitle3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
+                android:layout_marginStart="32dp"
                 android:text="Full Gym Tools"
                 android:textColor="#ffffff"
                 android:textSize="16sp"

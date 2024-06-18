@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:padding="20dp"
@@ -41,7 +41,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/muscleTarget_cl_preferences1"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toTopOf="@id/muscleTarget_cl_preferences2"
@@ -50,9 +50,9 @@
 
             <ImageView
                 android:id="@+id/muscleTarget_iv_preferenceLogo1"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="39dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_upper_body"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
                 android:id="@+id/muscleTarget_tv_preferenceTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="33dp"
+                android:layout_marginStart="32dp"
                 android:text="Upper Body"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
@@ -75,7 +75,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/muscleTarget_cl_preferences2"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toTopOf="@id/muscleTarget_cl_preferences3"
@@ -84,9 +84,9 @@
 
             <ImageView
                 android:id="@+id/muscleTarget_iv_preferenceLogo2"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_lower_body"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
                 android:id="@+id/muscleTarget_tv_preferenceTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
+                android:layout_marginStart="32dp"
                 android:text="Lower Body"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
@@ -109,7 +109,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/muscleTarget_cl_preferences3"
-            android:layout_width="275dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/shape_workout_preference_preferences"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -118,9 +118,9 @@
 
             <ImageView
                 android:id="@+id/muscleTarget_iv_preferenceLogo3"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_full_body"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +130,7 @@
                 android:id="@+id/muscleTarget_tv_preferenceTitle3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
+                android:layout_marginStart="32dp"
                 android:text="Full Body"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
@@ -140,6 +140,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
