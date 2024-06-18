@@ -9,12 +9,10 @@
 
     <color name="darkBlue">#152042</color>
     <color name="mediumBlue">#223767</color>
-    <color name="raceBlue">#2970FF</color>
     <color name="paleBlue">#BBC5E0</color>
 
     <color name="darkRed">#CF0000</color>
     <color name="lightYellow">#FFFBDB</color>
     <color name="paleYellow">#E0DEBB</color>
     <color name="contrastYellow">#FFCD6B</color>
-    <color name="yellow">#F1DF3E</color>
 </resources>

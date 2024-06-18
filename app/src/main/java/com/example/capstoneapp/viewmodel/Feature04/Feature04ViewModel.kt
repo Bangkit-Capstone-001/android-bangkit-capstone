@@ -20,8 +20,8 @@ class Feature04ViewModel(private val repository: UserRepository) : ViewModel() {
     private val _getTrackerResponse = MutableLiveData<GetTrackerResponse>()
     val getTrackerResponse: LiveData<GetTrackerResponse> = _getTrackerResponse
 
-    val _postTrackerresponse = MutableLiveData<PostTrackerResponse>()
-    val postTrackerResponse: LiveData<PostTrackerResponse> = _postTrackerresponse
+    val _postTrackerResponse = MutableLiveData<PostTrackerResponse>()
+    val postTrackerResponse: LiveData<PostTrackerResponse> = _postTrackerResponse
 
     fun getTrackerData(token: String) {
         val client = ApiConfig.getApiService().getTrackerData(token)
@@ -65,7 +65,7 @@ class Feature04ViewModel(private val repository: UserRepository) : ViewModel() {
                 ) {
                     if (response.isSuccessful) {
                         response.body()?.let { responseBody ->
-                            _postTrackerresponse.value = responseBody
+                            _postTrackerResponse.value = responseBody
                         } ?: run {
                             Log.e("PostTrackerData E1", "Null Response")
                         }
@@ -99,6 +99,6 @@ class Feature04ViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     private fun handleError(message: String) {
-        _postTrackerresponse.postValue(PostTrackerResponse(status = 500, message = message))
+        _postTrackerResponse.postValue(PostTrackerResponse(status = 500, message = message))
     }
 }

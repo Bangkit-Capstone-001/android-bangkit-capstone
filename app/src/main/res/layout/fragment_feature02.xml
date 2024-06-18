@@ -6,10 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.Feature02.Feature02Fragment">
 
-    <!--    Konsensus ID-->
-    <!--    location_layout_name-->
-    <!--    cth : mainFragment2_cl_dailyWorkoutPlanContainer-->
-
     <!--    Daily Workout Plan-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainFragment2_cl_dailyWorkoutPlanContainer"

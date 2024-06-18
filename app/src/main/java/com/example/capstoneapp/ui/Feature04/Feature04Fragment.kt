@@ -104,7 +104,7 @@ class Feature04Fragment : Fragment() {
     }
 
     private fun resetState() {
-        viewModel._postTrackerresponse.postValue(
+        viewModel._postTrackerResponse.postValue(
             PostTrackerResponse(
                 status = 0,
                 message = null
@@ -241,7 +241,7 @@ class Feature04Fragment : Fragment() {
     private fun showSuccessDialog() {
         AlertDialog.Builder(requireContext()).apply {
             setTitle(R.string.success)
-            setMessage("Your weight is successfuly tracked.")
+            setMessage("Your weight is successfully tracked.")
             setPositiveButton(R.string.ok) { dialog, _ ->
                 dialog.dismiss()
                 resetState()

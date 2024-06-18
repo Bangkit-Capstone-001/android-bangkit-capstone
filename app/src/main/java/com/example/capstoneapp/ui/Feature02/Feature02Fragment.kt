@@ -58,9 +58,6 @@ class Feature02Fragment : Fragment() {
         startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val shouldFinishSequentially = result.data?.getBooleanExtra("shouldFinishSequentially", false) ?: false
-                if (shouldFinishSequentially) {
-
-                }
             }
         }
 
