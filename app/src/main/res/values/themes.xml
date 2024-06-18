@@ -9,7 +9,7 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/contrastYellow</item>
-        <item name="colorSecondaryVariant">@color/paleYellow</item>
+        <item name="colorSecondaryVariant">@color/paleBlue</item>
         <item name="colorOnSecondary">@color/black</item>
     </style>
 
