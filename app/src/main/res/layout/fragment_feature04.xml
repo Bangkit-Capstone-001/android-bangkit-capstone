@@ -8,6 +8,96 @@
 
 <!--    Konsensus ID-->
 <!--    location_layout_name-->
-<!--    cth : mainFragment2_cl_something-->
+<!--    cth : fragmentFeature04_cl_something-->
+    <TextView
+        android:id="@+id/fragmentFeature04_tv_pageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Weight Journey"
+        android:textSize="24sp"
+        android:textColor="@color/mediumBlue"
+        android:fontFamily="@font/inter_bold"
+        android:layout_marginTop="42dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fragmentFeature04_cv_chartContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="5dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentFeature04_tv_pageTitle">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/fragmentFeature04_lc_lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fragmentFeature04_cv_weightFormContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentFeature04_cv_chartContainer">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/fragment04_tv_weightFormTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insert or Update Your Current Weight!"
+                android:textSize="12sp"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/mediumBlue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragmentFeature04_til_weightFormInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/focus_selector"
+                app:startIconDrawable="@drawable/ic_scale"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment04_tv_weightFormTitle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragmentFeature04_tie_weightFormInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/fragmentFeature04_btn_saveWeight"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Save Weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/fragmentFeature04_til_weightFormInputLayout"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

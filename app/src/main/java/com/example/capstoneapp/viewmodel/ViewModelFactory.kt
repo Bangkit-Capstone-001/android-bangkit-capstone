@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneapp.data.UserRepository
 import com.example.capstoneapp.di.Injection
+import com.example.capstoneapp.viewmodel.Feature04.Feature04ViewModel
 import com.example.capstoneapp.ui.Feature02.WorkoutPlanDetail.WorkoutPlanDetailActivity
 import com.example.capstoneapp.viewmodel.Feature02.Feature02ViewModel
 import com.example.capstoneapp.viewmodel.Feature02.WorkoutList.WorkoutListViewModel
@@ -33,6 +34,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(AddFoodViewModel::class.java) -> {
                 AddFoodViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(Feature04ViewModel::class.java) -> {
+                Feature04ViewModel(repository) as T
             }
             modelClass.isAssignableFrom(WorkoutListViewModel::class.java) -> {
                 WorkoutListViewModel(repository) as T
