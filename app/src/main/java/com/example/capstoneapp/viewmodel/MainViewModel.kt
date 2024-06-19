@@ -53,7 +53,7 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
     fun getProfile(token: String) {
         _isLoading.value = true
         _userError.value = false
-        Log.e("Token", "$token")    // get token
+        // Log.e("Token", "$token")    // get token
         val client = ApiConfig.getApiService().getProfile(token)
         client.enqueue(object : Callback<GetProfileResponse> {
             override fun onResponse(
