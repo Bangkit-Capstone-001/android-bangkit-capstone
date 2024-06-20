@@ -51,7 +51,7 @@
        ```
          https://github.com/FitFirst/android-bangkit-capstone.git
        ```
-    3. Enter the Base URL in buildConfigField `build.graddle'
+    3. Enter the Base URL in buildConfigField `build.graddle`
        ```
        buildTypes {
            named("release") {
