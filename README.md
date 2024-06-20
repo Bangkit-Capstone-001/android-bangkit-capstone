@@ -15,8 +15,6 @@
     
   * **Recommended Workout Plan**, Receive workout recommendations based on your current workout selections.
     
-  * **Splash Screen:**, Enjoy a splash screen when launching the app, creating a smooth transition to the main page.
-    
   * **Pick Image From Gallery**, Select images from your gallery to upload and analyze.
     
   * **Take Image From Camera**, Capture images directly from your camera for immediate analysis.
