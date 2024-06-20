@@ -3,37 +3,37 @@
 
 
 ### Features
-  * **Personal Calorie Tracking**, Track daily calorie intake to achieve and maintain your desired body weight.
+  * **Personal Calorie Tracking**. Track daily calorie intake to achieve and maintain your desired body weight.
     
-  * **Food Calorie Information**, Access detailed calorie information for various foods to help achieve your weight goals.
+  * **Food Calorie Information**. Access detailed calorie information for various foods to help achieve your weight goals.
     
-  * **Food Image Calorie Prediction**, Predict the amount of calories in your food using AI image recognition.
+  * **Food Image Calorie Prediction**. Predict the amount of calories in your food using AI image recognition.
     
-  * **Personal Weight Tracking**, Monitor and log your daily weight to ensure you stay on track with your body weight goals.
+  * **Personal Weight Tracking**. Monitor and log your daily weight to ensure you stay on track with your body weight goals.
     
-  * **Personalized Workout Plan**, Create custom workout plans based on your preferences, including difficulty level, targeted muscles, and available equipment.
+  * **Personalized Workout Plan**. Create custom workout plans based on your preferences, including difficulty level, targeted muscles, and available equipment.
     
-  * **Recommended Workout Plan**, Receive workout recommendations based on your current workout selections.
+  * **Recommended Workout Plan**. Receive workout recommendations based on your current workout selections.
     
-  * **Pick Image From Gallery**, Select images from your gallery to upload and analyze.
+  * **Pick Image From Gallery**. Select images from your gallery to upload and analyze.
     
-  * **Take Image From Camera**, Capture images directly from your camera for immediate analysis.
+  * **Take Image From Camera**. Capture images directly from your camera for immediate analysis.
     
-  * **Send Image to Server**, Upload the food images to our server to predict the calorie content of the food.
+  * **Send Image to Server**. Upload the food images to our server to predict the calorie content of the food.
 
 
 #### Dependencies :
   - [Lifecycle & LiveData](https://developer.android.com/jetpack/androidx/releases/lifecycle)
   - [Glide](https://github.com/bumptech/glide)
-  - [circleimageview](https://github.com/hdodenhof/CircleImageView)
+  - [Circleimageview](https://github.com/hdodenhof/CircleImageView)
   - [Android Material](https://github.com/material-components/material-components-android/tree/master/docs/components)
   - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
-  - [okhttp3](https://square.github.io/okhttp/)
-  - [retrofit](https://square.github.io/retrofit/)
-  - [datastore-preferences](https://developer.android.com/topic/libraries/architecture/datastore)
-  - [justifytext](https://github.com/ufo22940268/android-justifiedtextview/blob/master/README.md)
-  - [picasso](https://square.github.io/picasso/)
-  - [ucrop](https://github.com/Yalantis/uCrop)
+  - [Okhttp3](https://square.github.io/okhttp/)
+  - [Retrofit](https://square.github.io/retrofit/)
+  - [Datastore-preferences](https://developer.android.com/topic/libraries/architecture/datastore)
+  - [Justifytext](https://github.com/ufo22940268/android-justifiedtextview/blob/master/README.md)
+  - [Picasso](https://square.github.io/picasso/)
+  - [Ucrop](https://github.com/Yalantis/uCrop)
 
  
 ## Getting Started Application
