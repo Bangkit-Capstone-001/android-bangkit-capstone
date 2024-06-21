@@ -1,8 +1,10 @@
 package com.example.capstoneapp.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +43,16 @@ class WelcomeActivity : AppCompatActivity() {
         }
         binding.buttonRegister.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
+        }
+        binding.buttonPitch.setOnClickListener {
+            val url = "https://youtu.be/OAcBBLYEoyw?si=-Rt_dFQeO83AeLoO"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        }
+        binding.buttonDemo.setOnClickListener {
+            val url = "https://www.youtube.com/watch?v=gU8B55GGGlE"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
         }
     }
 }
